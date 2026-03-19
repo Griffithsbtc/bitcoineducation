@@ -33,7 +33,7 @@
   }
 
   /* === PAGE VIEWS === */
-  /* pages are separate files */
+  
   
 
   /* === NAV === */
@@ -168,41 +168,7 @@
 
   /* Calendly popup handled natively by widget.js */
 
-  /* === QUICK FIND SEARCH OVERLAY === */
-  .qf-trigger {
-    position: fixed; bottom: 24px; right: 24px; z-index: 9000; width: 52px; height: 52px;
-    border-radius: 50%; background: var(--bitcoin); color: #fff; border: none; cursor: pointer;
-    box-shadow: 0 4px 16px rgba(232,134,15,0.4); display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-  }
-  .qf-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(232,134,15,0.5); }
-  .qf-trigger svg { width: 22px; height: 22px; }
-  .qf-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
-    z-index: 9500; display: none; align-items: flex-start; justify-content: center; padding: 80px 24px 24px;
-  }
-  .qf-overlay.active { display: flex; }
-  .qf-box {
-    background: var(--bg-page); border-radius: 16px; max-width: 580px; width: 100%;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.2); max-height: 70vh; display: flex; flex-direction: column;
-  }
-  .qf-input-wrap { padding: 16px 20px; border-bottom: 1px solid var(--border-light); display: flex; gap: 12px; align-items: center; }
-  .qf-input-wrap svg { width: 20px; height: 20px; color: var(--text-dim); flex-shrink: 0; }
-  .qf-input {
-    flex: 1; border: none; background: transparent; font-size: 16px; color: var(--text-hero);
-    font-family: inherit; outline: none;
-  }
-  .qf-input::placeholder { color: var(--text-dim); }
-  .qf-hint { padding: 8px 20px; font-size: 11px; color: var(--text-dim); }
-  .qf-results { overflow-y: auto; padding: 0 12px 12px; flex: 1; }
-  .qf-result {
-    display: block; padding: 10px 12px; border-radius: 8px; text-decoration: none;
-    transition: background 0.15s; cursor: pointer;
-  }
-  .qf-result:hover { background: rgba(232,134,15,0.06); }
-  .qf-result-type { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--bitcoin); text-transform: uppercase; letter-spacing: 0.5px; }
-  .qf-result-title { font-weight: 600; font-size: 14px; color: var(--text-hero); margin: 2px 0; }
-  .qf-result-page { font-size: 12px; color: var(--text-dim); }
+  
 
   /* === TWEET EMBEDS === */
   .tweet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 20px 0 32px; }

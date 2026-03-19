@@ -6,9 +6,863 @@
   <title>Step 7: Advanced Learning | bitcoineducation.io</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-deep: #FAFAF8;
+    --bg-surface: #F2F1EE;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F7F6F3;
+    --bg-step: #F5F4F1;
+    --bitcoin: #E8860F;
+    --bitcoin-bright: #F7931A;
+    --bitcoin-dim: rgba(232, 134, 15, 0.08);
+    --bitcoin-glow: rgba(232, 134, 15, 0.04);
+    --text-hero: #1a1a2e;
+    --text-primary: #2d2d3d;
+    --text-body: #444455;
+    --text-secondary: #6b6b7b;
+    --text-dim: #9999a8;
+    --border: rgba(0,0,0,0.08);
+    --border-hover: rgba(232, 134, 15, 0.35);
+    --border-subtle: rgba(0,0,0,0.04);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-body);
+    font-family: 'Outfit', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* === PAGE VIEWS === */
+  
+  
+
+  /* === NAV === */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 48px; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250, 250, 248, 0.92); box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-left { display: flex; align-items: center; gap: 20px; }
+  .nav-logo {
+    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 18px;
+    color: var(--text-hero); text-decoration: none; letter-spacing: -0.3px;
+    cursor: pointer;
+  }
+  .nav-logo .dot-io { color: var(--bitcoin); }
+
+  /* Live BTC Ticker */
+  .btc-ticker {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-dim); background: rgba(247,147,26,0.06);
+    border: 1px solid rgba(247,147,26,0.1); border-radius: 6px;
+    padding: 4px 10px; display: flex; align-items: center; gap: 6px;
+    transition: all 0.3s;
+  }
+  .btc-ticker .btc-icon { color: var(--bitcoin); font-size: 12px; }
+  .btc-ticker .btc-price { color: var(--text-secondary); }
+
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-weight: 400; font-size: 14px; color: var(--text-secondary);
+    text-decoration: none; letter-spacing: 0.3px; transition: color 0.2s;
+    cursor: pointer;
+  }
+  .nav-links a:hover { color: var(--text-hero); }
+  .nav-cta {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase; padding: 10px 20px;
+    background: transparent; border: 1px solid var(--bitcoin); color: var(--bitcoin);
+    border-radius: 6px; text-decoration: none; transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .nav-cta:hover { background: var(--bitcoin); color: var(--bg-deep); }
+
+  /* === LITE YOUTUBE EMBED === */
+  .lite-yt {
+    position: relative; width: 100%; padding-bottom: 56.25%;
+    background: var(--bg-card); border-radius: 12px; overflow: hidden;
+    cursor: pointer; border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .lite-yt:hover { border-color: var(--border-hover); }
+  .lite-yt img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.85; transition: opacity 0.3s;
+  }
+  .lite-yt:hover img { opacity: 1; }
+  .lite-yt .yt-play {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px; height: 48px; background: rgba(0,0,0,0.75);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s;
+  }
+  .lite-yt:hover .yt-play { background: #cc0000; }
+  .lite-yt .yt-play svg { width: 24px; height: 24px; fill: #fff; margin-left: 3px; }
+  .lite-yt iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+  }
+  .lite-yt .yt-title {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 12px 16px; font-size: 13px; font-weight: 500;
+    color: var(--text-hero); background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0 32px; }
+
+  /* === GLOSSARY SEARCH === */
+  .glossary-search {
+    width: 100%; padding: 14px 20px; font-size: 16px;
+    font-family: 'Outfit', sans-serif; color: var(--text-hero);
+    background: var(--bg-card); border: 2px solid var(--border);
+    border-radius: 10px; outline: none; transition: border-color 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .glossary-search:focus { border-color: var(--bitcoin); }
+  .glossary-search::placeholder { color: var(--text-dim); }
+  .glossary-stats { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin: 12px 0 24px; }
+  .glossary-term {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 24px; margin-bottom: 12px;
+    display: none; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: border-color 0.3s;
+  }
+  .glossary-term.visible { display: block; }
+  .glossary-term.title-match { border-left: 3px solid var(--bitcoin); }
+  .glossary-term-name {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 16px; color: var(--text-hero); margin-bottom: 6px;
+  }
+  .glossary-term-def { font-size: 14px; color: var(--text-body); line-height: 1.7; }
+  .glossary-highlight { background: rgba(232,134,15,0.15); padding: 0 3px; border-radius: 3px; }
+
+  /* === EXPANDABLE DETAILS === */
+  .info-expand { margin: 16px 0 24px; border: 1px solid var(--border-light); border-radius: 12px; overflow: hidden; }
+  .info-expand summary {
+    cursor: pointer; padding: 14px 20px; font-weight: 600; font-size: 15px; color: var(--text-hero);
+    display: flex; align-items: center; gap: 10px; list-style: none; transition: background 0.2s;
+  }
+  .info-expand summary::-webkit-details-marker { display: none; }
+  .info-expand summary::before { content: ''; display: inline-block; width: 0; height: 0; border-left: 6px solid var(--bitcoin); border-top: 5px solid transparent; border-bottom: 5px solid transparent; transition: transform 0.3s; flex-shrink: 0; }
+  .info-expand[open] summary::before { transform: rotate(90deg); }
+  .info-expand summary:hover { background: rgba(232,134,15,0.04); }
+  .info-expand .info-body { padding: 0 20px 20px; font-size: 14px; line-height: 1.8; color: var(--text-body); }
+  .info-expand .info-body p { margin-bottom: 12px; }
+  .info-expand .info-body strong { color: var(--text-hero); }
+
+  /* === BOOK CARDS WITH COVERS === */
+  .book-grid { display: flex; flex-direction: column; gap: 12px; margin: 20px 0 32px; }
+  .book-card {
+    display: flex; align-items: flex-start; gap: 16px; padding: 16px; border-radius: 12px;
+    border: 1px solid var(--border-light); text-decoration: none; transition: all 0.2s;
+  }
+  .book-card:hover { border-color: var(--border-hover); transform: translateX(4px); }
+  .book-cover { width: 52px; height: auto; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; }
+  .book-info { flex: 1; min-width: 0; }
+  .book-title { font-weight: 700; font-size: 15px; color: var(--text-hero); margin-bottom: 2px; }
+  .book-author { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bitcoin); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .book-desc { font-size: 13px; color: var(--text-body); line-height: 1.6; }
+
+
+  /* Calendly popup handled natively by widget.js */
+
+  
+
+  /* === TWEET EMBEDS === */
+  .tweet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 20px 0 32px; }
+  .tweet-grid .twitter-tweet { margin: 0 !important; }
+
+  /* === JOURNEY PROGRESS BAR === */
+  .journey-progress {
+    position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
+    background: rgba(250, 250, 248, 0.95);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 48px; display: none;
+  }
+  .journey-progress.visible { display: block; }
+  .progress-track {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; max-width: 700px; margin: 0 auto;
+  }
+  .progress-node {
+    display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    cursor: pointer; transition: all 0.3s ease; flex-shrink: 0;
+    position: relative;
+  }
+  .progress-node.completed {
+    background: rgba(247, 147, 26, 0.15); border: 1.5px solid rgba(247, 147, 26, 0.4);
+    color: var(--bitcoin);
+  }
+  .progress-node.current {
+    background: var(--bitcoin); border: 2px solid var(--bitcoin-bright);
+    color: var(--bg-deep); box-shadow: 0 0 16px rgba(247, 147, 26, 0.4);
+  }
+  .progress-node.upcoming {
+    background: var(--bg-card); border: 1.5px solid var(--border);
+    color: var(--text-dim);
+  }
+  .progress-node-label {
+    position: absolute; top: 36px; left: 50%; transform: translateX(-50%);
+    font-size: 9px; letter-spacing: 0.5px; white-space: nowrap;
+    color: var(--text-dim); font-weight: 400; pointer-events: none;
+  }
+  .progress-line {
+    width: 20px; height: 2px; flex-shrink: 0;
+  }
+  .progress-line.done { background: rgba(247, 147, 26, 0.3); }
+  .progress-line.pending { background: var(--border); }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    padding: 120px 48px 80px; position: relative; overflow: hidden;
+  }
+
+  /* Animated hero background - subtle flowing dots */
+  .hero-bg-canvas {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; opacity: 0.4;
+  }
+
+  .hero-content {
+    position: relative; z-index: 1; max-width: 720px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 18px; border: 1px solid var(--border);
+    border-radius: 100px; margin-bottom: 32px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--bitcoin); box-shadow: 0 0 12px var(--bitcoin);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .hero h1 {
+    font-family: 'Outfit', sans-serif; font-weight: 200;
+    font-size: clamp(38px, 5.5vw, 64px); line-height: 1.1;
+    color: var(--text-hero); margin-bottom: 24px;
+    letter-spacing: -1.5px;
+  }
+  .hero h1 em { font-style: normal; font-weight: 600; color: var(--bitcoin); }
+  .hero-sub {
+    font-weight: 300; font-size: 18px; line-height: 1.8;
+    color: var(--text-secondary); max-width: 560px; margin: 0 auto 40px;
+  }
+  .hero-actions { display: flex; justify-content: center; gap: 16px; }
+  .btn-primary {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase; padding: 14px 32px;
+    background: var(--bitcoin); color: var(--bg-deep);
+    border: none; border-radius: 8px; cursor: pointer;
+    text-decoration: none; transition: all 0.3s ease;
+  }
+  .btn-primary:hover { background: var(--bitcoin-bright); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(247, 147, 26, 0.25); }
+  .btn-ghost {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase; padding: 14px 32px;
+    background: transparent; color: var(--text-secondary);
+    border: 1px solid var(--border); border-radius: 8px;
+    cursor: pointer; text-decoration: none; transition: all 0.3s ease;
+  }
+  .btn-ghost:hover { border-color: var(--text-dim); color: var(--text-hero); }
+
+  .hero-scroll-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim);
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--text-dim), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+  @keyframes scrollPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* === IMPACT STATS === */
+  .impact-section {
+    padding: 80px 48px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-surface);
+  }
+  .impact-label {
+    text-align: center; font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-secondary); margin-bottom: 48px;
+    text-shadow: 0 0 20px rgba(144, 144, 168, 0.15);
+  }
+  .impact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto;
+  }
+  .impact-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 32px 24px; text-align: center;
+    position: relative; overflow: hidden; transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .impact-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bitcoin), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .impact-card:hover::before { opacity: 1; }
+  .impact-card:hover { border-color: var(--border-hover); }
+  .impact-number {
+    font-family: 'Sora', sans-serif; font-weight: 800;
+    font-size: 32px; color: var(--bitcoin); margin-bottom: 8px;
+    line-height: 1;
+  }
+  .impact-desc {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.5;
+  }
+
+  /* Source button */
+  .source-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-top: 12px; padding: 4px 10px;
+    background: rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 4px; cursor: pointer;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--text-dim); letter-spacing: 0.5px;
+    transition: all 0.2s ease; position: relative;
+  }
+  .source-btn:hover {
+    background: rgba(247, 147, 26, 0.06);
+    border-color: rgba(247, 147, 26, 0.2);
+    color: var(--bitcoin);
+  }
+  .source-btn svg { width: 10px; height: 10px; flex-shrink: 0; }
+
+  /* Citation ref */
+  .ref-sup {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--bitcoin); cursor: pointer; vertical-align: super;
+    text-decoration: none; margin-left: 2px;
+  }
+  .ref-sup:hover { text-decoration: underline; }
+
+  /* === MULTI-CURRENCY PURCHASING POWER CARD === */
+  .currency-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px 24px;
+    position: relative; overflow: hidden; transition: all 0.3s ease;
+    grid-column: span 3;
+  }
+  .currency-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bitcoin), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .currency-card:hover::before { opacity: 1; }
+  .currency-card:hover { border-color: var(--border-hover); }
+  .currency-card-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .currency-card-title {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 18px; color: var(--text-hero); margin-bottom: 4px;
+  }
+  .currency-card-subtitle {
+    font-size: 13px; color: var(--text-secondary); font-weight: 300;
+  }
+  .currency-card-since {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--bitcoin); padding: 4px 10px;
+    border: 1px solid rgba(247,147,26,0.2); border-radius: 4px;
+    white-space: nowrap;
+  }
+  .currency-bars { display: flex; flex-direction: column; gap: 10px; }
+  .currency-row {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .currency-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    font-weight: 700; color: var(--text-secondary);
+    min-width: 36px; text-align: right;
+  }
+  .currency-bar-track {
+    flex: 1; height: 10px; background: rgba(0,0,0,0.06);
+    border-radius: 5px; overflow: hidden;
+  }
+  .currency-bar-fill {
+    height: 100%; width: 0; border-radius: 5px;
+    background: linear-gradient(90deg, #e05555, #ff4444);
+    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .currency-bar-fill.gold-bar {
+    background: linear-gradient(90deg, var(--bitcoin), var(--bitcoin-bright));
+  }
+  .currency-pct {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    font-weight: 700; color: #dc2626; min-width: 40px;
+  }
+  .currency-pct.gold-pct, .currency-label.gold-pct { color: var(--bitcoin); }
+  .currency-note {
+    font-size: 11px; color: var(--text-dim); margin-top: 12px;
+    line-height: 1.5; font-style: italic;
+  }
+
+  /* === TRANSITION === */
+  .transition-section {
+    padding: 80px 48px; text-align: center;
+    max-width: 800px; margin: 0 auto;
+  }
+  .transition-section p {
+    font-weight: 200; font-size: clamp(20px, 2.5vw, 26px);
+    line-height: 1.7; color: var(--text-secondary);
+  }
+  .transition-section em { font-style: normal; color: var(--bitcoin); font-weight: 400; }
+
+  /* === FEATURED VOICES === */
+  .voices-section {
+    padding: 60px 48px 80px;
+    border-top: 1px solid var(--border);
+  }
+  .voices-label {
+    text-align: center; font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 40px;
+  }
+  .voices-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto;
+  }
+  .voice-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px; position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .voice-card:hover { border-color: var(--border-hover); }
+  .voice-quote-mark {
+    font-family: 'Sora', sans-serif; font-size: 48px; font-weight: 800;
+    color: rgba(247, 147, 26, 0.15); line-height: 1; margin-bottom: -8px;
+  }
+  .voice-quote {
+    font-weight: 300; font-size: 15px; line-height: 1.7;
+    color: var(--text-primary); margin-bottom: 16px;
+    font-style: italic;
+  }
+  .voice-name {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 13px; color: var(--text-hero);
+  }
+  .voice-title {
+    font-size: 12px; color: var(--text-dim); margin-top: 2px;
+  }
+
+  /* === RESERVE CALLOUT === */
+  .reserve-callout {
+    max-width: 1100px; margin: 32px auto 0; padding: 0;
+  }
+  .reserve-inner {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 36px 40px;
+    position: relative; overflow: hidden;
+  }
+  .reserve-inner::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(to bottom, var(--bitcoin), transparent);
+  }
+  .reserve-icon { font-size: 28px; margin-bottom: 12px; }
+  .reserve-title {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 17px; color: var(--text-hero); margin-bottom: 12px;
+  }
+  .reserve-text {
+    font-weight: 300; font-size: 14px; line-height: 1.8;
+    color: var(--text-secondary);
+  }
+  .reserve-text strong { color: var(--text-primary); font-weight: 500; }
+
+  /* === JOURNEY SECTION === */
+  .journey-section {
+    padding: 100px 48px 80px;
+  }
+  .section-header { text-align: center; margin-bottom: 56px; }
+  .section-overline {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--bitcoin); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Outfit', sans-serif; font-weight: 200;
+    font-size: clamp(28px, 3.5vw, 40px); color: var(--text-hero);
+    margin-bottom: 12px;
+  }
+  .section-desc {
+    font-weight: 300; font-size: 16px; color: var(--text-secondary);
+    max-width: 540px; margin: 0 auto;
+  }
+
+  .journey-steps {
+    max-width: 760px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .journey-step {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .journey-step:hover { border-color: var(--border-hover); }
+  .step-header {
+    display: flex; align-items: center; gap: 20px;
+    padding: 20px 24px; cursor: pointer;
+  }
+  .step-number {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1.5px solid rgba(247, 147, 26, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    color: var(--bitcoin); flex-shrink: 0;
+    background: var(--bitcoin-dim);
+  }
+  .step-header-text { flex: 1; }
+  .step-title {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 16px; color: var(--text-hero); margin-bottom: 2px;
+  }
+  .step-subtitle { font-size: 13px; color: var(--text-dim); font-weight: 300; }
+  .step-chevron {
+    width: 20px; height: 20px; color: var(--text-dim);
+    transition: transform 0.3s ease; flex-shrink: 0;
+  }
+  .journey-step.active .step-chevron { transform: rotate(180deg); color: var(--bitcoin); }
+  .step-body {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+  }
+  .journey-step.active .step-body { max-height: 500px; }
+  .step-body-inner {
+    padding: 0 24px 24px 82px;
+  }
+  .step-description {
+    font-weight: 300; font-size: 14px; line-height: 1.8;
+    color: var(--text-secondary); margin-bottom: 16px;
+  }
+  /* Reading time badges */
+  .step-time-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.5px; color: var(--text-dim);
+    background: rgba(0,0,0,0.02); border: 1px solid var(--border);
+    border-radius: 4px; padding: 3px 8px; margin-bottom: 12px;
+  }
+  .step-time-badge svg { width: 10px; height: 10px; }
+  .step-resources {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;
+  }
+  .resource-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-secondary); background: rgba(0,0,0,0.03);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 6px 12px; text-decoration: none; transition: all 0.2s;
+  }
+  .resource-tag:hover { border-color: var(--border-hover); color: var(--bitcoin); }
+  .resource-tag svg { width: 12px; height: 12px; }
+  .step-deep-dive {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    font-weight: 500; letter-spacing: 0.5px;
+    color: var(--bitcoin); text-decoration: none;
+    padding: 10px 18px; background: var(--bitcoin-dim);
+    border: 1px solid rgba(247,147,26,0.15); border-radius: 8px;
+    cursor: pointer; transition: all 0.3s ease;
+  }
+  .step-deep-dive:hover {
+    background: rgba(247, 147, 26, 0.15);
+    border-color: rgba(247, 147, 26, 0.3);
+  }
+  .step-deep-dive svg { width: 14px; height: 14px; }
+
+  /* === STEP PAGE === */
+  .step-page-hero {
+    padding: 140px 48px 60px; max-width: 800px; margin: 0 auto;
+  }
+  .step-page-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none;
+    margin-bottom: 40px; cursor: pointer; transition: color 0.2s;
+  }
+  .step-page-back:hover { color: var(--bitcoin); }
+  .step-page-back svg { width: 16px; height: 16px; }
+  .step-page-overline {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--bitcoin); margin-bottom: 16px;
+  }
+  .step-page-title {
+    font-family: 'Outfit', sans-serif; font-weight: 200;
+    font-size: clamp(32px, 4.5vw, 48px); color: var(--text-hero);
+    line-height: 1.15; margin-bottom: 20px;
+  }
+  .step-page-intro {
+    font-weight: 300; font-size: 18px; line-height: 1.8;
+    color: var(--text-secondary); max-width: 640px;
+  }
+  .step-page-time {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-dim); margin-top: 16px;
+    background: rgba(0,0,0,0.02); border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 14px;
+  }
+  .step-page-time svg { width: 14px; height: 14px; }
+
+  .step-page-content {
+    max-width: 800px; margin: 0 auto; padding: 40px 48px 120px;
+  }
+  .step-page-content h3 {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 18px; color: var(--text-hero); margin-bottom: 16px;
+    margin-top: 48px;
+  }
+  .step-page-content h3:first-child { margin-top: 0; }
+  .step-page-content p {
+    font-size: 15px; line-height: 1.8; color: var(--text-body);
+    margin-bottom: 20px;
+  }
+  .resource-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px; margin: 24px 0;
+  }
+  .resource-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px; transition: all 0.3s ease;
+    text-decoration: none; display: block;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .resource-card:hover {
+    border-color: var(--border-hover); transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .resource-card-type {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--bitcoin); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .resource-card-type svg { width: 12px; height: 12px; }
+  .resource-card-title {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 15px; color: var(--text-hero); margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .resource-card-desc {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.5;
+  }
+  .crash-pattern {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 36px; margin: 32px 0;
+  }
+  .crash-pattern-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 24px;
+  }
+  .crash-items { display: flex; flex-direction: column; gap: 16px; }
+  .crash-item { display: flex; align-items: center; gap: 16px; }
+  .crash-prices {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    min-width: 220px;
+  }
+  .crash-high { color: var(--text-hero); font-weight: 500; }
+  .crash-arrow { color: var(--text-dim); margin: 0 4px; }
+  .crash-low { color: #e05555; font-weight: 500; }
+  .crash-bar {
+    flex: 1; height: 6px; background: rgba(0,0,0,0.06);
+    border-radius: 3px; overflow: hidden;
+  }
+  .crash-bar-fill {
+    height: 100%; border-radius: 3px;
+    background: linear-gradient(90deg, #e05555, var(--bitcoin));
+  }
+  .crash-then {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: #16a34a; min-width: 100px; text-align: right;
+  }
+  .step-page-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 40px 0; border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  .step-nav-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; background: var(--bg-card);
+    border: 1px solid var(--border); border-radius: 8px;
+    text-decoration: none; transition: all 0.2s; cursor: pointer;
+  }
+  .step-nav-btn:hover { border-color: var(--border-hover); }
+  .step-nav-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .step-nav-title {
+    font-size: 14px; color: var(--text-hero); font-weight: 500;
+  }
+  .step-nav-btn svg { width: 16px; height: 16px; color: var(--text-dim); }
+
+  /* === CTA BAND === */
+  .cta-band {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin: 0 48px; padding: 56px;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; display: flex; align-items: center;
+    justify-content: space-between; gap: 40px;
+    position: relative; overflow: hidden;
+  }
+  .cta-band::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--bitcoin), transparent);
+  }
+  .cta-band-content h3 {
+    font-family: 'Outfit', sans-serif; font-weight: 600;
+    font-size: 24px; color: var(--text-hero); margin-bottom: 8px;
+  }
+  .cta-band-content p {
+    font-weight: 300; font-size: 15px; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  /* === FOOTER === */
+  footer {
+    margin-top: 120px; padding: 48px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 16px; color: var(--text-dim);
+  }
+  .footer-logo .dot-io { color: rgba(247,147,26,0.4); }
+  .footer-text { font-size: 13px; color: var(--text-dim); }
+  .footer-email a {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--text-dim); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-email a:hover { color: var(--bitcoin); }
+
+  /* === TOOLTIP === */
+  .tooltip-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+    z-index: 200; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    padding: 20px;
+  }
+  .tooltip-overlay.active { opacity: 1; pointer-events: all; }
+  .tooltip-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px; max-width: 480px; width: 100%;
+    position: relative;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+  }
+  .tooltip-close {
+    position: absolute; top: 16px; right: 16px;
+    background: none; border: none; color: var(--text-dim);
+    font-size: 24px; cursor: pointer; transition: color 0.2s;
+    line-height: 1;
+  }
+  .tooltip-close:hover { color: var(--text-hero); }
+  .tooltip-stat {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 20px; color: var(--text-hero); margin-bottom: 12px;
+  }
+  .tooltip-claim {
+    font-weight: 300; font-size: 14px; line-height: 1.7;
+    color: var(--text-body); margin-bottom: 20px;
+  }
+  .tooltip-citation-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 6px;
+  }
+  .tooltip-citation {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .tooltip-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--bitcoin); text-decoration: none; transition: opacity 0.2s;
+  }
+  .tooltip-link:hover { opacity: 0.8; }
+  .tooltip-link svg { width: 14px; height: 14px; }
+
+  /* === SCROLL REVEAL === */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-left { gap: 12px; }
+    .btc-ticker { font-size: 10px; padding: 3px 8px; }
+    .hero { padding: 100px 20px 60px; }
+    .hero h1 { font-size: 32px; }
+    .hero-sub { font-size: 16px; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .impact-section { padding: 60px 20px; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .impact-number { font-size: 24px; }
+    .currency-card { grid-column: span 1; }
+    .voices-grid { grid-template-columns: 1fr; }
+    .voices-section { padding: 40px 20px; }
+    .journey-section { padding: 60px 20px; }
+    .step-body-inner { padding: 0 20px 20px 20px; }
+    .transition-section { padding: 60px 20px; }
+    .reserve-callout { padding: 0 20px; }
+    .cta-band {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin: 0 20px; padding: 32px 24px; flex-direction: column; text-align: center; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 20px; }
+    .step-page-hero { padding: 120px 20px 40px; }
+    .step-page-content { padding: 30px 20px 80px; }
+    .resource-grid { grid-template-columns: 1fr; }
+    .crash-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .crash-prices { min-width: unset; }
+    .crash-then { text-align: left; }
+    .step-page-nav { flex-direction: column; gap: 16px; }
+    .journey-progress { padding: 14px 20px; top: 72px; }
+    .progress-node { width: 26px; height: 26px; font-size: 10px; }
+    .progress-line { width: 14px; }
+  }
+
+</style>
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <style>.step-page-hero { padding-top: 180px !important; }</style>
+  <style>.step-page-hero{padding-top:180px !important;}</style>
 </head>
 <body>
 
@@ -27,14 +881,10 @@
   </ul>
   <a class="nav-cta" href="javascript:openCalendly()">Free Kickstarter</a>
 </nav>
-<div class="journey-progress visible" id="journeyProgress">
-  <div class="progress-track" id="progressTrack">
-    <a href="step1.html" class="progress-node completed"><span class="progress-num">1</span><span class="progress-label">Why Bitcoin?</span></a><div class="progress-line completed"></div><a href="step2.html" class="progress-node completed"><span class="progress-num">2</span><span class="progress-label">Basics</span></a><div class="progress-line completed"></div><a href="step3.html" class="progress-node completed"><span class="progress-num">3</span><span class="progress-label">Performance</span></a><div class="progress-line completed"></div><a href="step4.html" class="progress-node completed"><span class="progress-num">4</span><span class="progress-label">Institutional</span></a><div class="progress-line completed"></div><a href="step45.html" class="progress-node completed"><span class="progress-num">4.5</span><span class="progress-label">Break</span></a><div class="progress-line completed"></div><a href="step5.html" class="progress-node completed"><span class="progress-num">5</span><span class="progress-label">Adoption</span></a><div class="progress-line completed"></div><a href="step6.html" class="progress-node completed"><span class="progress-num">6</span><span class="progress-label">CBDCs</span></a><div class="progress-line completed"></div><a href="step7.html" class="progress-node active"><span class="progress-num">7</span><span class="progress-label">Advanced</span></a><div class="progress-line"></div><a href="step8.html" class="progress-node upcoming"><span class="progress-num">8</span><span class="progress-label">Take Action</span></a>
-  </div>
-</div>
+<div class="journey-progress visible" id="journeyProgress"><div class="progress-track" id="progressTrack"><a href="step1.html" class="progress-node completed"><span class="progress-num">1</span><span class="progress-label">Why Bitcoin?</span></a><div class="progress-line completed"></div><a href="step2.html" class="progress-node completed"><span class="progress-num">2</span><span class="progress-label">Basics</span></a><div class="progress-line completed"></div><a href="step3.html" class="progress-node completed"><span class="progress-num">3</span><span class="progress-label">Performance</span></a><div class="progress-line completed"></div><a href="step4.html" class="progress-node completed"><span class="progress-num">4</span><span class="progress-label">Institutional</span></a><div class="progress-line completed"></div><a href="step45.html" class="progress-node completed"><span class="progress-num">4.5</span><span class="progress-label">Break</span></a><div class="progress-line completed"></div><a href="step5.html" class="progress-node completed"><span class="progress-num">5</span><span class="progress-label">Adoption</span></a><div class="progress-line completed"></div><a href="step6.html" class="progress-node completed"><span class="progress-num">6</span><span class="progress-label">CBDCs</span></a><div class="progress-line completed"></div><a href="step7.html" class="progress-node active"><span class="progress-num">7</span><span class="progress-label">Advanced</span></a><div class="progress-line"></div><a href="step8.html" class="progress-node upcoming"><span class="progress-num">8</span><span class="progress-label">Take Action</span></a></div></div>
 
 <div class="step-page-hero">
-  <a class="step-page-back" href="index.html">
+  <a class="step-page-back" href="home.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
     Back to Journey
   </a>
@@ -150,21 +1000,333 @@
   <div class="footer-text">Independent Bitcoin education. No shortcuts. No altcoins.</div>
 </footer>
 
-<!-- QUICK FIND SEARCH -->
-<button class="qf-trigger" onclick="toggleQuickFind()" title="Quick Find (Ctrl+K)">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-</button>
-
-<div class="qf-overlay" id="qfOverlay" onclick="if(event.target===this)toggleQuickFind()">
-  <div class="qf-box">
-    <div class="qf-input-wrap">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input class="qf-input" id="qfInput" type="text" placeholder="Search courses, books, videos, tools..." autocomplete="off">
-    </div>
-    <div class="qf-hint">Type to
-
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-<script src="script.js"></script>
+<script>
+</script><script>
+// === Step definitions for progress bar ===
+const STEPS = [
+  { id: 'step1', num: '1', label: 'Why Bitcoin?' },
+  { id: 'step2', num: '2', label: 'Basics' },
+  { id: 'step3', num: '3', label: 'Performance' },
+  { id: 'step4', num: '4', label: 'Institutional' },
+  { id: 'step45', num: '4.5', label: 'Break' },
+  { id: 'step5', num: '5', label: 'Adoption' },
+  { id: 'step6', num: '6', label: 'CBDCs' },
+  { id: 'step7', num: '7', label: 'Advanced' },
+  { id: 'step8', num: '8', label: 'Take Action' }
+];
+
+function buildProgressBar(currentStepId) {
+  const track = document.getElementById('progressTrack');
+  track.innerHTML = '';
+  const currentIdx = STEPS.findIndex(s => s.id === currentStepId);
+  STEPS.forEach((step, i) => {
+    if (i > 0) {
+      const line = document.createElement('div');
+      line.className = 'progress-line ' + (i <= currentIdx ? 'done' : 'pending');
+      track.appendChild(line);
+    }
+    const node = document.createElement('div');
+    node.className = 'progress-node';
+    if (i < currentIdx) node.classList.add('completed');
+    else if (i === currentIdx) node.classList.add('current');
+    else node.classList.add('upcoming');
+    const pageExists = document.getElementById('page-' + step.id);
+    if (pageExists) { node.onclick = () => showPage(step.id); }
+    else { node.style.cursor = 'default'; }
+    if (i < currentIdx) {
+      node.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
+    } else { node.textContent = step.num; }
+    const label = document.createElement('div');
+    label.className = 'progress-node-label';
+    label.textContent = step.label;
+    node.appendChild(label);
+    track.appendChild(node);
+  });
+}
+
+// === Page navigation ===
+function showPage(id) {
+  if (id === 'home') { window.location.href = 'index.html'; return; }
+  window.location.href = id + '.html';
+}
+
+// === Accordion toggle ===
+function toggleStep(header) {
+  const step = header.parentElement;
+  const wasActive = step.classList.contains('active');
+  document.querySelectorAll('.journey-step').forEach(s => s.classList.remove('active'));
+  if (!wasActive) step.classList.add('active');
+}
+
+// === Tooltip/Citation popup ===
+function openTooltip(data) {
+  document.getElementById('tooltipStat').textContent = data.stat;
+  document.getElementById('tooltipClaim').textContent = data.claim;
+  document.getElementById('tooltipCitation').innerHTML = data.citation;
+  const link = document.getElementById('tooltipLink');
+  if (data.link) { link.href = data.link; link.style.display = 'inline-flex'; }
+  else { link.style.display = 'none'; }
+  document.getElementById('tooltipOverlay').classList.add('active');
+}
+function closeTooltip() { document.getElementById('tooltipOverlay').classList.remove('active'); }
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTooltip(); });
+
+// === Scroll Reveal ===
+function initReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Animate currency bars
+        entry.target.querySelectorAll('.currency-bar-fill').forEach((bar, i) => {
+          setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200 + (i * 150));
+        });
+        // Animate counter numbers
+        entry.target.querySelectorAll('.impact-number').forEach(el => {
+          if (el.dataset.animated) return;
+          el.dataset.animated = 'true';
+          const text = el.textContent;
+          const match = text.match(/^([^\d]*?)(\d+)(.*)$/);
+          if (!match) return;
+          const prefix = match[1], target = parseInt(match[2]), suffix = match[3];
+          const duration = 1200, start = performance.now();
+          function tick(now) {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            const current = Math.round(target * eased);
+            el.textContent = prefix + current + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = text; // restore exact original
+          }
+          requestAnimationFrame(tick);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => { if (!el.classList.contains('visible')) observer.observe(el); });
+}
+
+// === Animated Hero Background ===
+function initHeroCanvas() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, dots = [];
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  // Create dots
+  for (let i = 0; i < 60; i++) {
+    dots.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.5 + 0.5
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    dots.forEach(d => {
+      d.x += d.vx; d.y += d.vy;
+      if (d.x < 0) d.x = w; if (d.x > w) d.x = 0;
+      if (d.y < 0) d.y = h; if (d.y > h) d.y = 0;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(232, 134, 15, 0.15)';
+      ctx.fill();
+    });
+    // Connect nearby dots
+    for (let i = 0; i < dots.length; i++) {
+      for (let j = i + 1; j < dots.length; j++) {
+        const dx = dots[i].x - dots[j].x;
+        const dy = dots[i].y - dots[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.strokeStyle = 'rgba(247, 147, 26, ' + (0.04 * (1 - dist / 150)) + ')';
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// === Lite YouTube Embed ===
+function playYT(el) {
+  const id = el.dataset.id;
+  el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+}
+
+// === Masters Search Engine (Glossary) ===
+const glossaryData = [
+["address","A Bitcoin address looks like 1DSrfJdB2AnWaFNgSbv3MZC2m74996JafV. It consists of a string of letters and numbers. It's an encoded base58check version of a public key 160-bit hash. Just as you ask others to send an email to your email address, you would ask others to send you bitcoin to one of your Bitcoin addresses."],
+["bip","Bitcoin Improvement Proposals. A set of proposals that members of the bitcoin community have submitted to improve bitcoin. For example, BIP21 is a proposal to improve the bitcoin uniform resource identifier (URI) scheme."],
+["bitcoin","The name of the currency unit (the coin), the network, and the software."],
+["block","A grouping of transactions, marked with a timestamp, and a commitment to the previous block. The block header is hashed to produce a proof of work, thereby validating the transactions. Valid blocks are added to the main blockchain by network consensus."],
+["blockchain","A list of validated blocks, each linking to its predecessor all the way to the genesis block."],
+["Byzantine Generals Problem","A reliable computer system must be able to cope with the failure of one or more of its components. A failed component may exhibit a type of behavior that is often overlooked: sending conflicting information to different parts of the system."],
+["coinbase","A special field used as the sole input for coinbase transactions. The coinbase allows claiming the block reward and provides up to 100 bytes for arbitrary data. Not to be confused with Coinbase transaction."],
+["coinbase transaction","The first transaction in a block. Always created by a miner, it includes a single coinbase. Not to be confused with Coinbase."],
+["cold storage","Refers to keeping a reserve of bitcoin offline. Cold storage is achieved when Bitcoin private keys are created and stored in a secure offline environment. Cold storage is important for anyone with bitcoin holdings."],
+["confirmations","Once a transaction is included in a block, it has one confirmation. As soon as another block is mined on the same blockchain, the transaction has two confirmations, and so on. Six or more confirmations is considered sufficient proof that a transaction cannot be reversed."],
+["consensus","When several nodes, usually most nodes on the network, all have the same blocks in their locally-validated best blockchain. Not to be confused with consensus rules."],
+["consensus rules","The block validation rules that full nodes follow to stay in consensus with other nodes. Not to be confused with consensus."],
+["difficulty","A network-wide setting that controls how much computation is required to produce a proof of work."],
+["difficulty retargeting","A network-wide recalculation of the difficulty that occurs once every 2,016 blocks and considers the hashing power of the previous 2,016 blocks."],
+["difficulty target","A difficulty at which all the computation in the network will find blocks approximately every 10 minutes."],
+["double-spending","Double spending is the result of successfully spending some money more than once. Bitcoin protects against double-spending by verifying each transaction added to the blockchain to ensure that the inputs for the transaction had not previously already been spent."],
+["ECDSA","Elliptic Curve Digital Signature Algorithm or ECDSA is a cryptographic algorithm used by Bitcoin to ensure that funds can only be spent by their rightful owners."],
+["fees","The sender of a transaction often includes a fee to the network for processing the requested transaction."],
+["fork","Fork, also known as accidental fork, occurs when two or more blocks have the same block height, forking the blockchain. Typically occurs when two or more miners find blocks at nearly the same time."],
+["genesis block","The first block in the blockchain, used to initialize the cryptocurrency."],
+["hard fork","A permanent divergence in the blockchain, commonly occurs when non-upgraded nodes can't validate blocks created by upgraded nodes that follow newer consensus rules."],
+["hardware wallet","A special type of bitcoin wallet which stores the user's private keys in a secure hardware device."],
+["hash","A digital commitment to some binary input."],
+["hashlocks","A type of encumbrance that restricts the spending of an output until a specified piece of data is publicly revealed. Hashlocks have the useful property that once any hashlock is opened publicly, any other hashlock secured using the same key can also be opened."],
+["HD protocol","The Hierarchical Deterministic (HD) key creation and transfer protocol (BIP32), which allows creating child keys from parent keys in a hierarchy."],
+["HD wallet","Wallets using the Hierarchical Deterministic (HD Protocol) key creation and transfer protocol (BIP32)."],
+["HD wallet seed","A potentially-short value used as a seed to generate the master private key and master chain code for an HD wallet."],
+["HTLC","A Hashed TimeLock Contract or HTLC is a class of payments that use hashlocks and timelocks to require that the receiver of a payment either acknowledge receiving the payment prior to a deadline by generating cryptographic proof of payment or forfeit the ability to claim the payment."],
+["KYC","Know your customer (KYC) is the process of a business identifying and verifying the identity of its clients. The term is also used to refer to the bank regulation which governs these activities."],
+["Lightning Network","A proposed implementation of Hashed Timelock Contracts (HTLCs) with bi-directional payment channels which allows payments to be securely routed across multiple peer-to-peer payment channels."],
+["Lock time","The part of a transaction which indicates the earliest time or earliest block when that transaction may be added to the blockchain."],
+["mempool","The bitcoin Mempool (memory pool) is a collection of all transaction data in a block that have been verified by Bitcoin nodes, but are not yet confirmed."],
+["merkle root","The root node of a merkle tree, a descendant of all the hashed pairs in the tree. Block headers must include a valid merkle root descended from all transactions in that block."],
+["merkle tree","A tree constructed by hashing paired data (the leaves), then pairing and hashing the results until a single hash remains, the merkle root."],
+["miner","A network node that finds valid proof of work for new blocks, by repeated hashing."],
+["multisignature","Multisignature (multisig) refers to requiring more than one key to authorize a bitcoin transaction."],
+["network","A peer-to-peer network that propagates transactions and blocks to every Bitcoin node on the network."],
+["nonce","The nonce in a bitcoin block is a 32-bit (4-byte) field whose value is set so that the hash of the block will contain a run of leading zeros."],
+["offchain transactions","An offchain transaction is the movement of value outside of the blockchain. While an onchain transaction modifies the blockchain, an offchain transaction relies on other methods to record and validate the transaction."],
+["opcode","Operation codes from the Bitcoin Script language which push data or perform functions within a pubkey script or signature script."],
+["orphan block","Blocks whose parent block has not been processed by the local node, so they can't be fully validated yet."],
+["output","An output in a transaction which contains a value field for transferring zero or more satoshis and a pubkey script for indicating what conditions must be fulfilled for those satoshis to be further spent."],
+["P2PKH","Pay To PubKey Hash. An output locked by a P2PKH script can be unlocked (spent) by presenting a public key and a digital signature created by the corresponding private key."],
+["P2SH","Pay-to-Script-Hash is a powerful type of transaction that greatly simplifies the use of complex transaction scripts. With P2SH the complex script is not presented in the locking script."],
+["paper wallet","A document containing all of the data necessary to generate any number of Bitcoin private keys, forming a wallet of keys."],
+["payment channels","A class of techniques designed to allow users to make multiple Bitcoin transactions without committing all of the transactions to the bitcoin blockchain."],
+["pooled mining","A mining approach where multiple generating clients contribute to the generation of a block, and then split the block reward according to contributed processing power."],
+["Proof-of-Stake","A method by which a cryptocurrency blockchain network aims to achieve distributed consensus by asking users to prove ownership of a certain amount of currency."],
+["Proof-of-Work","A piece of data that requires significant computation to find. In bitcoin, miners must find a numeric solution to the SHA256 algorithm that meets a network-wide target, the difficulty target."],
+["reward","An amount included in each new block as a reward by the network to the miner who found the Proof-of-Work solution."],
+["satoshi","The smallest denomination of bitcoin that can be recorded on the blockchain. It is the equivalent of 0.00000001 bitcoin and is named after the creator of Bitcoin, Satoshi Nakamoto."],
+["Satoshi Nakamoto","The name used by the person or people who designed Bitcoin and created its original reference implementation, Bitcoin Core. Their real identity remains unknown."],
+["Script","Bitcoin uses a scripting system for transactions. Forth-like, Script is simple, stack-based, and processed from left to right. It is purposefully not Turing-complete, with no loops."],
+["secret key (private key)","The secret number that unlocks bitcoin sent to the corresponding address."],
+["Segregated Witness","A proposed upgrade to the Bitcoin protocol which separates signature data from bitcoin transactions."],
+["SHA","The Secure Hash Algorithm or SHA is a family of cryptographic hash functions published by the National Institute of Standards and Technology (NIST)."],
+["Simplified Payment Verification (SPV)","A method for verifying particular transactions were included in a block without downloading the entire block. The method is used by some lightweight Bitcoin clients."],
+["soft fork","A temporary fork in the blockchain which commonly occurs when miners using non-upgraded nodes don't follow a new consensus rule their nodes don't know about."],
+["timelocks","A type of encumbrance that restricts the spending of some bitcoin until a specified future time or block height. Timelocks feature prominently in many Bitcoin contracts, including payment channels and hashed timelock contracts."],
+["transaction","A transfer of bitcoin from one address to another. More precisely, a signed data structure expressing a transfer of value. Transactions are transmitted over the Bitcoin network, collected by miners, and included into blocks."],
+["UTXO","An unspent transaction output that can be spent as an input in a new transaction."],
+["wallet","Software that holds all your Bitcoin addresses and secret keys. Use it to send, receive, and store your bitcoin."],
+["Wallet Import Format (WIF)","A data interchange format designed to allow exporting and importing a single private key with a flag indicating whether or not it uses a compressed public key."]
+];
+
+function initGlossary() {
+  const container = document.getElementById('glossaryContainer');
+  if (!container) return;
+  glossaryData.forEach(function(item) {
+    var div = document.createElement('div');
+    div.className = 'glossary-term';
+    div.dataset.term = item[0].toLowerCase();
+    div.innerHTML = '<div class="glossary-term-name">' + item[0] + '</div><div class="glossary-term-def">' + item[1] + '</div>';
+    container.appendChild(div);
+  });
+  var searchEl = document.getElementById('glossarySearch');
+  if (searchEl) { searchEl.addEventListener('input', searchGlossary); }
+  searchGlossary();
+}
+
+function searchGlossary() {
+  var input = document.getElementById('glossarySearch');
+  var term = input ? input.value.toLowerCase().trim() : '';
+  var terms = document.getElementsByClassName('glossary-term');
+  var stats = document.getElementById('glossaryStats');
+  var count = 0;
+  Array.from(terms).forEach(function(el) {
+    el.classList.remove('visible','title-match');
+    el.style.order = 0;
+    var idx = glossaryData.findIndex(function(g) { return g[0].toLowerCase() === el.dataset.term; });
+    var name = el.dataset.term;
+    var def = glossaryData[idx][1].toLowerCase();
+    el.querySelector('.glossary-term-name').innerHTML = glossaryData[idx][0];
+    el.querySelector('.glossary-term-def').innerHTML = glossaryData[idx][1];
+    if (term === '') { el.classList.add('visible'); count++; }
+    else if (name.includes(term)) {
+      el.classList.add('visible','title-match');
+      el.style.order = -1;
+      el.querySelector('.glossary-term-name').innerHTML = highlightGlossary(glossaryData[idx][0], term);
+      el.querySelector('.glossary-term-def').innerHTML = highlightGlossary(glossaryData[idx][1], term);
+      count++;
+    } else if (def.includes(term)) {
+      el.classList.add('visible');
+      el.querySelector('.glossary-term-def').innerHTML = highlightGlossary(glossaryData[idx][1], term);
+      count++;
+    }
+  });
+  if (stats) stats.textContent = term ? 'Found ' + count + ' matching terms' : 'Showing all ' + terms.length + ' terms';
+}
+
+function highlightGlossary(text, term) {
+  if (!term) return text;
+  var regex = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  return text.replace(regex, '<span class="glossary-highlight">$1</span>');
+}
+
+// === BTC Price Ticker ===
+async function fetchBTCPrice() {
+
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
+    const data = await res.json();
+    const price = data.bitcoin.usd.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    const change = data.bitcoin.usd_24h_change;
+    const el = document.getElementById('btcPrice');
+    const arrow = change >= 0 ? '▲' : '▼';
+    const color = change >= 0 ? '#16a34a' : '#dc2626';
+    el.innerHTML = '$' + price + ' <span style="color:' + color + '">' + arrow + ' ' + Math.abs(change).toFixed(1) + '%</span>';
+  } catch(e) {
+    document.getElementById('btcPrice').textContent = 'BTC';
+  }
+}
+
+// === CALENDLY POPUP ===
+function openCalendly() {
+  if (typeof Calendly !== 'undefined') {
+    Calendly.initPopupWidget({url: 'https://calendly.com/griffithsben-pm/30min'});
+  } else {
+    window.open('https://calendly.com/griffithsben-pm/30min', '_blank');
+  }
+}
+function closeCalendly() { /* handled natively by Calendly widget */ }
+
+
+
+// === INIT ===
+document.addEventListener('DOMContentLoaded', () => {
+  initHeroCanvas();
+  initReveal();
+  initGlossary();
+  fetchBTCPrice();
+  setInterval(fetchBTCPrice, 60000);
+  // Twitter embeds
+  if (typeof twttr !== 'undefined' && twttr.widgets) { twttr.widgets.load(); }
+});
+
+</script>
 
 </body>
 </html>
