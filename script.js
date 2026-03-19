@@ -19,21 +19,6 @@ function showPage(id) {
   if (id === 'home') { window.location.href = 'index.html'; return; }
   window.location.href = id + '.html';
 }
-  else { document.getElementById('page-home').classList.add('active'); id = 'home'; }
-  const progress = document.getElementById('journeyProgress');
-  if (id !== 'home' && STEPS.find(s => s.id === id)) {
-    progress.classList.add('visible');
-    buildProgressBar(id);
-    document.querySelectorAll('.step-page-hero').forEach(h => h.style.paddingTop = '180px');
-  } else {
-    progress.classList.remove('visible');
-    document.querySelectorAll('.step-page-hero').forEach(h => h.style.paddingTop = '140px');
-  }
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  setTimeout(initReveal, 100);
-  // Reload Twitter embeds if present on new page
-  if (typeof twttr !== 'undefined' && twttr.widgets) { setTimeout(function(){ twttr.widgets.load(); }, 200); }
-}
 
 // === Accordion toggle ===
 function toggleStep(header) {
