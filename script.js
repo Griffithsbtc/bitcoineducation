@@ -161,7 +161,12 @@ function initHeroCanvas() {
 // === Lite YouTube Embed ===
 function playYT(el) {
   const id = el.dataset.id;
-  el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+  const thumb = el.querySelector('.lite-yt-thumb');
+  if (thumb) {
+    thumb.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+  } else {
+    el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+  }
 }
 
 // === Masters Search Engine (Glossary) ===
