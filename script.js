@@ -359,6 +359,44 @@ function filterGlossaryCat(cat) {
   if (stats) stats.textContent = cat ? 'Showing ' + count + ' ' + cat + ' terms' : 'Showing all ' + terms.length + ' terms';
 }
 
+// === MINI GLOSSARY (Classroom widget) ===
+function initMiniGlossary() {
+  var input = document.getElementById('miniGlossarySearch');
+  if (!input) return;
+  input.addEventListener('input', function() {
+    var term = this.value.toLowerCase().trim();
+    var results = document.getElementById('miniGlossaryResults');
+    if (!term) {
+      results.innerHTML = '<div style="color:var(--text-dim); text-align:center;">Type a term to search 100+ definitions</div>';
+      return;
+    }
+    var matches = [];
+    glossaryData.forEach(function(item) {
+      var name = item[0].toLowerCase();
+      var def = item[1].toLowerCase();
+      if (name.includes(term)) { matches.unshift(item); }
+      else if (def.includes(term)) { matches.push(item); }
+    });
+    if (matches.length === 0) {
+      results.innerHTML = '<div style="color:var(--text-dim); text-align:center;">No matches found. <a onclick="showPage(\'glossary\')" style="color:var(--bitcoin); cursor:pointer; text-decoration:underline;">Try the full glossary</a></div>';
+      return;
+    }
+    var html = '';
+    var show = Math.min(matches.length, 5);
+    for (var i = 0; i < show; i++) {
+      var highlighted = matches[i][1].replace(new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), '<span class="glossary-highlight">$1</span>');
+      html += '<div style="padding:10px 0; border-bottom:1px solid var(--border);">';
+      html += '<div style="font-weight:600; color:var(--text-hero); font-size:14px; margin-bottom:3px;">' + matches[i][0] + '</div>';
+      html += '<div style="color:var(--text-secondary); line-height:1.5;">' + highlighted + '</div>';
+      html += '</div>';
+    }
+    if (matches.length > 5) {
+      html += '<div style="text-align:center; padding:10px 0; color:var(--text-dim); font-size:12px;">+' + (matches.length - 5) + ' more results. <a onclick="showPage(\'glossary\')" style="color:var(--bitcoin); cursor:pointer; text-decoration:underline;">Open full glossary</a></div>';
+    }
+    results.innerHTML = html;
+  });
+}
+
 // === BTC Price Ticker (original) ===
 async function fetchBTCPrice() {
 
@@ -406,6 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroCanvas();
   initReveal();
   initGlossary();
+  initMiniGlossary();
   fetchBTCPrice();
   setInterval(fetchBTCPrice, 60000);
   // ATH vs live price (Step 3)
