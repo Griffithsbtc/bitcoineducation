@@ -12,7 +12,34 @@ const STEPS = [
   { id: 'step8', num: '8', label: 'Take Action' }
 ];
 
-// Progress bar is built statically in each page
+function buildProgressBar(currentStepId) {
+  const track = document.getElementById('progressTrack');
+  track.innerHTML = '';
+  const currentIdx = STEPS.findIndex(s => s.id === currentStepId);
+  STEPS.forEach((step, i) => {
+    if (i > 0) {
+      const line = document.createElement('div');
+      line.className = 'progress-line ' + (i <= currentIdx ? 'done' : 'pending');
+      track.appendChild(line);
+    }
+    const node = document.createElement('div');
+    node.className = 'progress-node';
+    if (i < currentIdx) node.classList.add('completed');
+    else if (i === currentIdx) node.classList.add('current');
+    else node.classList.add('upcoming');
+    const pageExists = document.getElementById('page-' + step.id);
+    if (pageExists) { node.onclick = () => showPage(step.id); }
+    else { node.style.cursor = 'default'; }
+    if (i < currentIdx) {
+      node.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
+    } else { node.textContent = step.num; }
+    const label = document.createElement('div');
+    label.className = 'progress-node-label';
+    label.textContent = step.label;
+    node.appendChild(label);
+    track.appendChild(node);
+  });
+}
 
 // === Page navigation ===
 function showPage(id) {
@@ -282,183 +309,15 @@ function openCalendly() {
 }
 function closeCalendly() { /* handled natively by Calendly widget */ }
 
-// === QUICK FIND SEARCH ===
-const QF_INDEX = [
-  // Courses & Platforms
-  {t:'Plan B Academy',type:'Course',page:'classroom',desc:'Comprehensive Bitcoin education platform with open-source tools'},
-  {t:'Saylor Academy',type:'Course',page:'classroom',desc:'Free 12-hour Bitcoin fundamentals course with certificate'},
-  {t:'My First Bitcoin',type:'Course',page:'classroom',desc:'Open-source Bitcoin Diploma from El Salvador'},
-  {t:'Saifedean Academy',type:'Course',page:'classroom',desc:'10-week online lecture series on The Bitcoin Standard'},
-  {t:'Bitcoin University',type:'Course',page:'classroom',desc:'Matthew Kratter on trading, investment strategies, and Bitcoin'},
-  {t:'Looking Glass Education',type:'Course',page:'classroom',desc:'Free foundation course for Bitcoin and finance beginners'},
-  {t:'The Bitcoin Manual',type:'Resource',page:'classroom',desc:'Comprehensive guides and reviews by Che & Nicky'},
-  {t:'Spirit of Satoshi',type:'AI Tool',page:'classroom',desc:'Bitcoin-centric AI for learning and content production'},
-  {t:'Princeton University',type:'University',page:'classroom',desc:'Free Bitcoin and Cryptocurrency Technologies course'},
-  {t:'MIT OpenCourseWare',type:'University',page:'classroom',desc:'Cryptocurrency Engineering and Design course'},
-  {t:'Berkeley (edX)',type:'University',page:'classroom',desc:'Learn Bitcoin with online courses at Berkeley'},
-  {t:'Bitcoin-Only.com',type:'Resource',page:'classroom',desc:'Curated collection of the highest quality Bitcoin resources'},
-  {t:'Bitcoin Rocks',type:'Resource',page:'classroom',desc:'Bitcoin impact on money, freedom, human rights, and more'},
-  {t:'Free Market Kids',type:'Resource',page:'classroom',desc:'Financial literacy and freedom for the next generation'},
-  {t:'Ministry of Nodes',type:'Resource',page:'classroom',desc:'Free education on running nodes, privacy, self-custody. AU-based'},
-  {t:'Michael Saylor',type:'Educator',page:'classroom',desc:'Data-driven case for Bitcoin as a treasury asset'},
-  {t:'Anil\'s Bitcoin Course',type:'Course',page:'classroom',desc:'Terminology, fallacies, use cases, and book summaries'},
-  {t:'Andreas Antonopoulos',type:'Educator',page:'classroom',desc:'Author of Mastering Bitcoin and Internet of Money'},
-  {t:'Masters Search Engine',type:'Tool',page:'glossary',desc:'Interactive Bitcoin glossary from Mastering Bitcoin'},
-  // Books
-  {t:'The Bitcoin Standard',type:'Book',page:'classroom',desc:'Saifedean Ammous. Bitcoin economics. Start here'},
-  {t:'The Fiat Standard',type:'Book',page:'classroom',desc:'Saifedean Ammous. The failing debt-based fiat system'},
-  {t:'Principles of Economics',type:'Book',page:'classroom',desc:'Saifedean Ammous. Austrian economics from first principles'},
-  {t:'Broken Money',type:'Book',page:'classroom',desc:'Lyn Alden. Why the financial system is broken'},
-  {t:'Mastering Bitcoin',type:'Book',page:'classroom',desc:'Antonopoulos & Harding. The technical bible'},
-  {t:'Mastering the Lightning Network',type:'Book',page:'classroom',desc:'The definitive guide to Bitcoin Layer 2'},
-  {t:'The Internet of Money',type:'Book',page:'classroom',desc:'Antonopoulos. Why Bitcoin matters, not just how'},
-  {t:'Check Your Financial Privilege',type:'Book',page:'classroom',desc:'Alex Gladstein. Bitcoin and human rights'},
-  {t:'The Sovereign Individual',type:'Book',page:'classroom',desc:'Davidson & Rees-Mogg. 1997 predictions of digital money'},
-  {t:'Gradually, Then Suddenly',type:'Book',page:'classroom',desc:'Parker Lewis. Framework for Bitcoin as money'},
-  {t:'The Little Bitcoin Book',type:'Book',page:'classroom',desc:'Why Bitcoin matters for freedom, finances, and future'},
-  {t:'Bitcoin is Venice',type:'Book',page:'classroom',desc:'Farrington & Meyers. Past and future of capitalism'},
-  {t:'Resistance Money',type:'Book',page:'classroom',desc:'Bailey, Rettler & Warmke. Philosophical case for Bitcoin'},
-  {t:'Basics of Bitcoins and Blockchains',type:'Book',page:'classroom',desc:'Antony Lewis. Jargon-free introduction'},
-  {t:'21 Lessons',type:'Book',page:'classroom',desc:'Gigi. Philosophy, economics, and technology of Bitcoin'},
-  // Buy/Store
-  {t:'Bitaroo',type:'Exchange',page:'buy',desc:'Australian Bitcoin-only exchange. Low fees, fast AUD deposits'},
-  {t:'Amber',type:'Exchange',page:'buy',desc:'Simple auto-buy app for dollar-cost averaging'},
-  {t:'Hardblock',type:'Exchange',page:'buy',desc:'Australian Bitcoin-only platform with education focus'},
-  {t:'Swan Bitcoin',type:'Exchange',page:'buy',desc:'US-based Bitcoin-only. Auto-buy and educational content'},
-  {t:'River',type:'Exchange',page:'buy',desc:'Premium Bitcoin-only with zero-fee recurring buys'},
-  {t:'Bull Bitcoin',type:'Exchange',page:'buy',desc:'Canadian non-custodial Bitcoin exchange'},
-  {t:'BlueWallet',type:'Hot Wallet',page:'buy',desc:'Open-source Bitcoin wallet. On-chain and Lightning'},
-  {t:'Muun',type:'Hot Wallet',page:'buy',desc:'Self-custodial Bitcoin and Lightning wallet'},
-  {t:'AQUA',type:'Hot Wallet',page:'buy',desc:'Non-custodial Bitcoin, Lightning, and Liquid wallet'},
-  {t:'SeedSigner',type:'Cold Wallet',page:'buy',desc:'DIY air-gapped signing device with Raspberry Pi'},
-  {t:'BitBox02',type:'Cold Wallet',page:'buy',desc:'Swiss-made minimalist hardware wallet'},
-  {t:'Bitkey',type:'Cold Wallet',page:'buy',desc:'Block 2-of-3 multisig for everyday people'},
-  {t:'Coldcard',type:'Cold Wallet',page:'buy',desc:'Gold standard air-gapped Bitcoin-only hardware wallet'},
-  {t:'SeedHammer',type:'Metal Backup',page:'buy',desc:'Air-gapped metal engraving for seed phrases'},
-  // Podcasts
-  {t:'What Bitcoin Did',type:'Podcast',page:'podcasts',desc:'Peter McCormack. Accessible interviews with Bitcoin leaders'},
-  {t:'The Bitcoin Standard Podcast',type:'Podcast',page:'podcasts',desc:'Saifedean Ammous on Austrian economics and Bitcoin'},
-  {t:'Stephan Livera Podcast',type:'Podcast',page:'podcasts',desc:'Australian-based. Technical Bitcoin and Lightning'},
-  {t:'Bitcoin Fundamentals',type:'Podcast',page:'podcasts',desc:'Preston Pysh. Traditional finance meets Bitcoin'},
-  {t:'TFTC (Tales from the Crypt)',type:'Podcast',page:'podcasts',desc:'Marty Bent & Matt Odell. Privacy and self-sovereignty'},
-  {t:'Swan Signal',type:'Podcast',page:'podcasts',desc:'Conversations with leading Bitcoin thinkers'},
-  {t:'Bitcoin Rapid-Fire',type:'Podcast',page:'podcasts',desc:'John Vallis on Bitcoin philosophy and culture'},
-  {t:'Bitcoin Magazine Podcast',type:'Podcast',page:'podcasts',desc:'News, analysis from the original Bitcoin publication'},
-  // Journey steps
-  {t:'Why Bitcoin?',type:'Step 1',page:'step1',desc:'The broken financial system and why Bitcoin matters'},
-  {t:'Grasp the Basics',type:'Step 2',page:'step2',desc:'Beginner videos and foundational courses'},
-  {t:'Bitcoin Performance & Value',type:'Step 3',page:'step3',desc:'Data-driven evidence and long-term perspective'},
-  {t:'Institutional Adoption',type:'Step 4',page:'step4',desc:'BlackRock, sovereign wealth funds, and smart money'},
-  {t:'Bitcoin Break',type:'Step 4.5',page:'step45',desc:'Sit back and hear from brilliant minds'},
-  {t:'Real World Adoption',type:'Step 5',page:'step5',desc:'Where Bitcoin is being used globally'},
-  {t:'CBDCs & Policy',type:'Step 6',page:'step6',desc:'Government digital currencies vs decentralised money'},
-  {t:'Go Deeper',type:'Step 7',page:'step7',desc:'Technical deep dives and advanced concepts'},
-  {t:'Take Action',type:'Step 8',page:'step8',desc:'Buy, store, and protect your Bitcoin'},
-  // Tools from steps
-  {t:'WTF Happened in 1971',type:'Tool',page:'step1',desc:'Visualise when money broke'},
-  {t:'Fiat Leak',type:'Tool',page:'step1',desc:'Watch fiat currency flow into Bitcoin in real-time'},
-  {t:'Bitcoin Obituaries',type:'Tool',page:'step1',desc:'Every time Bitcoin was declared dead'},
-  {t:'Bitcoin Compounding',type:'Tool',page:'step3',desc:'Visualise Bitcoin DCA returns over time'},
-  {t:'CaseBitcoin',type:'Tool',page:'step3',desc:'Bitcoin vs every other asset class'},
-  {t:'Bitcoin Treasuries',type:'Tool',page:'step4',desc:'Which companies and countries hold Bitcoin'},
-  {t:'BTC Map',type:'Tool',page:'step5',desc:'Find Bitcoin merchants worldwide'},
-  {t:'CBDC Tracker',type:'Tool',page:'step6',desc:'Track global CBDC development by HRF'},
-  {t:'Quantum-Safe Bitcoin (NIST)',type:'Article',page:'step6',desc:'BTQ Technologies quantum-resistant Bitcoin using NIST cryptography'},
-  {t:'Bitcoin is Video',type:'Page',page:'videos',desc:'All videos in one place - education, walkthroughs, talks'},
-  {t:'What is the Problem?',type:'Video',page:'step1',desc:'Understanding the root problem Bitcoin solves'},
-  {t:'Understanding the Federal Reserve',type:'Video',page:'step1',desc:'How the Fed works and why it matters'},
-  {t:'Inflation Explained',type:'Video',page:'step1',desc:'Visual explanation of how inflation erodes purchasing power'},
-  {t:'Introduction to Bitcoin',type:'Video',page:'step2',desc:'Andreas Antonopoulos introduction to Bitcoin'},
-  {t:'Bill Miller on Bitcoin',type:'Video',page:'step2',desc:'Legendary investor explains why Bitcoin matters'},
-];
 
-function toggleQuickFind() {
-  var overlay = document.getElementById('qfOverlay');
-  var isOpen = overlay.classList.contains('active');
-  if (isOpen) {
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-  } else {
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    var input = document.getElementById('qfInput');
-    input.value = '';
-    input.focus();
-    renderQFResults('');
-  }
-}
-
-function renderQFResults(query) {
-  var container = document.getElementById('qfResults');
-  container.innerHTML = '';
-  
-  if (!query) {
-    // Show categorised preview instead of random items
-    var categories = [
-      {label: 'Journey Steps', items: QF_INDEX.filter(function(r){return r.type.indexOf('Step')===0;})},
-      {label: 'Videos', items: QF_INDEX.filter(function(r){return r.type==='Video';})},
-      {label: 'Books', items: QF_INDEX.filter(function(r){return r.type==='Book';}).slice(0,4)},
-      {label: 'Tools & Trackers', items: QF_INDEX.filter(function(r){return r.type==='Tool';})},
-    ];
-    var html = '';
-    categories.forEach(function(cat) {
-      if (cat.items.length === 0) return;
-      html += '<div style="padding:6px 12px 2px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text-dim);">' + cat.label + '</div>';
-      cat.items.forEach(function(r) {
-        html += '<div class="qf-result" data-page="' + r.page + '"><div class="qf-result-type">' + r.type + '</div><div class="qf-result-title">' + r.t + '</div></div>';
-      });
-    });
-    container.innerHTML = html;
-    return;
-  }
-  var q = query.toLowerCase();
-  var matches = QF_INDEX.filter(function(r) {
-    return r.t.toLowerCase().includes(q) || r.type.toLowerCase().includes(q) || r.desc.toLowerCase().includes(q);
-  });
-  if (matches.length === 0) {
-    container.innerHTML = '<div style="padding:24px; text-align:center; color:var(--text-dim); font-size:14px;">No results for "' + query + '"</div>';
-    return;
-  }
-  container.innerHTML = matches.map(function(r) {
-    return '<div class="qf-result" data-page="' + r.page + '"><div class="qf-result-type">' + r.type + '</div><div class="qf-result-title">' + r.t + '</div><div class="qf-result-page">' + r.desc + '</div></div>';
-  }).join('');
-}
-
-function qfGo(page) {
-  toggleQuickFind();
-  setTimeout(function() { showPage(page); }, 50);
-}
-
-// Event delegation for Quick Find clicks
-document.addEventListener('click', function(e) {
-  var result = e.target.closest('.qf-result');
-  if (result && result.dataset.page) {
-    e.preventDefault();
-    e.stopPropagation();
-    qfGo(result.dataset.page);
-  }
-});
 
 // === INIT ===
-document.addEventListener('DOMContentLoaded', function() {
-  // Hero canvas - only on homepage
-  if (document.getElementById('heroCanvas')) { initHeroCanvas(); }
-  
-  // Reveal animations
+document.addEventListener('DOMContentLoaded', () => {
+  initHeroCanvas();
   initReveal();
-  
-  // Glossary - only on glossary page
-  if (document.getElementById('glossaryContainer')) { initGlossary(); }
-  
-  // BTC ticker
+  initGlossary();
   fetchBTCPrice();
   setInterval(fetchBTCPrice, 60000);
-
-  // Quick Find input listener
-  var qfInput = document.getElementById('qfInput');
-  if (qfInput) {
-    qfInput.addEventListener('input', function() {
-      renderQFResults(this.value.trim());
-    });
-  }
+  // Twitter embeds
+  if (typeof twttr !== 'undefined' && twttr.widgets) { twttr.widgets.load(); }
 });
