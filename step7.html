@@ -186,6 +186,70 @@
   .tweet-grid .twitter-tweet { margin: 0 !important; }
   .stat-card:hover { border-color: var(--bitcoin) !important; }
 
+  /* Section tint for alternating backgrounds */
+  .section-tint {
+    margin: 0 -48px; padding: 32px 48px;
+    background: var(--bg-surface); border-radius: 0;
+  }
+  @media (max-width: 768px) { .section-tint { margin: 0 -20px; padding: 24px 20px; } }
+
+  /* Action flow visual */
+  .action-flow {
+    display: flex; align-items: center; gap: 0; margin: 24px 0 32px;
+  }
+  .action-flow-step {
+    flex: 1; text-align: center; padding: 20px 12px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+    position: relative;
+  }
+  .action-flow-step.highlight { border-color: var(--bitcoin); background: rgba(232,134,15,0.04); }
+  .action-flow-num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--bitcoin);
+    color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
+  }
+  .action-flow-title { font-weight: 700; font-size: 14px; color: var(--text-hero); margin-bottom: 4px; }
+  .action-flow-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+  .action-flow-arrow {
+    flex-shrink: 0; width: 32px; display: flex; align-items: center; justify-content: center;
+    color: var(--bitcoin); font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    .action-flow { flex-direction: column; gap: 0; }
+    .action-flow-arrow { transform: rotate(90deg); width: auto; height: 32px; }
+  }
+
+  /* Podcast accent bar */
+  .podcast-card { position: relative; overflow: hidden; }
+  .podcast-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--accent, var(--bitcoin)); border-radius: 4px 0 0 4px;
+  }
+
+  /* Classroom featured card */
+  .featured-card {
+    border: 2px solid var(--bitcoin) !important;
+    background: rgba(232,134,15,0.03) !important;
+    position: relative;
+  }
+  .featured-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px;
+    background: var(--bitcoin); color: #fff; border-radius: 6px;
+  }
+
+  /* Classroom section divider */
+  .classroom-divider {
+    display: flex; align-items: center; gap: 16px; margin: 48px 0 24px;
+    padding-top: 32px; border-top: 1px solid var(--border);
+  }
+  .classroom-divider-icon {
+    width: 40px; height: 40px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .classroom-divider h3 { margin: 0; }
+
   /* === JOURNEY PROGRESS BAR === */
   .journey-progress {
     position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
@@ -760,7 +824,7 @@
 
   /* === FOOTER === */
   footer {
-    margin-top: 120px; padding: 48px;
+    margin-top: 60px; padding: 48px;
     border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
   }
@@ -855,7 +919,7 @@
 
   .mobile-nav-panel {
     position: fixed; top: 0; right: 0; bottom: 0; width: 280px; z-index: 1000;
-    background: var(--bg-page); box-shadow: -8px 0 32px rgba(0,0,0,0.1);
+    background: #FAFAF8; box-shadow: -8px 0 32px rgba(0,0,0,0.1);
     transform: translateX(100%); transition: transform 0.3s ease;
     display: flex; flex-direction: column; padding: 24px;
   }
@@ -899,7 +963,7 @@
     .hamburger { display: flex; }
     .nav-left { gap: 12px; }
     .btc-ticker { font-size: 10px; padding: 3px 8px; }
-    .journey-progress { padding: 10px 12px 24px; }
+    .journey-progress { display: none !important; }
     .progress-node { width: 48px; }
     .progress-num { width: 26px; height: 26px; font-size: 10px; }
     .progress-label { font-size: 7px; }
@@ -977,7 +1041,7 @@
 <div class="journey-progress visible" id="journeyProgress"><div class="progress-track" id="progressTrack"><a href="step1.html" class="progress-node completed"><span class="progress-num">1</span><span class="progress-label">Why Bitcoin?</span></a><div class="progress-line completed"></div><a href="step2.html" class="progress-node completed"><span class="progress-num">2</span><span class="progress-label">Basics</span></a><div class="progress-line completed"></div><a href="step3.html" class="progress-node completed"><span class="progress-num">3</span><span class="progress-label">Performance</span></a><div class="progress-line completed"></div><a href="step4.html" class="progress-node completed"><span class="progress-num">4</span><span class="progress-label">Institutional</span></a><div class="progress-line completed"></div><a href="step45.html" class="progress-node completed"><span class="progress-num">4.5</span><span class="progress-label">Break</span></a><div class="progress-line completed"></div><a href="step5.html" class="progress-node completed"><span class="progress-num">5</span><span class="progress-label">Adoption</span></a><div class="progress-line completed"></div><a href="step6.html" class="progress-node completed"><span class="progress-num">6</span><span class="progress-label">CBDCs</span></a><div class="progress-line completed"></div><a href="step7.html" class="progress-node active"><span class="progress-num">7</span><span class="progress-label">Advanced</span></a><div class="progress-line"></div><a href="step8.html" class="progress-node upcoming"><span class="progress-num">8</span><span class="progress-label">Take Action</span></a></div></div>
 
 <div class="step-page-hero">
-  <a class="step-page-back" href="home.html">
+  <a class="step-page-back" href="index.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
     Back to Journey
   </a>
@@ -992,7 +1056,7 @@
 
 <div class="step-page-content">
 
-  <h3>Resource Hubs</h3>
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><div style="width:40px;height:40px;border-radius:10px;background:rgba(232,134,15,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8860F" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h3 style="margin:0;">Resource Hubs</h3></div>
   <p>These sites curate the best Bitcoin-only content. No altcoins. No fluff. Just Bitcoin.</p>
 
   <div class="resource-grid">
@@ -1013,7 +1077,7 @@
     </a>
   </div>
 
-  <h3>Education Platforms</h3>
+  <div style="display:flex;align-items:center;gap:12px;margin:40px 0 16px;padding-top:32px;border-top:1px solid var(--border);"><div style="width:40px;height:40px;border-radius:10px;background:rgba(31,122,140,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg></div><h3 style="margin:0;">Education Platforms</h3></div>
   <p>Structured learning from people who've dedicated their careers to Bitcoin education.</p>
 
   <div class="resource-grid">
@@ -1039,7 +1103,7 @@
     </a>
   </div>
 
-  <h3>For Everyone</h3>
+  <div style="display:flex;align-items:center;gap:12px;margin:40px 0 16px;padding-top:32px;border-top:1px solid var(--border);"><div style="width:40px;height:40px;border-radius:10px;background:rgba(76,175,80,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3 style="margin:0;">For Everyone</h3></div>
   <p>Bitcoin education isn't just for adults. These resources make it accessible to younger audiences and families.</p>
 
   <div class="resource-grid">
@@ -1055,7 +1119,7 @@
     </a>
   </div>
 
-  <h3>Key Thinkers</h3>
+  <div style="display:flex;align-items:center;gap:12px;margin:40px 0 16px;padding-top:32px;border-top:1px solid var(--border);"><div style="width:40px;height:40px;border-radius:10px;background:rgba(156,39,176,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><h3 style="margin:0;">Key Thinkers</h3></div>
   <p>These are the voices worth following. Each brings a different lens to understanding Bitcoin.</p>
 
   <div class="resource-grid">
@@ -1069,12 +1133,7 @@
       <div class="resource-card-title">Andreas Antonopoulos</div>
       <div class="resource-card-desc">Author of Mastering Bitcoin and The Internet of Money. One of Bitcoin's most gifted educators. Talks, slides, and books.</div>
     </a>
-    <a href="https://x.com/Bitcoin_Teddy/status/1926942983321948542" class="resource-card" target="_blank">
-      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Thread</div>
-      <div class="resource-card-title">Bitcoin Teddy — Technical Evolution</div>
-      <div class="resource-card-desc">A thread exploring how Bitcoin's technology has evolved and improved over time.</div>
-    </a>
-  </div>
+    </div>
 
   <div class="step-page-nav">
     <a class="step-nav-btn" href="step6.html">
@@ -1433,6 +1492,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initGlossary();
   fetchBTCPrice();
   setInterval(fetchBTCPrice, 60000);
+  // ATH vs live price (Step 3)
+  if (document.getElementById('athLivePrice')) {
+    (async function() {
+      try {
+        var res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        var data = await res.json();
+        var price = Math.round(data.bitcoin.usd);
+        var ath = 126210;
+        var diff = ((price - ath) / ath * 100).toFixed(1);
+        document.getElementById('athLivePrice').textContent = '$' + price.toLocaleString();
+        var color = diff >= 0 ? '#16a34a' : '#dc2626';
+        document.getElementById('athVsLabel').innerHTML = '<span style="color:' + color + '">' + diff + '% from ATH</span>';
+      } catch(e) { document.getElementById('athLivePrice').textContent = '—'; }
+    })();
+  }
   // Twitter embeds
   if (typeof twttr !== 'undefined' && twttr.widgets) { twttr.widgets.load(); }
 });

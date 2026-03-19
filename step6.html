@@ -186,6 +186,70 @@
   .tweet-grid .twitter-tweet { margin: 0 !important; }
   .stat-card:hover { border-color: var(--bitcoin) !important; }
 
+  /* Section tint for alternating backgrounds */
+  .section-tint {
+    margin: 0 -48px; padding: 32px 48px;
+    background: var(--bg-surface); border-radius: 0;
+  }
+  @media (max-width: 768px) { .section-tint { margin: 0 -20px; padding: 24px 20px; } }
+
+  /* Action flow visual */
+  .action-flow {
+    display: flex; align-items: center; gap: 0; margin: 24px 0 32px;
+  }
+  .action-flow-step {
+    flex: 1; text-align: center; padding: 20px 12px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+    position: relative;
+  }
+  .action-flow-step.highlight { border-color: var(--bitcoin); background: rgba(232,134,15,0.04); }
+  .action-flow-num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--bitcoin);
+    color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
+  }
+  .action-flow-title { font-weight: 700; font-size: 14px; color: var(--text-hero); margin-bottom: 4px; }
+  .action-flow-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+  .action-flow-arrow {
+    flex-shrink: 0; width: 32px; display: flex; align-items: center; justify-content: center;
+    color: var(--bitcoin); font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    .action-flow { flex-direction: column; gap: 0; }
+    .action-flow-arrow { transform: rotate(90deg); width: auto; height: 32px; }
+  }
+
+  /* Podcast accent bar */
+  .podcast-card { position: relative; overflow: hidden; }
+  .podcast-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--accent, var(--bitcoin)); border-radius: 4px 0 0 4px;
+  }
+
+  /* Classroom featured card */
+  .featured-card {
+    border: 2px solid var(--bitcoin) !important;
+    background: rgba(232,134,15,0.03) !important;
+    position: relative;
+  }
+  .featured-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px;
+    background: var(--bitcoin); color: #fff; border-radius: 6px;
+  }
+
+  /* Classroom section divider */
+  .classroom-divider {
+    display: flex; align-items: center; gap: 16px; margin: 48px 0 24px;
+    padding-top: 32px; border-top: 1px solid var(--border);
+  }
+  .classroom-divider-icon {
+    width: 40px; height: 40px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .classroom-divider h3 { margin: 0; }
+
   /* === JOURNEY PROGRESS BAR === */
   .journey-progress {
     position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
@@ -760,7 +824,7 @@
 
   /* === FOOTER === */
   footer {
-    margin-top: 120px; padding: 48px;
+    margin-top: 60px; padding: 48px;
     border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
   }
@@ -855,7 +919,7 @@
 
   .mobile-nav-panel {
     position: fixed; top: 0; right: 0; bottom: 0; width: 280px; z-index: 1000;
-    background: var(--bg-page); box-shadow: -8px 0 32px rgba(0,0,0,0.1);
+    background: #FAFAF8; box-shadow: -8px 0 32px rgba(0,0,0,0.1);
     transform: translateX(100%); transition: transform 0.3s ease;
     display: flex; flex-direction: column; padding: 24px;
   }
@@ -899,7 +963,7 @@
     .hamburger { display: flex; }
     .nav-left { gap: 12px; }
     .btc-ticker { font-size: 10px; padding: 3px 8px; }
-    .journey-progress { padding: 10px 12px 24px; }
+    .journey-progress { display: none !important; }
     .progress-node { width: 48px; }
     .progress-num { width: 26px; height: 26px; font-size: 10px; }
     .progress-label { font-size: 7px; }
@@ -977,7 +1041,7 @@
 <div class="journey-progress visible" id="journeyProgress"><div class="progress-track" id="progressTrack"><a href="step1.html" class="progress-node completed"><span class="progress-num">1</span><span class="progress-label">Why Bitcoin?</span></a><div class="progress-line completed"></div><a href="step2.html" class="progress-node completed"><span class="progress-num">2</span><span class="progress-label">Basics</span></a><div class="progress-line completed"></div><a href="step3.html" class="progress-node completed"><span class="progress-num">3</span><span class="progress-label">Performance</span></a><div class="progress-line completed"></div><a href="step4.html" class="progress-node completed"><span class="progress-num">4</span><span class="progress-label">Institutional</span></a><div class="progress-line completed"></div><a href="step45.html" class="progress-node completed"><span class="progress-num">4.5</span><span class="progress-label">Break</span></a><div class="progress-line completed"></div><a href="step5.html" class="progress-node completed"><span class="progress-num">5</span><span class="progress-label">Adoption</span></a><div class="progress-line completed"></div><a href="step6.html" class="progress-node active"><span class="progress-num">6</span><span class="progress-label">CBDCs</span></a><div class="progress-line"></div><a href="step7.html" class="progress-node upcoming"><span class="progress-num">7</span><span class="progress-label">Advanced</span></a><div class="progress-line"></div><a href="step8.html" class="progress-node upcoming"><span class="progress-num">8</span><span class="progress-label">Take Action</span></a></div></div>
 
 <div class="step-page-hero">
-  <a class="step-page-back" href="home.html">
+  <a class="step-page-back" href="index.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
     Back to Journey
   </a>
@@ -997,26 +1061,26 @@
 
   <!-- CBDC vs Bitcoin Comparison -->
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:14px; overflow:hidden; border:1px solid var(--border); margin:24px 0 32px;">
-    <div style="padding:28px; background:#3a1111; color:#f0b0b0;">
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:2px; opacity:0.65; margin-bottom:12px;">CBDC</div>
-      <div style="font-size:17px; font-weight:700; color:#fde0e0; margin-bottom:20px;">Government digital currency</div>
-      <div style="display:flex; flex-direction:column; gap:14px; font-size:13px; line-height:1.5;">
-        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#f09595; flex-shrink:0; margin-top:1px;">&#10005;</span><div><strong style="color:#fde0e0;">Issued by central bank</strong><br><span style="opacity:0.7;">Supply controlled by government</span></div></div>
-        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#f09595; flex-shrink:0; margin-top:1px;">&#10005;</span><div><strong style="color:#fde0e0;">Full surveillance</strong><br><span style="opacity:0.7;">Every transaction visible to the state</span></div></div>
-        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#f09595; flex-shrink:0; margin-top:1px;">&#10005;</span><div><strong style="color:#fde0e0;">Programmable restrictions</strong><br><span style="opacity:0.7;">Money can expire, be frozen, or limited</span></div></div>
-        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#f09595; flex-shrink:0; margin-top:1px;">&#10005;</span><div><strong style="color:#fde0e0;">Censorship built in</strong><br><span style="opacity:0.7;">Accounts frozen or seized at will</span></div></div>
-        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#f09595; flex-shrink:0; margin-top:1px;">&#10005;</span><div><strong style="color:#fde0e0;">Unlimited supply</strong><br><span style="opacity:0.7;">Can be printed infinitely, like fiat</span></div></div>
+    <div style="padding:28px; background:#fdf2f2; border-right:1px solid var(--border);">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#993333; text-transform:uppercase; letter-spacing:2px; margin-bottom:12px;">CBDC</div>
+      <div style="font-size:17px; font-weight:700; color:#661a1a; margin-bottom:20px;">Government digital currency</div>
+      <div style="display:flex; flex-direction:column; gap:14px; font-size:13px; line-height:1.5; color:#663333;">
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#dc2626; flex-shrink:0; margin-top:1px;">&#10005;</span><div><strong style="color:#661a1a;">Issued by central bank</strong><br>Supply controlled by government</div></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#dc2626; flex-shrink:0; margin-top:1px;">&#10005;</span><div><strong style="color:#661a1a;">Full surveillance</strong><br>Every transaction visible to the state</div></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#dc2626; flex-shrink:0; margin-top:1px;">&#10005;</span><div><strong style="color:#661a1a;">Programmable restrictions</strong><br>Money can expire, be frozen, or limited</div></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#dc2626; flex-shrink:0; margin-top:1px;">&#10005;</span><div><strong style="color:#661a1a;">Censorship built in</strong><br>Accounts frozen or seized at will</div></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#dc2626; flex-shrink:0; margin-top:1px;">&#10005;</span><div><strong style="color:#661a1a;">Unlimited supply</strong><br>Can be printed infinitely, like fiat</div></div>
       </div>
     </div>
-    <div style="padding:28px; background:#04342C; color:#9FE1CB;">
-      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:2px; opacity:0.65; margin-bottom:12px;">Bitcoin</div>
-      <div style="font-size:17px; font-weight:700; color:#E1F5EE; margin-bottom:20px;">Decentralised sound money</div>
-      <div style="display:flex; flex-direction:column; gap:14px; font-size:13px; line-height:1.5;">
-        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#5DCAA5; flex-shrink:0; margin-top:1px;">&#10003;</span><div><strong style="color:#E1F5EE;">No issuer</strong><br><span style="opacity:0.7;">Fixed supply of 21 million, enforced by code</span></div></div>
-        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#5DCAA5; flex-shrink:0; margin-top:1px;">&#10003;</span><div><strong style="color:#E1F5EE;">Pseudonymous</strong><br><span style="opacity:0.7;">Privacy tools available, no central watcher</span></div></div>
-        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#5DCAA5; flex-shrink:0; margin-top:1px;">&#10003;</span><div><strong style="color:#E1F5EE;">Permissionless</strong><br><span style="opacity:0.7;">No third party can programme your money</span></div></div>
-        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#5DCAA5; flex-shrink:0; margin-top:1px;">&#10003;</span><div><strong style="color:#E1F5EE;">Censorship resistant</strong><br><span style="opacity:0.7;">Self-custody cannot be confiscated</span></div></div>
-        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#5DCAA5; flex-shrink:0; margin-top:1px;">&#10003;</span><div><strong style="color:#E1F5EE;">Hard cap at 21 million</strong><br><span style="opacity:0.7;">Mathematically enforced scarcity</span></div></div>
+    <div style="padding:28px; background:#f5f0e6;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--bitcoin); text-transform:uppercase; letter-spacing:2px; margin-bottom:12px;">Bitcoin</div>
+      <div style="font-size:17px; font-weight:700; color:#1a1a2e; margin-bottom:20px;">Decentralised sound money</div>
+      <div style="display:flex; flex-direction:column; gap:14px; font-size:13px; line-height:1.5; color:#4a4a3a;">
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#16a34a; flex-shrink:0; margin-top:1px;">&#10003;</span><div><strong style="color:#1a1a2e;">No issuer</strong><br>Fixed supply of 21 million, enforced by code</div></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#16a34a; flex-shrink:0; margin-top:1px;">&#10003;</span><div><strong style="color:#1a1a2e;">Pseudonymous</strong><br>Privacy tools available, no central watcher</div></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#16a34a; flex-shrink:0; margin-top:1px;">&#10003;</span><div><strong style="color:#1a1a2e;">Permissionless</strong><br>No third party can programme your money</div></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#16a34a; flex-shrink:0; margin-top:1px;">&#10003;</span><div><strong style="color:#1a1a2e;">Censorship resistant</strong><br>Self-custody cannot be confiscated</div></div>
+        <div style="display:flex; gap:10px; align-items:flex-start;"><span style="color:#16a34a; flex-shrink:0; margin-top:1px;">&#10003;</span><div><strong style="color:#1a1a2e;">Hard cap at 21 million</strong><br>Mathematically enforced scarcity</div></div>
       </div>
     </div>
   </div>
@@ -1037,17 +1101,23 @@
     </a>
   </div>
 
-  <h3>Debunking the FUD: Quantum Computing</h3>
-  <p>You'll hear that quantum computing will "break" Bitcoin. This is the new Y2K. Bitcoin's cryptography can be upgraded. The network has survived every technical and political attack thrown at it for 15 years. Quantum is a known variable, not an unknown threat, and the Bitcoin developer community has been preparing for it since 2016.</p>
-  <p>In fact, it's already being solved. BTQ Technologies announced the first successful demonstration of a quantum-resistant Bitcoin implementation using NIST-standardised post-quantum cryptography. Their Bitcoin Quantum Core Release 0.2 replaces vulnerable ECDSA signatures with ML-DSA, protecting the $2.4 trillion Bitcoin market from quantum attacks projected to emerge by 2030.</p>
+  <h3>Debunking the FUD</h3>
+  <p>As Bitcoin grows, so do the myths. Here are the most common ones, debunked.</p>
 
-  <div class="resource-grid">
+  <details class="info-expand">
+    <summary>"Quantum computing will break Bitcoin"</summary>
+    <div class="info-expand-content">
+      <p>This is the new Y2K. Bitcoin's cryptography can be upgraded. The network has survived every technical and political attack thrown at it for 15 years. Quantum is a known variable, not an unknown threat, and the Bitcoin developer community has been preparing for it since 2016.</p>
+      <p>In fact, it's already being solved. BTQ Technologies announced the first successful demonstration of a quantum-resistant Bitcoin implementation using NIST-standardised post-quantum cryptography. Their Bitcoin Quantum Core Release 0.2 replaces vulnerable ECDSA signatures with ML-DSA, protecting the $2.4 trillion Bitcoin market from quantum attacks projected to emerge by 2030.</p>
+      <div class="resource-grid" style="margin-top:16px;">
     <a href="https://thequantuminsider.com/2025/10/16/btq-technologies-announces-quantum-safe-bitcoin-using-nist-standardized-post-quantum-cryptography/" class="resource-card" target="_blank">
       <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Article</div>
       <div class="resource-card-title">BTQ: Quantum-Safe Bitcoin Using NIST Cryptography</div>
       <div class="resource-card-desc">First successful demonstration of quantum-resistant Bitcoin. NIST-standardised post-quantum cryptography replacing ECDSA with ML-DSA.</div>
     </a>
   </div>
+    </div>
+  </details>
 
   <div class="step-page-nav">
     <a class="step-nav-btn" href="step5.html">
@@ -1406,6 +1476,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initGlossary();
   fetchBTCPrice();
   setInterval(fetchBTCPrice, 60000);
+  // ATH vs live price (Step 3)
+  if (document.getElementById('athLivePrice')) {
+    (async function() {
+      try {
+        var res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        var data = await res.json();
+        var price = Math.round(data.bitcoin.usd);
+        var ath = 126210;
+        var diff = ((price - ath) / ath * 100).toFixed(1);
+        document.getElementById('athLivePrice').textContent = '$' + price.toLocaleString();
+        var color = diff >= 0 ? '#16a34a' : '#dc2626';
+        document.getElementById('athVsLabel').innerHTML = '<span style="color:' + color + '">' + diff + '% from ATH</span>';
+      } catch(e) { document.getElementById('athLivePrice').textContent = '—'; }
+    })();
+  }
   // Twitter embeds
   if (typeof twttr !== 'undefined' && twttr.widgets) { twttr.widgets.load(); }
 });

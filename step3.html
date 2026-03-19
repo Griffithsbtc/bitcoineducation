@@ -186,6 +186,70 @@
   .tweet-grid .twitter-tweet { margin: 0 !important; }
   .stat-card:hover { border-color: var(--bitcoin) !important; }
 
+  /* Section tint for alternating backgrounds */
+  .section-tint {
+    margin: 0 -48px; padding: 32px 48px;
+    background: var(--bg-surface); border-radius: 0;
+  }
+  @media (max-width: 768px) { .section-tint { margin: 0 -20px; padding: 24px 20px; } }
+
+  /* Action flow visual */
+  .action-flow {
+    display: flex; align-items: center; gap: 0; margin: 24px 0 32px;
+  }
+  .action-flow-step {
+    flex: 1; text-align: center; padding: 20px 12px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+    position: relative;
+  }
+  .action-flow-step.highlight { border-color: var(--bitcoin); background: rgba(232,134,15,0.04); }
+  .action-flow-num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--bitcoin);
+    color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
+  }
+  .action-flow-title { font-weight: 700; font-size: 14px; color: var(--text-hero); margin-bottom: 4px; }
+  .action-flow-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+  .action-flow-arrow {
+    flex-shrink: 0; width: 32px; display: flex; align-items: center; justify-content: center;
+    color: var(--bitcoin); font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    .action-flow { flex-direction: column; gap: 0; }
+    .action-flow-arrow { transform: rotate(90deg); width: auto; height: 32px; }
+  }
+
+  /* Podcast accent bar */
+  .podcast-card { position: relative; overflow: hidden; }
+  .podcast-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--accent, var(--bitcoin)); border-radius: 4px 0 0 4px;
+  }
+
+  /* Classroom featured card */
+  .featured-card {
+    border: 2px solid var(--bitcoin) !important;
+    background: rgba(232,134,15,0.03) !important;
+    position: relative;
+  }
+  .featured-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px;
+    background: var(--bitcoin); color: #fff; border-radius: 6px;
+  }
+
+  /* Classroom section divider */
+  .classroom-divider {
+    display: flex; align-items: center; gap: 16px; margin: 48px 0 24px;
+    padding-top: 32px; border-top: 1px solid var(--border);
+  }
+  .classroom-divider-icon {
+    width: 40px; height: 40px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .classroom-divider h3 { margin: 0; }
+
   /* === JOURNEY PROGRESS BAR === */
   .journey-progress {
     position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
@@ -760,7 +824,7 @@
 
   /* === FOOTER === */
   footer {
-    margin-top: 120px; padding: 48px;
+    margin-top: 60px; padding: 48px;
     border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
   }
@@ -855,7 +919,7 @@
 
   .mobile-nav-panel {
     position: fixed; top: 0; right: 0; bottom: 0; width: 280px; z-index: 1000;
-    background: var(--bg-page); box-shadow: -8px 0 32px rgba(0,0,0,0.1);
+    background: #FAFAF8; box-shadow: -8px 0 32px rgba(0,0,0,0.1);
     transform: translateX(100%); transition: transform 0.3s ease;
     display: flex; flex-direction: column; padding: 24px;
   }
@@ -899,7 +963,7 @@
     .hamburger { display: flex; }
     .nav-left { gap: 12px; }
     .btc-ticker { font-size: 10px; padding: 3px 8px; }
-    .journey-progress { padding: 10px 12px 24px; }
+    .journey-progress { display: none !important; }
     .progress-node { width: 48px; }
     .progress-num { width: 26px; height: 26px; font-size: 10px; }
     .progress-label { font-size: 7px; }
@@ -977,7 +1041,7 @@
 <div class="journey-progress visible" id="journeyProgress"><div class="progress-track" id="progressTrack"><a href="step1.html" class="progress-node completed"><span class="progress-num">1</span><span class="progress-label">Why Bitcoin?</span></a><div class="progress-line completed"></div><a href="step2.html" class="progress-node completed"><span class="progress-num">2</span><span class="progress-label">Basics</span></a><div class="progress-line completed"></div><a href="step3.html" class="progress-node active"><span class="progress-num">3</span><span class="progress-label">Performance</span></a><div class="progress-line"></div><a href="step4.html" class="progress-node upcoming"><span class="progress-num">4</span><span class="progress-label">Institutional</span></a><div class="progress-line"></div><a href="step45.html" class="progress-node upcoming"><span class="progress-num">4.5</span><span class="progress-label">Break</span></a><div class="progress-line"></div><a href="step5.html" class="progress-node upcoming"><span class="progress-num">5</span><span class="progress-label">Adoption</span></a><div class="progress-line"></div><a href="step6.html" class="progress-node upcoming"><span class="progress-num">6</span><span class="progress-label">CBDCs</span></a><div class="progress-line"></div><a href="step7.html" class="progress-node upcoming"><span class="progress-num">7</span><span class="progress-label">Advanced</span></a><div class="progress-line"></div><a href="step8.html" class="progress-node upcoming"><span class="progress-num">8</span><span class="progress-label">Take Action</span></a></div></div>
 
 <div class="step-page-hero">
-  <a class="step-page-back" href="home.html">
+  <a class="step-page-back" href="index.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
     Back to Journey
   </a>
@@ -1035,7 +1099,77 @@
   </div>
 
   <h3>The Crash Narrative</h3>
-  <p>Every four years, like clockwork, Bitcoin goes through a cycle. The media declares it dead. Then it breaks all-time highs. Understanding this pattern is the difference between panic selling and conviction holding. This isn't a Trump rally or a meme coin pump. It's a 15-year monetary revolution playing out in predictable waves.</p>
+  <p>Every four years, like clockwork, Bitcoin goes through a cycle. The media declares it dead. Then it breaks all-time highs. Understanding this pattern is the difference between panic selling and conviction holding.</p>
+
+  <!-- Volatility Timeline -->
+  <div style="margin:24px 0 32px;">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:2px; margin-bottom:20px;">Crash-and-recovery cycles</div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="display:flex; align-items:center; gap:0;">
+        <div style="width:65px; text-align:right; padding-right:12px; font-size:11px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; flex-shrink:0;">2011-13</div>
+        <div style="display:flex; align-items:center; gap:0; flex:1;">
+          <div style="background:#16a34a; color:#fff; padding:6px 10px; border-radius:6px 0 0 6px; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$31</div>
+          <div style="width:32px; height:2px; background:#dc2626;"></div>
+          <div style="background:#dc2626; color:#fff; padding:6px 10px; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$2 <span style="font-size:10px; opacity:0.75;">-94%</span></div>
+          <div style="flex:1; height:2px; background:linear-gradient(90deg, #dc2626, #16a34a);"></div>
+          <div style="background:#16a34a; color:#fff; padding:6px 10px; border-radius:0 6px 6px 0; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$1,100</div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:0;">
+        <div style="width:65px; text-align:right; padding-right:12px; font-size:11px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; flex-shrink:0;">2013-17</div>
+        <div style="display:flex; align-items:center; gap:0; flex:1;">
+          <div style="background:#16a34a; color:#fff; padding:6px 10px; border-radius:6px 0 0 6px; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$1,100</div>
+          <div style="width:32px; height:2px; background:#dc2626;"></div>
+          <div style="background:#dc2626; color:#fff; padding:6px 10px; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$170 <span style="font-size:10px; opacity:0.75;">-85%</span></div>
+          <div style="flex:1; height:2px; background:linear-gradient(90deg, #dc2626, #16a34a);"></div>
+          <div style="background:#16a34a; color:#fff; padding:6px 10px; border-radius:0 6px 6px 0; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$19,700</div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:0;">
+        <div style="width:65px; text-align:right; padding-right:12px; font-size:11px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; flex-shrink:0;">2017-21</div>
+        <div style="display:flex; align-items:center; gap:0; flex:1;">
+          <div style="background:#16a34a; color:#fff; padding:6px 10px; border-radius:6px 0 0 6px; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$19,700</div>
+          <div style="width:32px; height:2px; background:#dc2626;"></div>
+          <div style="background:#dc2626; color:#fff; padding:6px 10px; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$3,200 <span style="font-size:10px; opacity:0.75;">-84%</span></div>
+          <div style="flex:1; height:2px; background:linear-gradient(90deg, #dc2626, #16a34a);"></div>
+          <div style="background:#16a34a; color:#fff; padding:6px 10px; border-radius:0 6px 6px 0; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$69,000</div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:0;">
+        <div style="width:65px; text-align:right; padding-right:12px; font-size:11px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; flex-shrink:0;">2021-25</div>
+        <div style="display:flex; align-items:center; gap:0; flex:1;">
+          <div style="background:#16a34a; color:#fff; padding:6px 10px; border-radius:6px 0 0 6px; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$69,000</div>
+          <div style="width:32px; height:2px; background:#dc2626;"></div>
+          <div style="background:#dc2626; color:#fff; padding:6px 10px; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$15,500 <span style="font-size:10px; opacity:0.75;">-78%</span></div>
+          <div style="flex:1; height:2px; background:linear-gradient(90deg, #dc2626, #E8860F);"></div>
+          <div style="background:var(--bitcoin); color:#fff; padding:6px 10px; border-radius:0 6px 6px 0; font-size:12px; font-weight:600; font-family:'JetBrains Mono',monospace; white-space:nowrap;">$126,000+</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:16px; padding:12px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; font-size:13px; color:var(--text-secondary);">
+      Every cycle: the media declares Bitcoin dead. Then it sets a new all-time high.
+      <br><span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-dim);">470+ obituaries and counting &mdash; <a href="https://99bitcoins.com/bitcoin-obituaries/" target="_blank" style="color:var(--bitcoin); text-decoration:underline;">Bitcoin Obituaries</a></span>
+    </div>
+  </div>
+
+  <!-- ATH + Live Price Strip -->
+  <div style="display:flex; align-items:center; gap:16px; padding:16px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; margin-bottom:32px;">
+    <div style="flex:1;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:4px;">All-time high</div>
+      <div style="font-size:24px; font-weight:700; color:var(--text-hero); font-family:'Sora',sans-serif;">$126,210</div>
+      <div style="font-size:11px; color:var(--text-dim); font-family:'JetBrains Mono',monospace;">October 6, 2025</div>
+    </div>
+    <div style="width:1px; height:48px; background:var(--border);"></div>
+    <div style="flex:1; text-align:right;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:4px;">Price right now</div>
+      <div style="font-size:24px; font-weight:700; color:var(--text-hero); font-family:'Sora',sans-serif;" id="athLivePrice">Loading...</div>
+      <div style="font-size:11px; font-family:'JetBrains Mono',monospace;" id="athVsLabel">from ATH</div>
+    </div>
+  </div>
+
+  <p>This isn't a Trump rally or a meme coin pump. It's a 15-year monetary revolution playing out in predictable waves. China banned Bitcoin twice. The price recovered. It hit $69k under a hostile SEC. Every crash, in hindsight, was a buying opportunity.</p>
 
   <div class="step-page-nav">
     <a class="step-nav-btn" href="step2.html">
@@ -1394,6 +1528,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initGlossary();
   fetchBTCPrice();
   setInterval(fetchBTCPrice, 60000);
+  // ATH vs live price (Step 3)
+  if (document.getElementById('athLivePrice')) {
+    (async function() {
+      try {
+        var res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        var data = await res.json();
+        var price = Math.round(data.bitcoin.usd);
+        var ath = 126210;
+        var diff = ((price - ath) / ath * 100).toFixed(1);
+        document.getElementById('athLivePrice').textContent = '$' + price.toLocaleString();
+        var color = diff >= 0 ? '#16a34a' : '#dc2626';
+        document.getElementById('athVsLabel').innerHTML = '<span style="color:' + color + '">' + diff + '% from ATH</span>';
+      } catch(e) { document.getElementById('athLivePrice').textContent = '—'; }
+    })();
+  }
   // Twitter embeds
   if (typeof twttr !== 'undefined' && twttr.widgets) { twttr.widgets.load(); }
 });

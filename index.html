@@ -186,6 +186,70 @@
   .tweet-grid .twitter-tweet { margin: 0 !important; }
   .stat-card:hover { border-color: var(--bitcoin) !important; }
 
+  /* Section tint for alternating backgrounds */
+  .section-tint {
+    margin: 0 -48px; padding: 32px 48px;
+    background: var(--bg-surface); border-radius: 0;
+  }
+  @media (max-width: 768px) { .section-tint { margin: 0 -20px; padding: 24px 20px; } }
+
+  /* Action flow visual */
+  .action-flow {
+    display: flex; align-items: center; gap: 0; margin: 24px 0 32px;
+  }
+  .action-flow-step {
+    flex: 1; text-align: center; padding: 20px 12px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+    position: relative;
+  }
+  .action-flow-step.highlight { border-color: var(--bitcoin); background: rgba(232,134,15,0.04); }
+  .action-flow-num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--bitcoin);
+    color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
+  }
+  .action-flow-title { font-weight: 700; font-size: 14px; color: var(--text-hero); margin-bottom: 4px; }
+  .action-flow-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+  .action-flow-arrow {
+    flex-shrink: 0; width: 32px; display: flex; align-items: center; justify-content: center;
+    color: var(--bitcoin); font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    .action-flow { flex-direction: column; gap: 0; }
+    .action-flow-arrow { transform: rotate(90deg); width: auto; height: 32px; }
+  }
+
+  /* Podcast accent bar */
+  .podcast-card { position: relative; overflow: hidden; }
+  .podcast-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--accent, var(--bitcoin)); border-radius: 4px 0 0 4px;
+  }
+
+  /* Classroom featured card */
+  .featured-card {
+    border: 2px solid var(--bitcoin) !important;
+    background: rgba(232,134,15,0.03) !important;
+    position: relative;
+  }
+  .featured-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px;
+    background: var(--bitcoin); color: #fff; border-radius: 6px;
+  }
+
+  /* Classroom section divider */
+  .classroom-divider {
+    display: flex; align-items: center; gap: 16px; margin: 48px 0 24px;
+    padding-top: 32px; border-top: 1px solid var(--border);
+  }
+  .classroom-divider-icon {
+    width: 40px; height: 40px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .classroom-divider h3 { margin: 0; }
+
   /* === JOURNEY PROGRESS BAR === */
   .journey-progress {
     position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
@@ -760,7 +824,7 @@
 
   /* === FOOTER === */
   footer {
-    margin-top: 120px; padding: 48px;
+    margin-top: 60px; padding: 48px;
     border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
   }
@@ -855,7 +919,7 @@
 
   .mobile-nav-panel {
     position: fixed; top: 0; right: 0; bottom: 0; width: 280px; z-index: 1000;
-    background: var(--bg-page); box-shadow: -8px 0 32px rgba(0,0,0,0.1);
+    background: #FAFAF8; box-shadow: -8px 0 32px rgba(0,0,0,0.1);
     transform: translateX(100%); transition: transform 0.3s ease;
     display: flex; flex-direction: column; padding: 24px;
   }
@@ -899,7 +963,7 @@
     .hamburger { display: flex; }
     .nav-left { gap: 12px; }
     .btc-ticker { font-size: 10px; padding: 3px 8px; }
-    .journey-progress { padding: 10px 12px 24px; }
+    .journey-progress { display: none !important; }
     .progress-node { width: 48px; }
     .progress-num { width: 26px; height: 26px; font-size: 10px; }
     .progress-label { font-size: 7px; }
@@ -1256,14 +1320,14 @@
 
     <div class="journey-step reveal"><div class="step-header" onclick="toggleStep(this)"><div class="step-number">7</div><div class="step-header-text"><div class="step-title">Go Deeper</div><div class="step-subtitle">Technical deep dives and advanced concepts</div></div><svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="step-body"><div class="step-body-inner"><div class="step-time-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Hours to explore &middot; ongoing learning</div><p class="step-description">Explore the technical foundations: mining, nodes, Lightning Network, and the game theory that makes Bitcoin unstoppable.</p><div class="step-resources"><a href="https://bitcoinops.org/" class="resource-tag" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Bitcoin Optech</a></div><a class="step-deep-dive" href="step7.html">Explore Step 7 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></a></div></div></div>
 
-    <div class="journey-step reveal"><div class="step-header" onclick="toggleStep(this)"><div class="step-number">8</div><div class="step-header-text"><div class="step-title">Take Action</div><div class="step-subtitle">Buy, store, and protect your Bitcoin</div></div><svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="step-body"><div class="step-body-inner"><p class="step-description">You've done the research. Now it's time to act. Learn how to buy your first Bitcoin, set up secure storage, and build a long-term strategy.</p><div class="step-resources"><a class="resource-tag" onclick="showPage('buy')" style="cursor:pointer;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Buy, Store, HODL Guide</a></div><a class="step-deep-dive" href="step8.html">Explore Step 8 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></a></div></div></div>
+    <div class="journey-step reveal"><div class="step-header" onclick="toggleStep(this)"><div class="step-number">8</div><div class="step-header-text"><div class="step-title">Take Action</div><div class="step-subtitle">Buy, store, and protect your Bitcoin</div></div><svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="step-body"><div class="step-body-inner"><p class="step-description">You've done the research. Now it's time to act. Learn how to buy your first Bitcoin, set up secure storage, and build a long-term strategy.</p><div class="step-resources"><a class="resource-tag" href="buy.html" style="cursor:pointer;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Buy, Store, HODL Guide</a></div><a class="step-deep-dive" href="step8.html">Explore Step 8 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></a></div></div></div>
 
   </div>
 </section>
 
 <!-- CTA BAND -->
-<footer>
-  <div style="text-align:center; margin-bottom:32px;">
+<footer style="flex-direction:column; text-align:center;">
+  <div style="margin-bottom:32px;">
     <h3 style="font-family:'Sora',sans-serif; font-weight:600; font-size:22px; color:var(--text-hero); margin-bottom:8px;">Not sure where to start?</h3>
     <p style="font-size:15px; color:var(--text-secondary); margin-bottom:20px;">Book a free 30-minute kickstarter call.</p>
     <a class="btn-primary" href="javascript:openCalendly()">Book a Free Kickstarter</a>
@@ -1615,6 +1679,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initGlossary();
   fetchBTCPrice();
   setInterval(fetchBTCPrice, 60000);
+  // ATH vs live price (Step 3)
+  if (document.getElementById('athLivePrice')) {
+    (async function() {
+      try {
+        var res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        var data = await res.json();
+        var price = Math.round(data.bitcoin.usd);
+        var ath = 126210;
+        var diff = ((price - ath) / ath * 100).toFixed(1);
+        document.getElementById('athLivePrice').textContent = '$' + price.toLocaleString();
+        var color = diff >= 0 ? '#16a34a' : '#dc2626';
+        document.getElementById('athVsLabel').innerHTML = '<span style="color:' + color + '">' + diff + '% from ATH</span>';
+      } catch(e) { document.getElementById('athLivePrice').textContent = '—'; }
+    })();
+  }
   // Twitter embeds
   if (typeof twttr !== 'undefined' && twttr.widgets) { twttr.widgets.load(); }
 });

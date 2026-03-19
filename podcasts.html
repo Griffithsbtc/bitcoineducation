@@ -186,6 +186,70 @@
   .tweet-grid .twitter-tweet { margin: 0 !important; }
   .stat-card:hover { border-color: var(--bitcoin) !important; }
 
+  /* Section tint for alternating backgrounds */
+  .section-tint {
+    margin: 0 -48px; padding: 32px 48px;
+    background: var(--bg-surface); border-radius: 0;
+  }
+  @media (max-width: 768px) { .section-tint { margin: 0 -20px; padding: 24px 20px; } }
+
+  /* Action flow visual */
+  .action-flow {
+    display: flex; align-items: center; gap: 0; margin: 24px 0 32px;
+  }
+  .action-flow-step {
+    flex: 1; text-align: center; padding: 20px 12px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+    position: relative;
+  }
+  .action-flow-step.highlight { border-color: var(--bitcoin); background: rgba(232,134,15,0.04); }
+  .action-flow-num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--bitcoin);
+    color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
+  }
+  .action-flow-title { font-weight: 700; font-size: 14px; color: var(--text-hero); margin-bottom: 4px; }
+  .action-flow-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+  .action-flow-arrow {
+    flex-shrink: 0; width: 32px; display: flex; align-items: center; justify-content: center;
+    color: var(--bitcoin); font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    .action-flow { flex-direction: column; gap: 0; }
+    .action-flow-arrow { transform: rotate(90deg); width: auto; height: 32px; }
+  }
+
+  /* Podcast accent bar */
+  .podcast-card { position: relative; overflow: hidden; }
+  .podcast-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--accent, var(--bitcoin)); border-radius: 4px 0 0 4px;
+  }
+
+  /* Classroom featured card */
+  .featured-card {
+    border: 2px solid var(--bitcoin) !important;
+    background: rgba(232,134,15,0.03) !important;
+    position: relative;
+  }
+  .featured-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px;
+    background: var(--bitcoin); color: #fff; border-radius: 6px;
+  }
+
+  /* Classroom section divider */
+  .classroom-divider {
+    display: flex; align-items: center; gap: 16px; margin: 48px 0 24px;
+    padding-top: 32px; border-top: 1px solid var(--border);
+  }
+  .classroom-divider-icon {
+    width: 40px; height: 40px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .classroom-divider h3 { margin: 0; }
+
   /* === JOURNEY PROGRESS BAR === */
   .journey-progress {
     position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
@@ -760,7 +824,7 @@
 
   /* === FOOTER === */
   footer {
-    margin-top: 120px; padding: 48px;
+    margin-top: 60px; padding: 48px;
     border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
   }
@@ -855,7 +919,7 @@
 
   .mobile-nav-panel {
     position: fixed; top: 0; right: 0; bottom: 0; width: 280px; z-index: 1000;
-    background: var(--bg-page); box-shadow: -8px 0 32px rgba(0,0,0,0.1);
+    background: #FAFAF8; box-shadow: -8px 0 32px rgba(0,0,0,0.1);
     transform: translateX(100%); transition: transform 0.3s ease;
     display: flex; flex-direction: column; padding: 24px;
   }
@@ -899,7 +963,7 @@
     .hamburger { display: flex; }
     .nav-left { gap: 12px; }
     .btc-ticker { font-size: 10px; padding: 3px 8px; }
-    .journey-progress { padding: 10px 12px 24px; }
+    .journey-progress { display: none !important; }
     .progress-node { width: 48px; }
     .progress-num { width: 26px; height: 26px; font-size: 10px; }
     .progress-label { font-size: 7px; }
@@ -976,7 +1040,7 @@
 
 
 <div class="step-page-hero">
-  <a class="step-page-back" href="home.html">
+  <a class="step-page-back" href="index.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
     Back to Home
   </a>
@@ -990,22 +1054,22 @@
   <p>These shows consistently deliver the most consistent, honest Bitcoin content available.</p>
 
   <div class="resource-grid">
-    <a href="https://www.whatbitcoindid.com" class="resource-card" target="_blank">
+    <a href="https://www.whatbitcoindid.com" class="resource-card" style="border-left:3px solid #E8860F; border-radius:0 12px 12px 0;" target="_blank">
       <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Podcast</div>
       <div class="resource-card-title">What Bitcoin Did</div>
       <div class="resource-card-desc">Peter McCormack interviews the biggest names in Bitcoin. Accessible, well-produced, and perfect for all levels.</div>
     </a>
-    <a href="https://saifedean.com/podcast" class="resource-card" target="_blank">
+    <a href="https://saifedean.com/podcast" class="resource-card" style="border-left:3px solid #1F7A8C; border-radius:0 12px 12px 0;" target="_blank">
       <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Podcast</div>
       <div class="resource-card-title">The Bitcoin Standard Podcast</div>
       <div class="resource-card-desc">Saifedean Ammous on Austrian economics, Bitcoin, and monetary theory. Deep, technical, essential.</div>
     </a>
-    <a href="https://stephanlivera.com" class="resource-card" target="_blank">
+    <a href="https://stephanlivera.com" class="resource-card" style="border-left:3px solid #9C27B0; border-radius:0 12px 12px 0;" target="_blank">
       <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Podcast</div>
       <div class="resource-card-title">Stephan Livera Podcast</div>
       <div class="resource-card-desc">Australian-based. Technical Bitcoin, Lightning Network, and Austrian economics. One of the OGs.</div>
     </a>
-    <a href="https://www.theinvestorspodcast.com/bitcoin-fundamentals/" class="resource-card" target="_blank">
+    <a href="https://www.theinvestorspodcast.com/bitcoin-fundamentals/" class="resource-card" style="border-left:3px solid #3B7DD8; border-radius:0 12px 12px 0;" target="_blank">
       <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Podcast</div>
       <div class="resource-card-title">Bitcoin Fundamentals (Preston Pysh)</div>
       <div class="resource-card-desc">From The Investor's Podcast Network. Bridges traditional finance and Bitcoin with data-driven analysis.</div>
@@ -1015,22 +1079,22 @@
   <h3>More Signal</h3>
 
   <div class="resource-grid">
-    <a href="https://tftc.io" class="resource-card" target="_blank">
+    <a href="https://tftc.io" class="resource-card" style="border-left:3px solid #D85A30; border-radius:0 12px 12px 0;" target="_blank">
       <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Podcast</div>
       <div class="resource-card-title">TFTC (Tales from the Crypt)</div>
       <div class="resource-card-desc">Marty Bent and Matt Odell. No-nonsense Bitcoin discussion with a focus on privacy and self-sovereignty.</div>
     </a>
-    <a href="https://swansignal.simplecast.com" class="resource-card" target="_blank">
+    <a href="https://swansignal.simplecast.com" class="resource-card" style="border-left:3px solid #16a34a; border-radius:0 12px 12px 0;" target="_blank">
       <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Podcast</div>
       <div class="resource-card-title">Swan Signal</div>
       <div class="resource-card-desc">Swan Bitcoin's podcast featuring conversations with leading Bitcoin thinkers and investors.</div>
     </a>
-    <a href="https://anchor.fm/john-vallis" class="resource-card" target="_blank">
+    <a href="https://anchor.fm/john-vallis" class="resource-card" style="border-left:3px solid #D4A843; border-radius:0 12px 12px 0;" target="_blank">
       <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Podcast</div>
       <div class="resource-card-title">Bitcoin Rapid-Fire</div>
       <div class="resource-card-desc">John Vallis explores Bitcoin philosophy, culture, and the human side of the monetary revolution.</div>
     </a>
-    <a href="https://bitcoinmagazine.com/tags/bitcoin-magazine-podcast" class="resource-card" target="_blank">
+    <a href="https://bitcoinmagazine.com/tags/bitcoin-magazine-podcast" class="resource-card" style="border-left:3px solid #dc2626; border-radius:0 12px 12px 0;" target="_blank">
       <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Podcast</div>
       <div class="resource-card-title">Bitcoin Magazine Podcast</div>
       <div class="resource-card-desc">News, analysis, and interviews from the original Bitcoin publication.</div>
@@ -1384,6 +1448,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initGlossary();
   fetchBTCPrice();
   setInterval(fetchBTCPrice, 60000);
+  // ATH vs live price (Step 3)
+  if (document.getElementById('athLivePrice')) {
+    (async function() {
+      try {
+        var res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        var data = await res.json();
+        var price = Math.round(data.bitcoin.usd);
+        var ath = 126210;
+        var diff = ((price - ath) / ath * 100).toFixed(1);
+        document.getElementById('athLivePrice').textContent = '$' + price.toLocaleString();
+        var color = diff >= 0 ? '#16a34a' : '#dc2626';
+        document.getElementById('athVsLabel').innerHTML = '<span style="color:' + color + '">' + diff + '% from ATH</span>';
+      } catch(e) { document.getElementById('athLivePrice').textContent = '—'; }
+    })();
+  }
   // Twitter embeds
   if (typeof twttr !== 'undefined' && twttr.widgets) { twttr.widgets.load(); }
 });

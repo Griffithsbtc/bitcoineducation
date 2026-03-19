@@ -186,6 +186,70 @@
   .tweet-grid .twitter-tweet { margin: 0 !important; }
   .stat-card:hover { border-color: var(--bitcoin) !important; }
 
+  /* Section tint for alternating backgrounds */
+  .section-tint {
+    margin: 0 -48px; padding: 32px 48px;
+    background: var(--bg-surface); border-radius: 0;
+  }
+  @media (max-width: 768px) { .section-tint { margin: 0 -20px; padding: 24px 20px; } }
+
+  /* Action flow visual */
+  .action-flow {
+    display: flex; align-items: center; gap: 0; margin: 24px 0 32px;
+  }
+  .action-flow-step {
+    flex: 1; text-align: center; padding: 20px 12px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+    position: relative;
+  }
+  .action-flow-step.highlight { border-color: var(--bitcoin); background: rgba(232,134,15,0.04); }
+  .action-flow-num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--bitcoin);
+    color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
+  }
+  .action-flow-title { font-weight: 700; font-size: 14px; color: var(--text-hero); margin-bottom: 4px; }
+  .action-flow-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+  .action-flow-arrow {
+    flex-shrink: 0; width: 32px; display: flex; align-items: center; justify-content: center;
+    color: var(--bitcoin); font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    .action-flow { flex-direction: column; gap: 0; }
+    .action-flow-arrow { transform: rotate(90deg); width: auto; height: 32px; }
+  }
+
+  /* Podcast accent bar */
+  .podcast-card { position: relative; overflow: hidden; }
+  .podcast-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--accent, var(--bitcoin)); border-radius: 4px 0 0 4px;
+  }
+
+  /* Classroom featured card */
+  .featured-card {
+    border: 2px solid var(--bitcoin) !important;
+    background: rgba(232,134,15,0.03) !important;
+    position: relative;
+  }
+  .featured-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px;
+    background: var(--bitcoin); color: #fff; border-radius: 6px;
+  }
+
+  /* Classroom section divider */
+  .classroom-divider {
+    display: flex; align-items: center; gap: 16px; margin: 48px 0 24px;
+    padding-top: 32px; border-top: 1px solid var(--border);
+  }
+  .classroom-divider-icon {
+    width: 40px; height: 40px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .classroom-divider h3 { margin: 0; }
+
   /* === JOURNEY PROGRESS BAR === */
   .journey-progress {
     position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
@@ -760,7 +824,7 @@
 
   /* === FOOTER === */
   footer {
-    margin-top: 120px; padding: 48px;
+    margin-top: 60px; padding: 48px;
     border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
   }
@@ -855,7 +919,7 @@
 
   .mobile-nav-panel {
     position: fixed; top: 0; right: 0; bottom: 0; width: 280px; z-index: 1000;
-    background: var(--bg-page); box-shadow: -8px 0 32px rgba(0,0,0,0.1);
+    background: #FAFAF8; box-shadow: -8px 0 32px rgba(0,0,0,0.1);
     transform: translateX(100%); transition: transform 0.3s ease;
     display: flex; flex-direction: column; padding: 24px;
   }
@@ -899,7 +963,7 @@
     .hamburger { display: flex; }
     .nav-left { gap: 12px; }
     .btc-ticker { font-size: 10px; padding: 3px 8px; }
-    .journey-progress { padding: 10px 12px 24px; }
+    .journey-progress { display: none !important; }
     .progress-node { width: 48px; }
     .progress-num { width: 26px; height: 26px; font-size: 10px; }
     .progress-label { font-size: 7px; }
@@ -976,7 +1040,7 @@
 
 
 <div class="step-page-hero">
-  <a class="step-page-back" href="home.html">
+  <a class="step-page-back" href="index.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
     Back to Home
   </a>
@@ -986,7 +1050,7 @@
 
 <div class="step-page-content">
 
-  <h3>Michael Saylor</h3>
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;"><div class="classroom-divider-icon" style="background:rgba(232,134,15,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8860F" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h3 style="margin:0;">Michael Saylor</h3></div>
   <p>The CEO who bet his entire company on Bitcoin. Saylor's presentations are the most comprehensive, data-driven cases for Bitcoin as a treasury asset ever assembled.</p>
 
   <div class="resource-grid">
@@ -997,11 +1061,12 @@
     </a>
   </div>
 
-  <h3>Anil's Bitcoin Course</h3>
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(31,122,140,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><h3>Anil's Bitcoin Course</h3></div>
   <p>One of the most thorough, accessible Bitcoin courses available. Covers terminology, common fallacies, use cases, and includes summaries of the most important Bitcoin books.</p>
 
   <div class="resource-grid">
-    <a href="https://anilsaidso.gumroad.com/l/bitcoincourse" class="resource-card" target="_blank">
+    <a href="https://anilsaidso.gumroad.com/l/bitcoincourse" class="resource-card featured-card" target="_blank">
+      <div class="featured-badge">Featured</div>
       <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Course</div>
       <div class="resource-card-title">Anil's Bitcoin Course</div>
       <div class="resource-card-desc">Comprehensive course covering Bitcoin terminology, fallacies, use cases, and book summaries. Our featured resource.</div>
@@ -1013,7 +1078,7 @@
     </a>
   </div>
 
-  <h3>Andreas Antonopoulos</h3>
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(156,39,176,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3>Andreas Antonopoulos</h3></div>
   <p>Author of Mastering Bitcoin and The Internet of Money series. His talks and slides have educated millions.</p>
 
   <div class="resource-grid">
@@ -1024,7 +1089,7 @@
     </a>
   </div>
 
-  <h3>Courses &amp; Learning Platforms</h3>
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(59,125,216,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7DD8" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg></div><h3>Courses &amp; Learning Platforms</h3></div>
   <p>From structured Bitcoin diplomas to free university courses and community-built resources. Whether you have an afternoon or a semester, there's something here for every level.</p>
 
   <div class="resource-grid">
@@ -1089,7 +1154,7 @@
     </div>
   </details>
 
-  <h3>Deep Dive Videos</h3>
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(76,175,80,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><h3>Deep Dive Videos</h3></div>
   <p>Extended talks and interviews that go beyond the basics.</p>
 
   <div class="video-grid">
@@ -1109,17 +1174,17 @@
     </div>
   </div>
 
-  <h3>Masters Search Engine</h3>
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(232,134,15,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8860F" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>Masters Search Engine</h3></div>
   <p>A custom-built glossary and search engine drawing from Andreas Antonopoulos' Mastering Bitcoin. Look up any Bitcoin term and get a clear, authoritative definition.</p>
   <div class="resource-grid">
-    <a class="resource-card" onclick="showPage('glossary')" style="cursor:pointer; border-color: var(--bitcoin);">
+    <a class="resource-card" href="glossary.html" style="cursor:pointer; border-color: var(--bitcoin);">
       <div class="resource-card-type" style="color:var(--bitcoin);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Interactive Tool</div>
       <div class="resource-card-title" style="color:var(--bitcoin);">Masters Search Engine &rarr;</div>
       <div class="resource-card-desc">Interactive glossary of Bitcoin terminology from Mastering Bitcoin. Search any term instantly.</div>
     </a>
   </div>
 
-  <h3>Essential Reading</h3>
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(212,168,67,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A843" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h3>Essential Reading</h3></div>
   <p>The books that shaped how the Bitcoin community thinks. Start with The Bitcoin Standard, then go wherever your curiosity takes you.</p>
 
   <div class="book-grid">
@@ -1602,6 +1667,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initGlossary();
   fetchBTCPrice();
   setInterval(fetchBTCPrice, 60000);
+  // ATH vs live price (Step 3)
+  if (document.getElementById('athLivePrice')) {
+    (async function() {
+      try {
+        var res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        var data = await res.json();
+        var price = Math.round(data.bitcoin.usd);
+        var ath = 126210;
+        var diff = ((price - ath) / ath * 100).toFixed(1);
+        document.getElementById('athLivePrice').textContent = '$' + price.toLocaleString();
+        var color = diff >= 0 ? '#16a34a' : '#dc2626';
+        document.getElementById('athVsLabel').innerHTML = '<span style="color:' + color + '">' + diff + '% from ATH</span>';
+      } catch(e) { document.getElementById('athLivePrice').textContent = '—'; }
+    })();
+  }
   // Twitter embeds
   if (typeof twttr !== 'undefined' && twttr.widgets) { twttr.widgets.load(); }
 });
