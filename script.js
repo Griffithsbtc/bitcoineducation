@@ -316,6 +316,19 @@ function closeCalendly() { /* handled natively by Calendly widget */ }
 
 
 
+// === MOBILE NAV ===
+function toggleMobileNav() {
+  var panel = document.getElementById('mobileNavPanel');
+  var overlay = document.getElementById('mobileNavOverlay');
+  var hamburger = document.querySelector('.hamburger');
+  if (panel && overlay) {
+    panel.classList.toggle('active');
+    overlay.classList.toggle('active');
+    if (hamburger) hamburger.classList.toggle('active');
+    document.body.style.overflow = panel.classList.contains('active') ? 'hidden' : '';
+  }
+}
+
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => {
   initHeroCanvas();

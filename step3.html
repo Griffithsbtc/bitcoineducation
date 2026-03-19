@@ -184,6 +184,7 @@
   /* === TWEET EMBEDS === */
   .tweet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 20px 0 32px; }
   .tweet-grid .twitter-tweet { margin: 0 !important; }
+  .stat-card:hover { border-color: var(--bitcoin) !important; }
 
   /* === JOURNEY PROGRESS BAR === */
   .journey-progress {
@@ -191,42 +192,47 @@
     background: rgba(250, 250, 248, 0.95);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    padding: 14px 48px; display: none;
+    padding: 14px 24px 28px; display: none;
   }
   .journey-progress.visible { display: block; }
   .progress-track {
-    display: flex; align-items: center; justify-content: center;
-    gap: 0; max-width: 700px; margin: 0 auto;
+    display: flex; align-items: flex-start; justify-content: center;
+    gap: 0; max-width: 800px; margin: 0 auto;
   }
   .progress-node {
+    display: flex; flex-direction: column; align-items: center;
+    width: 64px; cursor: pointer; transition: all 0.3s ease; flex-shrink: 0;
+    text-decoration: none; position: relative;
+  }
+  .progress-num {
     display: flex; align-items: center; justify-content: center;
     width: 30px; height: 30px; border-radius: 50%;
     font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
-    cursor: pointer; transition: all 0.3s ease; flex-shrink: 0;
-    position: relative;
   }
-  .progress-node.completed {
+  .progress-node.completed .progress-num {
     background: rgba(247, 147, 26, 0.15); border: 1.5px solid rgba(247, 147, 26, 0.4);
     color: var(--bitcoin);
   }
-  .progress-node.current {
-    background: var(--bitcoin); border: 2px solid var(--bitcoin-bright);
+  .progress-node.active .progress-num {
+    background: var(--bitcoin); border: 2px solid var(--bitcoin);
     color: var(--bg-deep); box-shadow: 0 0 16px rgba(247, 147, 26, 0.4);
   }
-  .progress-node.upcoming {
+  .progress-node.upcoming .progress-num {
     background: var(--bg-card); border: 1.5px solid var(--border);
     color: var(--text-dim);
   }
-  .progress-node-label {
-    position: absolute; top: 36px; left: 50%; transform: translateX(-50%);
-    font-size: 9px; letter-spacing: 0.5px; white-space: nowrap;
-    color: var(--text-dim); font-weight: 400; pointer-events: none;
+  .progress-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; letter-spacing: 0.3px; text-align: center;
+    color: var(--text-dim); font-weight: 500; margin-top: 6px;
+    line-height: 1.2; white-space: nowrap;
   }
+  .progress-node.active .progress-label { color: var(--bitcoin); font-weight: 700; }
   .progress-line {
-    width: 20px; height: 2px; flex-shrink: 0;
+    width: 16px; height: 2px; flex-shrink: 0; margin-top: 14px;
   }
-  .progress-line.done { background: rgba(247, 147, 26, 0.3); }
-  .progress-line.pending { background: var(--border); }
+  .progress-line.completed { background: rgba(247, 147, 26, 0.3); }
+  .progress-line:not(.completed) { background: var(--border); }
 
   /* === HERO === */
   .hero {
@@ -828,11 +834,76 @@
   .reveal-delay-3 { transition-delay: 0.3s; }
 
   /* === RESPONSIVE === */
+  /* === HAMBURGER + MOBILE NAV === */
+  .hamburger {
+    display: none; background: none; border: none; cursor: pointer; padding: 8px;
+    flex-direction: column; gap: 5px; z-index: 1001;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px; background: var(--text-hero);
+    border-radius: 2px; transition: all 0.3s;
+  }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-nav-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .mobile-nav-overlay.active { opacity: 1; pointer-events: auto; }
+
+  .mobile-nav-panel {
+    position: fixed; top: 0; right: 0; bottom: 0; width: 280px; z-index: 1000;
+    background: var(--bg-page); box-shadow: -8px 0 32px rgba(0,0,0,0.1);
+    transform: translateX(100%); transition: transform 0.3s ease;
+    display: flex; flex-direction: column; padding: 24px;
+  }
+  .mobile-nav-panel.active { transform: translateX(0); }
+
+  .mobile-nav-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 24px; border-bottom: 1px solid var(--border);
+  }
+  .mobile-nav-close {
+    background: none; border: none; font-size: 28px; color: var(--text-dim);
+    cursor: pointer; padding: 4px 8px; line-height: 1;
+  }
+  .mobile-nav-close:hover { color: var(--text-hero); }
+
+  .mobile-nav-links {
+    display: flex; flex-direction: column; gap: 0; padding: 16px 0; flex: 1;
+  }
+  .mobile-nav-links a {
+    font-size: 16px; font-weight: 500; color: var(--text-hero);
+    text-decoration: none; padding: 14px 0;
+    border-bottom: 1px solid var(--border-light);
+    cursor: pointer; transition: color 0.2s;
+  }
+  .mobile-nav-links a:hover { color: var(--bitcoin); }
+
+  .mobile-nav-cta {
+    display: block; text-align: center; padding: 14px 24px;
+    background: var(--bitcoin); color: #fff; border-radius: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    text-decoration: none; cursor: pointer; margin-top: 16px;
+    transition: opacity 0.2s;
+  }
+  .mobile-nav-cta:hover { opacity: 0.85; }
+
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
     .nav-left { gap: 12px; }
     .btc-ticker { font-size: 10px; padding: 3px 8px; }
+    .journey-progress { padding: 10px 12px 24px; }
+    .progress-node { width: 48px; }
+    .progress-num { width: 26px; height: 26px; font-size: 10px; }
+    .progress-label { font-size: 7px; }
+    .progress-line { width: 8px; margin-top: 12px; }
     .hero { padding: 100px 20px 60px; }
     .hero h1 { font-size: 32px; }
     .hero-sub { font-size: 16px; }
@@ -855,6 +926,7 @@
     .resource-grid { grid-template-columns: 1fr; }
     .crash-item { flex-direction: column; align-items: flex-start; gap: 8px; }
     .crash-prices { min-width: unset; }
+    .adoption-stats { grid-template-columns: 1fr !important; }
     .crash-then { text-align: left; }
     .step-page-nav { flex-direction: column; gap: 16px; }
     .journey-progress { padding: 14px 20px; top: 72px; }
@@ -882,7 +954,26 @@
     <li><a href="glossary.html">Glossary</a></li>
   </ul>
   <a class="nav-cta" href="javascript:openCalendly()">Free Kickstarter</a>
+  <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="toggleMobileNav()"></div>
+<div class="mobile-nav-panel" id="mobileNavPanel">
+  <div class="mobile-nav-header">
+    <a class="nav-logo" href="index.html">bitcoineducation<span class="dot-io">.io</span></a>
+    <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close">&times;</button>
+  </div>
+  <div class="mobile-nav-links">
+    <a href="index.html#journey">The Journey</a>
+    <a href="classroom.html">Classroom</a>
+    <a href="buy.html">Buy, Store, HODL</a>
+    <a href="podcasts.html">Podcasts</a>
+    <a href="videos.html">Videos</a>
+    <a href="glossary.html">Glossary</a>
+  </div>
+  <a class="mobile-nav-cta" href="javascript:openCalendly()">Book a Free Kickstarter</a>
+</div>
 <div class="journey-progress visible" id="journeyProgress"><div class="progress-track" id="progressTrack"><a href="step1.html" class="progress-node completed"><span class="progress-num">1</span><span class="progress-label">Why Bitcoin?</span></a><div class="progress-line completed"></div><a href="step2.html" class="progress-node completed"><span class="progress-num">2</span><span class="progress-label">Basics</span></a><div class="progress-line completed"></div><a href="step3.html" class="progress-node active"><span class="progress-num">3</span><span class="progress-label">Performance</span></a><div class="progress-line"></div><a href="step4.html" class="progress-node upcoming"><span class="progress-num">4</span><span class="progress-label">Institutional</span></a><div class="progress-line"></div><a href="step45.html" class="progress-node upcoming"><span class="progress-num">4.5</span><span class="progress-label">Break</span></a><div class="progress-line"></div><a href="step5.html" class="progress-node upcoming"><span class="progress-num">5</span><span class="progress-label">Adoption</span></a><div class="progress-line"></div><a href="step6.html" class="progress-node upcoming"><span class="progress-num">6</span><span class="progress-label">CBDCs</span></a><div class="progress-line"></div><a href="step7.html" class="progress-node upcoming"><span class="progress-num">7</span><span class="progress-label">Advanced</span></a><div class="progress-line"></div><a href="step8.html" class="progress-node upcoming"><span class="progress-num">8</span><span class="progress-label">Take Action</span></a></div></div>
 
 <div class="step-page-hero">
@@ -1282,6 +1373,19 @@ function openCalendly() {
 function closeCalendly() { /* handled natively by Calendly widget */ }
 
 
+
+// === MOBILE NAV ===
+function toggleMobileNav() {
+  var panel = document.getElementById('mobileNavPanel');
+  var overlay = document.getElementById('mobileNavOverlay');
+  var hamburger = document.querySelector('.hamburger');
+  if (panel && overlay) {
+    panel.classList.toggle('active');
+    overlay.classList.toggle('active');
+    if (hamburger) hamburger.classList.toggle('active');
+    document.body.style.overflow = panel.classList.contains('active') ? 'hidden' : '';
+  }
+}
 
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => {
