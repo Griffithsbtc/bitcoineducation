@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masters Search Engine | bitcoineducation.io</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a class="nav-logo" href="index.html">bitcoineducation<span class="dot-io">.io</span></a>
+    <div class="btc-ticker" id="btcPrice">BTC</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#journey">The Journey</a></li>
+    <li><a href="classroom.html">Classroom</a></li>
+    <li><a href="buy.html">Buy, Store, HODL</a></li>
+    <li><a href="podcasts.html">Podcasts</a></li>
+    <li><a href="videos.html">Videos</a></li>
+    <li><a href="glossary.html" style="color:var(--bitcoin);">Glossary</a></li>
+  </ul>
+  <a class="nav-cta" href="javascript:openCalendly()">Free Kickstarter</a>
+</nav>
+
+
+<div class="step-page-hero">
+  <a class="step-page-back" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
+  <h1 class="step-page-title">The Masters Search Engine</h1>
+  <p class="step-page-intro">Bitcoin glossary based on Mastering Bitcoin (3rd Edition) by Andreas M. Antonopoulos &amp; David A. Harding. Search any term.</p>
+  <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Licensed under Attribution-NonCommercial-NoDerivatives 4.0 International</p>
+</div>
+
+<div class="step-page-content">
+  <input type="text" class="glossary-search" id="glossarySearch" placeholder="Search for a Bitcoin term..." autocomplete="off">
+  <div class="glossary-stats" id="glossaryStats"></div>
+  <div id="glossaryContainer"></div>
+</div>
+
+<footer>
+  <div class="footer-logo">bitcoineducation<span class="dot-io">.io</span></div>
+  <div class="footer-text">Independent Bitcoin education. No hype. Just signal.</div>
+</footer>
+
+<!-- QUICK FIND SEARCH -->
+<button class="qf-trigger" onclick="toggleQuickFind()" title="Quick Find (Ctrl+K)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+</button>
+
+<div class="qf-overlay" id="qfOverlay" onclick="if(event.target===this)toggleQuickFind()">
+  <div class="qf-box">
+    <div class="qf-input-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="qf-input" id="qfInput" type="text" placeholder="Search courses, books, videos, tools..." autocomplete="off">
+    </div>
+    <div class="qf-hint">Type to
+
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script src="script.js"></script>
+
+</body>
+</html>
