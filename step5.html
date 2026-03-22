@@ -1015,6 +1015,47 @@
     .progress-line { width: 14px; }
   }
 
+  /* === ABOUT PILL & POPUP === */
+  .about-pill {
+    display: flex; align-items: center; gap: 14px;
+    margin: 40px auto 32px; cursor: pointer;
+    padding: 12px 20px; border-radius: 40px;
+    border: 1px solid var(--border); background: var(--bg-card);
+    width: fit-content; transition: all 0.2s;
+  }
+  .about-pill:hover { border-color: var(--bitcoin); box-shadow: 0 2px 12px rgba(232,134,15,0.1); }
+  .about-pill img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; object-position: center top; }
+  .about-pill-name { font-weight: 700; font-size: 14px; color: var(--text-hero); font-family: 'Sora', sans-serif; }
+  .about-pill-loc { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+
+  .about-popup-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); z-index: 10000;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .about-popup-overlay.active { display: flex; }
+  .about-popup-card {
+    background: var(--bg-surface); border-radius: 16px; padding: 36px;
+    max-width: 520px; width: 100%; position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .about-popup-close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; font-size: 22px;
+    color: var(--text-dim); cursor: pointer; line-height: 1;
+  }
+  .about-popup-close:hover { color: var(--text-hero); }
+  .about-popup-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .about-popup-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: center top; }
+  .about-popup-name { font-weight: 700; font-size: 18px; font-family: 'Sora', sans-serif; color: var(--text-hero); }
+  .about-popup-loc { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+  .about-popup-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+  .about-popup-cta {
+    display: inline-block; margin-top: 8px; color: var(--bitcoin);
+    text-decoration: none; font-weight: 600; font-size: 14px; cursor: pointer;
+  }
+
+
 </style>
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <style>.step-page-hero{padding-top:180px !important;}</style>
@@ -1034,7 +1075,7 @@
     <li><a href="videos.html">Videos</a></li>
     <li><a href="glossary.html">Glossary</a></li>
   </ul>
-  <a class="nav-cta" href="javascript:openCalendly()">Free Kickstarter</a>
+  <a class="nav-cta" onclick="openAboutPopup()">Book a Free Chat</a>
   <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -1053,9 +1094,11 @@
     <a href="videos.html">Videos</a>
     <a href="glossary.html">Glossary</a>
   </div>
-  <a class="mobile-nav-cta" href="javascript:openCalendly()">Book a Free Kickstarter</a>
+  <a class="mobile-nav-cta" onclick="openAboutPopup(); toggleMobileNav()">Book a Free Chat</a>
 </div>
 <div class="journey-progress visible" id="journeyProgress"><div class="progress-track" id="progressTrack"><a href="step1.html" class="progress-node completed"><span class="progress-num">1</span><span class="progress-label">Why Bitcoin?</span></a><div class="progress-line completed"></div><a href="step2.html" class="progress-node completed"><span class="progress-num">2</span><span class="progress-label">Basics</span></a><div class="progress-line completed"></div><a href="step3.html" class="progress-node completed"><span class="progress-num">3</span><span class="progress-label">Performance</span></a><div class="progress-line completed"></div><a href="step4.html" class="progress-node completed"><span class="progress-num">4</span><span class="progress-label">Institutional</span></a><div class="progress-line completed"></div><a href="step45.html" class="progress-node completed"><span class="progress-num">4.5</span><span class="progress-label">Break</span></a><div class="progress-line completed"></div><a href="step5.html" class="progress-node active"><span class="progress-num">5</span><span class="progress-label">Adoption</span></a><div class="progress-line"></div><a href="step6.html" class="progress-node upcoming"><span class="progress-num">6</span><span class="progress-label">CBDCs</span></a><div class="progress-line"></div><a href="step7.html" class="progress-node upcoming"><span class="progress-num">7</span><span class="progress-label">Advanced</span></a><div class="progress-line"></div><a href="step8.html" class="progress-node upcoming"><span class="progress-num">8</span><span class="progress-label">Take Action</span></a></div></div>
+
+
 
 <div class="step-page-hero">
   <a class="step-page-back" href="index.html">
@@ -1166,7 +1209,8 @@
 </div>
 
 <footer>
-  <div style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">Have questions? <a href="javascript:openCalendly()" style="color:var(--bitcoin); text-decoration:none;">Book a free 30-min chat</a></div>
+  <div style="font-size:13px; color:var(--text-secondary); margin-bottom:10px;">Have questions? <a href="javascript:openCalendly()" style="color:var(--bitcoin); text-decoration:none;">Book a free 30-min chat</a></div>
+  <div style="font-size:12px; margin-bottom:16px;"><a href="https://www.linkedin.com/in/ben-griffiths-89b7263a/" target="_blank" style="color:var(--text-dim); text-decoration:none;"><svg style="width:13px; height:13px; vertical-align:-2px; margin-right:3px;" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a></div>
   <div class="footer-logo">bitcoineducation<span class="dot-io">.io</span></div>
   <div class="footer-text">Independent Bitcoin education. No shortcuts. No altcoins.</div>
 </footer>
@@ -1591,6 +1635,16 @@ async function fetchBTCPrice() {
 }
 
 // === CALENDLY POPUP ===
+
+function openAboutPopup() {
+  document.getElementById('aboutPopupOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeAboutPopup() {
+  document.getElementById('aboutPopupOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
 function openCalendly() {
   if (typeof Calendly !== 'undefined') {
     Calendly.initPopupWidget({url: 'https://calendly.com/griffithsben-pm/30min'});
