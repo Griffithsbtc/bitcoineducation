@@ -3,13 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="bitcoineducation.io">
-  <meta property="og:description" content="Curated resources, structured learning, and a clear path from curious beginner to confident bitcoiner.">
-  <meta property="og:image" content="https://bitcoineducation.io/og-image.png">
-  <meta property="og:url" content="https://bitcoineducation.io">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://bitcoineducation.io/og-image.png">
   <title>The education your bank hopes you never find | bitcoineducation.io</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1015,47 +1008,6 @@
     .progress-line { width: 14px; }
   }
 
-  /* === ABOUT PILL & POPUP === */
-  .about-pill {
-    display: flex; align-items: center; gap: 14px;
-    margin: 40px auto 32px; cursor: pointer;
-    padding: 12px 20px; border-radius: 40px;
-    border: 1px solid var(--border); background: var(--bg-card);
-    width: fit-content; transition: all 0.2s;
-  }
-  .about-pill:hover { border-color: var(--bitcoin); box-shadow: 0 2px 12px rgba(232,134,15,0.1); }
-  .about-pill img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; object-position: center top; }
-  .about-pill-name { font-weight: 700; font-size: 14px; color: var(--text-hero); font-family: 'Sora', sans-serif; }
-  .about-pill-loc { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
-
-  .about-popup-overlay {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.5); z-index: 10000;
-    align-items: center; justify-content: center; padding: 24px;
-  }
-  .about-popup-overlay.active { display: flex; }
-  .about-popup-card {
-    background: var(--bg-surface); border-radius: 16px; padding: 36px;
-    max-width: 520px; width: 100%; position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-  }
-  .about-popup-close {
-    position: absolute; top: 16px; right: 20px;
-    background: none; border: none; font-size: 22px;
-    color: var(--text-dim); cursor: pointer; line-height: 1;
-  }
-  .about-popup-close:hover { color: var(--text-hero); }
-  .about-popup-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-  .about-popup-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: center top; }
-  .about-popup-name { font-weight: 700; font-size: 18px; font-family: 'Sora', sans-serif; color: var(--text-hero); }
-  .about-popup-loc { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
-  .about-popup-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
-  .about-popup-cta {
-    display: inline-block; margin-top: 8px; color: var(--bitcoin);
-    text-decoration: none; font-weight: 600; font-size: 14px; cursor: pointer;
-  }
-
-
 </style>
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 </head>
@@ -1074,7 +1026,7 @@
     <li><a href="videos.html">Videos</a></li>
     <li><a href="glossary.html">Glossary</a></li>
   </ul>
-  <a class="nav-cta" onclick="openAboutPopup()">Book a Free Chat</a>
+  <a class="nav-cta" href="javascript:openCalendly()">Free Kickstarter</a>
   <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -1093,10 +1045,8 @@
     <a href="videos.html">Videos</a>
     <a href="glossary.html">Glossary</a>
   </div>
-  <a class="mobile-nav-cta" onclick="openAboutPopup(); toggleMobileNav()">Book a Free Chat</a>
+  <a class="mobile-nav-cta" href="javascript:openCalendly()">Book a Free Kickstarter</a>
 </div>
-
-
 
 
 <!-- HERO -->
@@ -1155,7 +1105,7 @@
           <div class="currency-pct gold-pct">97%</div>
         </div>
       </div>
-      <div class="currency-note">USD (US Dollar), GBP (Great British Pound), and AUD (Australian Dollar) measured via CPI. CHF (Swiss Franc) measured in gold (the "strongest" fiat currency &mdash; still 97% gone).</div>
+      <div class="currency-note">CHF measured in gold (the "strongest" fiat currency &mdash; still 97% gone). Others measured via CPI.</div>
       <button class="source-btn" style="margin-top:8px" onclick="openTooltip({
         stat: 'Global Purchasing Power Collapse',
         claim: 'Since the gold standard ended in 1971: the US dollar has lost ~98% of purchasing power (BLS CPI), the British pound ~95% (ONS CPI), the Australian dollar ~93% (ABS CPI via RBA), and the Swiss franc has lost ~97% when measured against gold (~153 CHF/oz in 1971 to ~4,545 CHF/oz in 2026).',
@@ -1384,19 +1334,8 @@
   </div>
 </section>
 
-
-<!-- About Pill -->
-<div class="about-pill" onclick="openAboutPopup()">
-  <img src="data:image/jpeg;base64,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" alt="Ben Griffiths">
-  <div>
-    <div class="about-pill-name">Built by Ben Griffiths</div>
-    <div class="about-pill-loc">Brisbane, Australia</div>
-  </div>
-</div>
-
 <footer>
-  <div style="font-size:13px; color:var(--text-secondary); margin-bottom:10px;">Have questions? <a href="javascript:openCalendly()" style="color:var(--bitcoin); text-decoration:none;">Book a free 30-min chat</a></div>
-  <div style="font-size:12px; margin-bottom:16px;"><a href="https://www.linkedin.com/in/ben-griffiths-89b7263a/" target="_blank" style="color:var(--text-dim); text-decoration:none;"><svg style="width:13px; height:13px; vertical-align:-2px; margin-right:3px;" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a></div>
+  <div style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">Have questions? <a href="javascript:openCalendly()" style="color:var(--bitcoin); text-decoration:none;">Book a free 30-min chat</a></div>
   <div class="footer-logo">bitcoineducation<span class="dot-io">.io</span></div>
   <div class="footer-text">Independent Bitcoin education. No shortcuts. No altcoins.</div>
 </footer>
@@ -1821,16 +1760,6 @@ async function fetchBTCPrice() {
 }
 
 // === CALENDLY POPUP ===
-
-function openAboutPopup() {
-  document.getElementById('aboutPopupOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeAboutPopup() {
-  document.getElementById('aboutPopupOverlay').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
 function openCalendly() {
   if (typeof Calendly !== 'undefined') {
     Calendly.initPopupWidget({url: 'https://calendly.com/griffithsben-pm/30min'});
