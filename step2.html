@@ -2,7 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="bitcoineducation.io">
+  <meta property="og:description" content="Curated resources, structured learning, and a clear path from curious beginner to confident bitcoiner.">
+  <meta property="og:image" content="https://bitcoineducation.io/og-image.png">
+  <meta property="og:url" content="https://bitcoineducation.io">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://bitcoineducation.io/og-image.png">
   <title>Step 2: Grasp the Basics | bitcoineducation.io</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1008,9 +1019,51 @@
     .progress-line { width: 14px; }
   }
 
+
+  /* === ABOUT PILL & POPUP === */
+  .about-pill {
+    display: flex; align-items: center; gap: 14px;
+    margin: 40px auto 32px; cursor: pointer;
+    padding: 12px 20px; border-radius: 40px;
+    border: 1px solid var(--border); background: var(--bg-card);
+    width: fit-content; transition: all 0.2s;
+  }
+  .about-pill:hover { border-color: var(--bitcoin); box-shadow: 0 2px 12px rgba(232,134,15,0.1); }
+  .about-pill img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; object-position: center top; }
+  .about-pill-name { font-weight: 700; font-size: 14px; color: var(--text-hero); font-family: 'Sora', sans-serif; }
+  .about-pill-loc { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+  .about-popup-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); z-index: 10000;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .about-popup-overlay.active { display: flex; }
+  .about-popup-card {
+    background: var(--bg-surface); border-radius: 16px; padding: 36px;
+    max-width: 520px; width: 100%; position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .about-popup-close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; font-size: 22px;
+    color: var(--text-dim); cursor: pointer; line-height: 1;
+  }
+  .about-popup-close:hover { color: var(--text-hero); }
+  .about-popup-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .about-popup-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: center top; }
+  .about-popup-name { font-weight: 700; font-size: 18px; font-family: 'Sora', sans-serif; color: var(--text-hero); }
+  .about-popup-loc { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+  .about-popup-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+  .about-popup-cta {
+    display: inline-block; margin-top: 8px; color: var(--bitcoin);
+    text-decoration: none; font-weight: 600; font-size: 14px; cursor: pointer;
+  }
+
 </style>
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <style>.step-page-hero{padding-top:180px !important;}</style>
+  <style>.step-page-hero{padding-top:180px !important;}
+
+</style>
 </head>
 <body>
 
@@ -1027,7 +1080,7 @@
     <li><a href="videos.html">Videos</a></li>
     <li><a href="glossary.html">Glossary</a></li>
   </ul>
-  <a class="nav-cta" href="javascript:openCalendly()">Free Kickstarter</a>
+  <a class="nav-cta" onclick="openAboutPopup()">Book a Free Chat</a>
   <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -1046,7 +1099,27 @@
     <a href="videos.html">Videos</a>
     <a href="glossary.html">Glossary</a>
   </div>
-  <a class="mobile-nav-cta" href="javascript:openCalendly()">Book a Free Kickstarter</a>
+  <a class="mobile-nav-cta" onclick="openAboutPopup(); toggleMobileNav()">Book a Free Chat</a>
+</div>
+
+<!-- About Popup (global) -->
+<div class="about-popup-overlay" id="aboutPopupOverlay" onclick="if(event.target===this)closeAboutPopup()">
+  <div class="about-popup-card">
+    <button class="about-popup-close" onclick="closeAboutPopup()">&times;</button>
+    <div class="about-popup-header">
+      <img class="about-popup-photo" src="data:image/jpeg;base64,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" alt="Ben Griffiths">
+      <div>
+        <div class="about-popup-name">Ben Griffiths</div>
+        <div class="about-popup-loc">Brisbane, Australia</div>
+      </div>
+    </div>
+    <div class="about-popup-body">
+      <p>I built this site after years of sharing the same podcasts, videos, and books with anyone who asked me about Bitcoin. This is all of it, in one place.</p>
+      <p>If you would prefer one-on-one guidance, whether that is walking through your first purchase, setting up self-custody, or understanding how Bitcoin fits into your financial picture, I offer personal training sessions tailored to where you are in the journey.</p>
+      <a class="about-popup-cta" href="javascript:closeAboutPopup();openCalendly()">Book a free intro call to get started &rarr;</a>
+      <div style="margin-top:14px; font-size:13px;"><a href="https://www.linkedin.com/in/ben-griffiths-89b7263a/" target="_blank" style="color:var(--text-dim); text-decoration:none;"><svg style="width:14px; height:14px; vertical-align:-2px; margin-right:4px;" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>Connect on LinkedIn</a></div>
+    </div>
+  </div>
 </div>
 <div class="journey-progress visible" id="journeyProgress"><div class="progress-track" id="progressTrack"><a href="step1.html" class="progress-node completed"><span class="progress-num">1</span><span class="progress-label">Why Bitcoin?</span></a><div class="progress-line completed"></div><a href="step2.html" class="progress-node active"><span class="progress-num">2</span><span class="progress-label">Basics</span></a><div class="progress-line"></div><a href="step3.html" class="progress-node upcoming"><span class="progress-num">3</span><span class="progress-label">Performance</span></a><div class="progress-line"></div><a href="step4.html" class="progress-node upcoming"><span class="progress-num">4</span><span class="progress-label">Institutional</span></a><div class="progress-line"></div><a href="step45.html" class="progress-node upcoming"><span class="progress-num">4.5</span><span class="progress-label">Break</span></a><div class="progress-line"></div><a href="step5.html" class="progress-node upcoming"><span class="progress-num">5</span><span class="progress-label">Adoption</span></a><div class="progress-line"></div><a href="step6.html" class="progress-node upcoming"><span class="progress-num">6</span><span class="progress-label">CBDCs</span></a><div class="progress-line"></div><a href="step7.html" class="progress-node upcoming"><span class="progress-num">7</span><span class="progress-label">Advanced</span></a><div class="progress-line"></div><a href="step8.html" class="progress-node upcoming"><span class="progress-num">8</span><span class="progress-label">Take Action</span></a></div></div>
 
@@ -1148,19 +1221,20 @@
     <a class="step-nav-btn" href="step1.html">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
       <div><div class="step-nav-label">Previous Step</div><div class="step-nav-title">&larr; Why Bitcoin?</div></div>
-    </div>
+    </a>
     <a class="step-nav-btn" href="step3.html">
       <div><div class="step-nav-label">Next Step</div><div class="step-nav-title">Performance &amp; Value &rarr;</div></div>
-    </div>
+    </a>
   </div>
 
 </div>
 
 <footer>
-  <div style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">Have questions? <a href="javascript:openCalendly()" style="color:var(--bitcoin); text-decoration:none;">Book a free 30-min chat</a></div>
+  <div style="font-size:13px; color:var(--text-secondary); margin-bottom:10px;">Have questions? <a href="javascript:openCalendly()" style="color:var(--bitcoin); text-decoration:none;">Book a free 30-min chat</a></div>
+  <div style="font-size:12px; margin-bottom:16px;"><a href="https://www.linkedin.com/in/ben-griffiths-89b7263a/" target="_blank" style="color:var(--text-dim); text-decoration:none;"><svg style="width:13px; height:13px; vertical-align:-2px; margin-right:3px;" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a></div>
   <div class="footer-logo">bitcoineducation<span class="dot-io">.io</span></div>
   <div class="footer-text">Independent Bitcoin education. No shortcuts. No altcoins.</div>
-  <div class="footer-email"><a href="/cdn-cgi/l/email-protection#09616c656566496b607d6a6660676c6d7c6a687d606667276066"><span class="__cf_email__" data-cfemail="bcd4d9d0d0d3fcded5c8dfd3d5d2d9d8c9dfddc8d5d3d292d5d3">[email&#160;protected]</span></a></div>
+  
 </footer>
 
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
@@ -1582,6 +1656,15 @@ async function fetchBTCPrice() {
 }
 
 // === CALENDLY POPUP ===
+
+function openAboutPopup() {
+  document.getElementById('aboutPopupOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeAboutPopup() {
+  document.getElementById('aboutPopupOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
 function openCalendly() {
   if (typeof Calendly !== 'undefined') {
     Calendly.initPopupWidget({url: 'https://calendly.com/griffithsben-pm/30min'});
