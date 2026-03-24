@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="bitcoineducation.io">
+  <meta property="og:description" content="Curated resources, structured learning, and a clear path from curious beginner to confident bitcoiner.">
+  <meta property="og:image" content="https://bitcoineducation.io/og-image.png">
+  <meta property="og:url" content="https://bitcoineducation.io">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://bitcoineducation.io/og-image.png">
+  <title>The Classroom | bitcoineducation.io</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-deep: #FAFAF8;
+    --bg-surface: #F2F1EE;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F7F6F3;
+    --bg-step: #F5F4F1;
+    --bitcoin: #E8860F;
+    --bitcoin-bright: #F7931A;
+    --bitcoin-dim: rgba(232, 134, 15, 0.08);
+    --bitcoin-glow: rgba(232, 134, 15, 0.04);
+    --text-hero: #1a1a2e;
+    --text-primary: #2d2d3d;
+    --text-body: #444455;
+    --text-secondary: #6b6b7b;
+    --text-dim: #9999a8;
+    --border: rgba(0,0,0,0.08);
+    --border-hover: rgba(232, 134, 15, 0.35);
+    --border-subtle: rgba(0,0,0,0.04);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-body);
+    font-family: 'Outfit', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* === PAGE VIEWS === */
+  
+  
+
+  /* === NAV === */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 48px; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250, 250, 248, 0.92); box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-left { display: flex; align-items: center; gap: 20px; }
+  .nav-logo {
+    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 18px;
+    color: var(--text-hero); text-decoration: none; letter-spacing: -0.3px;
+    cursor: pointer;
+  }
+  .nav-logo .dot-io { color: var(--bitcoin); }
+
+  /* Live BTC Ticker */
+  .btc-ticker {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-dim); background: rgba(247,147,26,0.06);
+    border: 1px solid rgba(247,147,26,0.1); border-radius: 6px;
+    padding: 4px 10px; display: flex; align-items: center; gap: 6px;
+    transition: all 0.3s;
+  }
+  .btc-ticker .btc-icon { color: var(--bitcoin); font-size: 12px; }
+  .btc-ticker .btc-price { color: var(--text-secondary); }
+
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-weight: 400; font-size: 14px; color: var(--text-secondary);
+    text-decoration: none; letter-spacing: 0.3px; transition: color 0.2s;
+    cursor: pointer;
+  }
+  .nav-links a:hover { color: var(--text-hero); }
+  .nav-cta {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase; padding: 10px 20px;
+    background: transparent; border: 1px solid var(--bitcoin); color: var(--bitcoin);
+    border-radius: 6px; text-decoration: none; transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .nav-cta:hover { background: var(--bitcoin); color: var(--bg-deep); }
+
+  /* === LITE YOUTUBE EMBED === */
+  .lite-yt {
+    position: relative; width: 100%;
+    background: var(--bg-card); border-radius: 12px; overflow: hidden;
+    cursor: pointer; border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .lite-yt:hover { border-color: var(--border-hover); }
+  .lite-yt-thumb {
+    position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden;
+  }
+  .lite-yt img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.85; transition: opacity 0.3s;
+  }
+  .lite-yt:hover img { opacity: 1; }
+  .lite-yt .yt-play {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px; height: 48px; background: rgba(0,0,0,0.75);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s; z-index: 2;
+  }
+  .lite-yt:hover .yt-play { background: #cc0000; }
+  .lite-yt .yt-play svg { width: 24px; height: 24px; fill: #fff; margin-left: 3px; }
+  .lite-yt iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+  }
+  .lite-yt .yt-title {
+    padding: 10px 14px; font-size: 13px; font-weight: 600;
+    color: var(--text-hero); line-height: 1.4;
+  }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0 32px; }
+
+  /* === GLOSSARY SEARCH === */
+  .glossary-pill {
+    padding:6px 14px; border-radius:20px; border:1px solid var(--border);
+    background:var(--bg-card); color:var(--text-secondary); font-size:12px;
+    cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.2s;
+  }
+  .glossary-pill:hover { border-color:var(--bitcoin); color:var(--bitcoin); }
+  .glossary-pill.active { background:var(--bitcoin); color:#fff; border-color:var(--bitcoin); }
+  .glossary-search {
+    width: 100%; padding: 14px 20px; font-size: 16px;
+    font-family: 'Outfit', sans-serif; color: var(--text-hero);
+    background: var(--bg-card); border: 2px solid var(--border);
+    border-radius: 10px; outline: none; transition: border-color 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .glossary-search:focus { border-color: var(--bitcoin); }
+  .glossary-search::placeholder { color: var(--text-dim); }
+  .glossary-stats { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin: 12px 0 24px; }
+  .glossary-term {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 24px; margin-bottom: 12px;
+    display: none; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: border-color 0.3s;
+  }
+  .glossary-term.visible { display: block; }
+  .glossary-term.title-match { border-left: 3px solid var(--bitcoin); }
+  .glossary-term-name {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 16px; color: var(--text-hero); margin-bottom: 6px;
+  }
+  .glossary-term-def { font-size: 14px; color: var(--text-body); line-height: 1.7; }
+  .glossary-highlight { background: rgba(232,134,15,0.15); padding: 0 3px; border-radius: 3px; }
+
+  /* === EXPANDABLE DETAILS === */
+  .info-expand { margin: 16px 0 24px; border: 1px solid var(--border-light); border-radius: 12px; overflow: hidden; }
+  .info-expand summary {
+    cursor: pointer; padding: 14px 20px; font-weight: 600; font-size: 15px; color: var(--text-hero);
+    display: flex; align-items: center; gap: 10px; list-style: none; transition: background 0.2s;
+  }
+  .info-expand summary::-webkit-details-marker { display: none; }
+  .info-expand summary::before { content: ''; display: inline-block; width: 0; height: 0; border-left: 6px solid var(--bitcoin); border-top: 5px solid transparent; border-bottom: 5px solid transparent; transition: transform 0.3s; flex-shrink: 0; }
+  .info-expand[open] summary::before { transform: rotate(90deg); }
+  .info-expand summary:hover { background: rgba(232,134,15,0.04); }
+  .info-expand .info-body { padding: 0 20px 20px; font-size: 14px; line-height: 1.8; color: var(--text-body); }
+  .info-expand .info-body p { margin-bottom: 12px; }
+  .info-expand .info-body strong { color: var(--text-hero); }
+
+  /* === BOOK CARDS WITH COVERS === */
+  .book-grid { display: flex; flex-direction: column; gap: 12px; margin: 20px 0 32px; }
+  .book-card {
+    display: flex; align-items: flex-start; gap: 16px; padding: 16px; border-radius: 12px;
+    border: 1px solid var(--border-light); text-decoration: none; transition: all 0.2s;
+  }
+  .book-card:hover { border-color: var(--border-hover); transform: translateX(4px); }
+  .book-cover { width: 52px; height: auto; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; }
+  .book-info { flex: 1; min-width: 0; }
+  .book-title { font-weight: 700; font-size: 15px; color: var(--text-hero); margin-bottom: 2px; }
+  .book-author { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--bitcoin); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .book-desc { font-size: 13px; color: var(--text-body); line-height: 1.6; }
+
+
+  /* Calendly popup handled natively by widget.js */
+
+  
+
+  /* === TWEET EMBEDS === */
+  .tweet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 20px 0 32px; }
+  .tweet-grid .twitter-tweet { margin: 0 !important; }
+  .stat-card:hover { border-color: var(--bitcoin) !important; }
+
+  /* Section tint for alternating backgrounds */
+  .section-tint {
+    margin: 0 -48px; padding: 32px 48px;
+    background: var(--bg-surface); border-radius: 0;
+  }
+  @media (max-width: 768px) { .section-tint { margin: 0 -20px; padding: 24px 20px; } }
+
+  /* Action flow visual */
+  .action-flow {
+    display: flex; align-items: center; gap: 0; margin: 24px 0 32px;
+  }
+  .action-flow-step {
+    flex: 1; text-align: center; padding: 20px 12px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+    position: relative;
+  }
+  .action-flow-step.highlight { border-color: var(--bitcoin); background: rgba(232,134,15,0.04); }
+  .action-flow-num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--bitcoin);
+    color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;
+  }
+  .action-flow-title { font-weight: 700; font-size: 14px; color: var(--text-hero); margin-bottom: 4px; }
+  .action-flow-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+  .action-flow-arrow {
+    flex-shrink: 0; width: 32px; display: flex; align-items: center; justify-content: center;
+    color: var(--bitcoin); font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    .action-flow { flex-direction: column; gap: 0; }
+    .action-flow-arrow { transform: rotate(90deg); width: auto; height: 32px; }
+  }
+
+  /* Podcast accent bar */
+  .podcast-card { position: relative; overflow: hidden; }
+  .podcast-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--accent, var(--bitcoin)); border-radius: 4px 0 0 4px;
+  }
+
+  /* Classroom featured card */
+  .featured-card {
+    border: 2px solid var(--bitcoin) !important;
+    background: rgba(232,134,15,0.03) !important;
+    position: relative;
+  }
+  .featured-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px;
+    background: var(--bitcoin); color: #fff; border-radius: 6px;
+  }
+
+  /* Classroom section divider */
+  .classroom-divider {
+    display: flex; align-items: center; gap: 16px; margin: 48px 0 24px;
+    padding-top: 32px; border-top: 1px solid var(--border);
+  }
+  .classroom-divider-icon {
+    width: 40px; height: 40px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .classroom-divider h3 { margin: 0; }
+
+  /* === JOURNEY PROGRESS BAR === */
+  .journey-progress {
+    position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
+    background: rgba(250, 250, 248, 0.95);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px 28px; display: none;
+  }
+  .journey-progress.visible { display: block; }
+  .progress-track {
+    display: flex; align-items: flex-start; justify-content: center;
+    gap: 0; max-width: 800px; margin: 0 auto;
+  }
+  .progress-node {
+    display: flex; flex-direction: column; align-items: center;
+    width: 64px; cursor: pointer; transition: all 0.3s ease; flex-shrink: 0;
+    text-decoration: none; position: relative;
+  }
+  .progress-num {
+    display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+  }
+  .progress-node.completed .progress-num {
+    background: rgba(247, 147, 26, 0.15); border: 1.5px solid rgba(247, 147, 26, 0.4);
+    color: var(--bitcoin);
+  }
+  .progress-node.active .progress-num {
+    background: var(--bitcoin); border: 2px solid var(--bitcoin);
+    color: var(--bg-deep); box-shadow: 0 0 16px rgba(247, 147, 26, 0.4);
+  }
+  .progress-node.upcoming .progress-num {
+    background: var(--bg-card); border: 1.5px solid var(--border);
+    color: var(--text-dim);
+  }
+  .progress-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; letter-spacing: 0.3px; text-align: center;
+    color: var(--text-dim); font-weight: 500; margin-top: 6px;
+    line-height: 1.2; white-space: nowrap;
+  }
+  .progress-node.active .progress-label { color: var(--bitcoin); font-weight: 700; }
+  .progress-line {
+    width: 16px; height: 2px; flex-shrink: 0; margin-top: 14px;
+  }
+  .progress-line.completed { background: rgba(247, 147, 26, 0.3); }
+  .progress-line:not(.completed) { background: var(--border); }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    padding: 120px 48px 80px; position: relative; overflow: hidden;
+  }
+
+  /* Animated hero background - subtle flowing dots */
+  .hero-bg-canvas {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; opacity: 0.4;
+  }
+
+  .hero-content {
+    position: relative; z-index: 1; max-width: 720px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 18px; border: 1px solid var(--border);
+    border-radius: 100px; margin-bottom: 32px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--bitcoin); box-shadow: 0 0 12px var(--bitcoin);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .hero h1 {
+    font-family: 'Outfit', sans-serif; font-weight: 200;
+    font-size: clamp(38px, 5.5vw, 64px); line-height: 1.1;
+    color: var(--text-hero); margin-bottom: 24px;
+    letter-spacing: -1.5px;
+  }
+  .hero h1 em { font-style: normal; font-weight: 600; color: var(--bitcoin); }
+  .hero-sub {
+    font-weight: 300; font-size: 18px; line-height: 1.8;
+    color: var(--text-secondary); max-width: 560px; margin: 0 auto 40px;
+  }
+  .hero-actions { display: flex; justify-content: center; gap: 16px; }
+  .btn-primary {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase; padding: 14px 32px;
+    background: var(--bitcoin); color: var(--bg-deep);
+    border: none; border-radius: 8px; cursor: pointer;
+    text-decoration: none; transition: all 0.3s ease;
+  }
+  .btn-primary:hover { background: var(--bitcoin-bright); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(247, 147, 26, 0.25); }
+  .btn-ghost {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase; padding: 14px 32px;
+    background: transparent; color: var(--text-secondary);
+    border: 1px solid var(--border); border-radius: 8px;
+    cursor: pointer; text-decoration: none; transition: all 0.3s ease;
+  }
+  .btn-ghost:hover { border-color: var(--text-dim); color: var(--text-hero); }
+
+  .hero-scroll-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim);
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--text-dim), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+  @keyframes scrollPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* === IMPACT STATS === */
+  .impact-section {
+    padding: 80px 48px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-surface);
+  }
+  .impact-label {
+    text-align: center; font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-secondary); margin-bottom: 48px;
+    text-shadow: 0 0 20px rgba(144, 144, 168, 0.15);
+  }
+  .impact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto;
+  }
+  .impact-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 32px 24px; text-align: center;
+    position: relative; overflow: hidden; transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .impact-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bitcoin), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .impact-card:hover::before { opacity: 1; }
+  .impact-card:hover { border-color: var(--border-hover); }
+  .impact-number {
+    font-family: 'Sora', sans-serif; font-weight: 800;
+    font-size: 32px; color: var(--bitcoin); margin-bottom: 8px;
+    line-height: 1;
+  }
+  .impact-desc {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.5;
+  }
+
+  /* Source button */
+  .source-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-top: 12px; padding: 4px 10px;
+    background: rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 4px; cursor: pointer;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--text-dim); letter-spacing: 0.5px;
+    transition: all 0.2s ease; position: relative;
+  }
+  .source-btn:hover {
+    background: rgba(247, 147, 26, 0.06);
+    border-color: rgba(247, 147, 26, 0.2);
+    color: var(--bitcoin);
+  }
+  .source-btn svg { width: 10px; height: 10px; flex-shrink: 0; }
+
+  /* Citation ref */
+  .ref-sup {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--bitcoin); cursor: pointer; vertical-align: super;
+    text-decoration: none; margin-left: 2px;
+  }
+  .ref-sup:hover { text-decoration: underline; }
+
+  /* === MULTI-CURRENCY PURCHASING POWER CARD === */
+  .currency-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px 24px;
+    position: relative; overflow: hidden; transition: all 0.3s ease;
+    grid-column: span 3;
+  }
+  .currency-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bitcoin), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .currency-card:hover::before { opacity: 1; }
+  .currency-card:hover { border-color: var(--border-hover); }
+  .currency-card-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .currency-card-title {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 18px; color: var(--text-hero); margin-bottom: 4px;
+  }
+  .currency-card-subtitle {
+    font-size: 13px; color: var(--text-secondary); font-weight: 300;
+  }
+  .currency-card-since {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--bitcoin); padding: 4px 10px;
+    border: 1px solid rgba(247,147,26,0.2); border-radius: 4px;
+    white-space: nowrap;
+  }
+  .currency-bars { display: flex; flex-direction: column; gap: 10px; }
+  .currency-row {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .currency-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    font-weight: 700; color: var(--text-secondary);
+    min-width: 36px; text-align: right;
+  }
+  .currency-bar-track {
+    flex: 1; height: 10px; background: rgba(0,0,0,0.06);
+    border-radius: 5px; overflow: hidden;
+  }
+  .currency-bar-fill {
+    height: 100%; width: 0; border-radius: 5px;
+    background: linear-gradient(90deg, #e05555, #ff4444);
+    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .currency-bar-fill.gold-bar {
+    background: linear-gradient(90deg, var(--bitcoin), var(--bitcoin-bright));
+  }
+  .currency-pct {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    font-weight: 700; color: #dc2626; min-width: 40px;
+  }
+  .currency-pct.gold-pct, .currency-label.gold-pct { color: var(--bitcoin); }
+  .currency-note {
+    font-size: 11px; color: var(--text-dim); margin-top: 12px;
+    line-height: 1.5; font-style: italic;
+  }
+
+  /* === TRANSITION === */
+  .transition-section {
+    padding: 80px 48px; text-align: center;
+    max-width: 800px; margin: 0 auto;
+  }
+  .transition-section p {
+    font-weight: 200; font-size: clamp(20px, 2.5vw, 26px);
+    line-height: 1.7; color: var(--text-secondary);
+  }
+  .transition-section em { font-style: normal; color: var(--bitcoin); font-weight: 400; }
+
+  /* === FEATURED VOICES === */
+  .voices-section {
+    padding: 60px 48px 80px;
+    border-top: 1px solid var(--border);
+  }
+  .voices-label {
+    text-align: center; font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 40px;
+  }
+  .voices-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto;
+  }
+  .voice-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px; position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .voice-card:hover { border-color: var(--border-hover); }
+  .voice-quote-mark {
+    font-family: 'Sora', sans-serif; font-size: 48px; font-weight: 800;
+    color: rgba(247, 147, 26, 0.15); line-height: 1; margin-bottom: -8px;
+  }
+  .voice-quote {
+    font-weight: 300; font-size: 15px; line-height: 1.7;
+    color: var(--text-primary); margin-bottom: 16px;
+    font-style: italic;
+  }
+  .voice-name {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 13px; color: var(--text-hero);
+  }
+  .voice-title {
+    font-size: 12px; color: var(--text-dim); margin-top: 2px;
+  }
+
+  /* === RESERVE CALLOUT === */
+  .reserve-callout {
+    max-width: 1100px; margin: 32px auto 0; padding: 0;
+  }
+  .reserve-inner {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 36px 40px;
+    position: relative; overflow: hidden;
+  }
+  .reserve-inner::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(to bottom, var(--bitcoin), transparent);
+  }
+  .reserve-icon { font-size: 28px; margin-bottom: 12px; }
+  .reserve-title {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 17px; color: var(--text-hero); margin-bottom: 12px;
+  }
+  .reserve-text {
+    font-weight: 300; font-size: 14px; line-height: 1.8;
+    color: var(--text-secondary);
+  }
+  .reserve-text strong { color: var(--text-primary); font-weight: 500; }
+
+  /* === JOURNEY SECTION === */
+  .journey-section {
+    padding: 100px 48px 80px;
+  }
+  .section-header { text-align: center; margin-bottom: 56px; }
+  .section-overline {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--bitcoin); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Outfit', sans-serif; font-weight: 200;
+    font-size: clamp(28px, 3.5vw, 40px); color: var(--text-hero);
+    margin-bottom: 12px;
+  }
+  .section-desc {
+    font-weight: 300; font-size: 16px; color: var(--text-secondary);
+    max-width: 540px; margin: 0 auto;
+  }
+
+  .journey-steps {
+    max-width: 760px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .journey-step {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .journey-step:hover { border-color: var(--border-hover); }
+  .step-header {
+    display: flex; align-items: center; gap: 20px;
+    padding: 20px 24px; cursor: pointer;
+  }
+  .step-number {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1.5px solid rgba(247, 147, 26, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    color: var(--bitcoin); flex-shrink: 0;
+    background: var(--bitcoin-dim);
+  }
+  .step-header-text { flex: 1; }
+  .step-title {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 16px; color: var(--text-hero); margin-bottom: 2px;
+  }
+  .step-subtitle { font-size: 13px; color: var(--text-dim); font-weight: 300; }
+  .step-chevron {
+    width: 20px; height: 20px; color: var(--text-dim);
+    transition: transform 0.3s ease; flex-shrink: 0;
+  }
+  .journey-step.active .step-chevron { transform: rotate(180deg); color: var(--bitcoin); }
+  .step-body {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+  }
+  .journey-step.active .step-body { max-height: 500px; }
+  .step-body-inner {
+    padding: 0 24px 24px 82px;
+  }
+  .step-description {
+    font-weight: 300; font-size: 14px; line-height: 1.8;
+    color: var(--text-secondary); margin-bottom: 16px;
+  }
+  /* Reading time badges */
+  .step-time-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.5px; color: var(--text-dim);
+    background: rgba(0,0,0,0.02); border: 1px solid var(--border);
+    border-radius: 4px; padding: 3px 8px; margin-bottom: 12px;
+  }
+  .step-time-badge svg { width: 10px; height: 10px; }
+  .step-resources {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;
+  }
+  .resource-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-secondary); background: rgba(0,0,0,0.03);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 6px 12px; text-decoration: none; transition: all 0.2s;
+  }
+  .resource-tag:hover { border-color: var(--border-hover); color: var(--bitcoin); }
+  .resource-tag svg { width: 12px; height: 12px; }
+  .step-deep-dive {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    font-weight: 500; letter-spacing: 0.5px;
+    color: var(--bitcoin); text-decoration: none;
+    padding: 10px 18px; background: var(--bitcoin-dim);
+    border: 1px solid rgba(247,147,26,0.15); border-radius: 8px;
+    cursor: pointer; transition: all 0.3s ease;
+  }
+  .step-deep-dive:hover {
+    background: rgba(247, 147, 26, 0.15);
+    border-color: rgba(247, 147, 26, 0.3);
+  }
+  .step-deep-dive svg { width: 14px; height: 14px; }
+
+  /* === STEP PAGE === */
+  .step-page-hero {
+    padding: 140px 48px 60px; max-width: 800px; margin: 0 auto;
+  }
+  .step-page-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none;
+    margin-bottom: 40px; cursor: pointer; transition: color 0.2s;
+  }
+  .step-page-back:hover { color: var(--bitcoin); }
+  .step-page-back svg { width: 16px; height: 16px; }
+  .step-page-overline {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--bitcoin); margin-bottom: 16px;
+  }
+  .step-page-title {
+    font-family: 'Outfit', sans-serif; font-weight: 200;
+    font-size: clamp(32px, 4.5vw, 48px); color: var(--text-hero);
+    line-height: 1.15; margin-bottom: 20px;
+  }
+  .step-page-intro {
+    font-weight: 300; font-size: 18px; line-height: 1.8;
+    color: var(--text-secondary); max-width: 640px;
+  }
+  .step-page-time {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-dim); margin-top: 16px;
+    background: rgba(0,0,0,0.02); border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 14px;
+  }
+  .step-page-time svg { width: 14px; height: 14px; }
+
+  .step-page-content {
+    max-width: 800px; margin: 0 auto; padding: 40px 48px 120px;
+  }
+  .step-page-content h3 {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 18px; color: var(--text-hero); margin-bottom: 16px;
+    margin-top: 48px;
+  }
+  .step-page-content h3:first-child { margin-top: 0; }
+  .step-page-content p {
+    font-size: 15px; line-height: 1.8; color: var(--text-body);
+    margin-bottom: 20px;
+  }
+  .resource-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px; margin: 24px 0;
+  }
+  .resource-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px; transition: all 0.3s ease;
+    text-decoration: none; display: block;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .resource-card:hover {
+    border-color: var(--border-hover); transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .resource-card-type {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--bitcoin); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .resource-card-type svg { width: 12px; height: 12px; }
+  .resource-card-title {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 15px; color: var(--text-hero); margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .resource-card-desc {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.5;
+  }
+  .crash-pattern {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 36px; margin: 32px 0;
+  }
+  .crash-pattern-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 24px;
+  }
+  .crash-items { display: flex; flex-direction: column; gap: 16px; }
+  .crash-item { display: flex; align-items: center; gap: 16px; }
+  .crash-prices {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    min-width: 220px;
+  }
+  .crash-high { color: var(--text-hero); font-weight: 500; }
+  .crash-arrow { color: var(--text-dim); margin: 0 4px; }
+  .crash-low { color: #e05555; font-weight: 500; }
+  .crash-bar {
+    flex: 1; height: 6px; background: rgba(0,0,0,0.06);
+    border-radius: 3px; overflow: hidden;
+  }
+  .crash-bar-fill {
+    height: 100%; border-radius: 3px;
+    background: linear-gradient(90deg, #e05555, var(--bitcoin));
+  }
+  .crash-then {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: #16a34a; min-width: 100px; text-align: right;
+  }
+  .step-page-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 40px 0; border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  .step-nav-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; background: var(--bg-card);
+    border: 1px solid var(--border); border-radius: 8px;
+    text-decoration: none; transition: all 0.2s; cursor: pointer;
+  }
+  .step-nav-btn:hover { border-color: var(--border-hover); }
+  .step-nav-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .step-nav-title {
+    font-size: 14px; color: var(--text-hero); font-weight: 500;
+  }
+  .step-nav-btn svg { width: 16px; height: 16px; color: var(--text-dim); }
+
+  /* === CTA BAND === */
+  .cta-band {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin: 0 48px; padding: 56px;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; display: flex; align-items: center;
+    justify-content: space-between; gap: 40px;
+    position: relative; overflow: hidden;
+  }
+  .cta-band::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--bitcoin), transparent);
+  }
+  .cta-band-content h3 {
+    font-family: 'Outfit', sans-serif; font-weight: 600;
+    font-size: 24px; color: var(--text-hero); margin-bottom: 8px;
+  }
+  .cta-band-content p {
+    font-weight: 300; font-size: 15px; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  /* === FOOTER === */
+  footer {
+    margin-top: 60px; padding: 48px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 16px; color: var(--text-dim);
+  }
+  .footer-logo .dot-io { color: rgba(247,147,26,0.4); }
+  .footer-text { font-size: 13px; color: var(--text-dim); }
+  .footer-email a {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--text-dim); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-email a:hover { color: var(--bitcoin); }
+
+  /* === TOOLTIP === */
+  .tooltip-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+    z-index: 200; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    padding: 20px;
+  }
+  .tooltip-overlay.active { opacity: 1; pointer-events: all; }
+  .tooltip-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px; max-width: 480px; width: 100%;
+    position: relative;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+  }
+  .tooltip-close {
+    position: absolute; top: 16px; right: 16px;
+    background: none; border: none; color: var(--text-dim);
+    font-size: 24px; cursor: pointer; transition: color 0.2s;
+    line-height: 1;
+  }
+  .tooltip-close:hover { color: var(--text-hero); }
+  .tooltip-stat {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 20px; color: var(--text-hero); margin-bottom: 12px;
+  }
+  .tooltip-claim {
+    font-weight: 300; font-size: 14px; line-height: 1.7;
+    color: var(--text-body); margin-bottom: 20px;
+  }
+  .tooltip-citation-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 6px;
+  }
+  .tooltip-citation {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .tooltip-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--bitcoin); text-decoration: none; transition: opacity 0.2s;
+  }
+  .tooltip-link:hover { opacity: 0.8; }
+  .tooltip-link svg { width: 14px; height: 14px; }
+
+  /* === SCROLL REVEAL === */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* === RESPONSIVE === */
+  /* === HAMBURGER + MOBILE NAV === */
+  .hamburger {
+    display: none; background: none; border: none; cursor: pointer; padding: 8px;
+    flex-direction: column; gap: 5px; z-index: 1001;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px; background: var(--text-hero);
+    border-radius: 2px; transition: all 0.3s;
+  }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-nav-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .mobile-nav-overlay.active { opacity: 1; pointer-events: auto; }
+
+  .mobile-nav-panel {
+    position: fixed; top: 0; right: 0; bottom: 0; width: 280px; z-index: 1000;
+    background: #FAFAF8; box-shadow: -8px 0 32px rgba(0,0,0,0.1);
+    transform: translateX(100%); transition: transform 0.3s ease;
+    display: flex; flex-direction: column; padding: 24px;
+  }
+  .mobile-nav-panel.active { transform: translateX(0); }
+
+  .mobile-nav-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 24px; border-bottom: 1px solid var(--border);
+  }
+  .mobile-nav-close {
+    background: none; border: none; font-size: 28px; color: var(--text-dim);
+    cursor: pointer; padding: 4px 8px; line-height: 1;
+  }
+  .mobile-nav-close:hover { color: var(--text-hero); }
+
+  .mobile-nav-links {
+    display: flex; flex-direction: column; gap: 0; padding: 16px 0; flex: 1;
+  }
+  .mobile-nav-links a {
+    font-size: 16px; font-weight: 500; color: var(--text-hero);
+    text-decoration: none; padding: 14px 0;
+    border-bottom: 1px solid var(--border-light);
+    cursor: pointer; transition: color 0.2s;
+  }
+  .mobile-nav-links a:hover { color: var(--bitcoin); }
+
+  .mobile-nav-cta {
+    display: block; text-align: center; padding: 14px 24px;
+    background: var(--bitcoin); color: #fff; border-radius: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    text-decoration: none; cursor: pointer; margin-top: 16px;
+    transition: opacity 0.2s;
+  }
+  .mobile-nav-cta:hover { opacity: 0.85; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .nav-left { gap: 12px; }
+    .btc-ticker { font-size: 10px; padding: 3px 8px; }
+    .journey-progress { display: none !important; }
+    .progress-node { width: 48px; }
+    .progress-num { width: 26px; height: 26px; font-size: 10px; }
+    .progress-label { font-size: 7px; }
+    .progress-line { width: 8px; margin-top: 12px; }
+    .hero { padding: 100px 20px 60px; }
+    .hero h1 { font-size: 32px; }
+    .hero-sub { font-size: 16px; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .impact-section { padding: 60px 20px; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .impact-number { font-size: 24px; }
+    .currency-card { grid-column: span 1; }
+    .voices-grid { grid-template-columns: 1fr; }
+    .voices-section { padding: 40px 20px; }
+    .journey-section { padding: 60px 20px; }
+    .step-body-inner { padding: 0 20px 20px 20px; }
+    .transition-section { padding: 60px 20px; }
+    .reserve-callout { padding: 0 20px; }
+    .cta-band {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin: 0 20px; padding: 32px 24px; flex-direction: column; text-align: center; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 20px; }
+    .step-page-hero { padding: 120px 20px 40px; }
+    .step-page-content { padding: 30px 20px 80px; }
+    .resource-grid { grid-template-columns: 1fr; }
+    .crash-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .crash-prices { min-width: unset; }
+    .adoption-stats { grid-template-columns: 1fr !important; }
+    .step4-stats .resource-card-title { font-size: 20px !important; }
+    .step4-stats .resource-card { padding: 12px !important; }
+    .step4-stats { gap: 8px !important; }
+    .crash-then { text-align: left; }
+    .step-page-nav { flex-direction: column; gap: 16px; }
+    .journey-progress { padding: 14px 20px; top: 72px; }
+    .progress-node { width: 26px; height: 26px; font-size: 10px; }
+    .progress-line { width: 14px; }
+  }
+
+
+  /* === ABOUT PILL & POPUP === */
+  .about-pill {
+    display: flex; align-items: center; gap: 14px;
+    margin: 40px auto 32px; cursor: pointer;
+    padding: 12px 20px; border-radius: 40px;
+    border: 1px solid var(--border); background: var(--bg-card);
+    width: fit-content; transition: all 0.2s;
+  }
+  .about-pill:hover { border-color: var(--bitcoin); box-shadow: 0 2px 12px rgba(232,134,15,0.1); }
+  .about-pill img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; object-position: center top; }
+  .about-pill-name { font-weight: 700; font-size: 14px; color: var(--text-hero); font-family: 'Sora', sans-serif; }
+  .about-pill-loc { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+  .about-popup-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); z-index: 10000;
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .about-popup-overlay.active { display: flex; }
+  .about-popup-card {
+    background: var(--bg-surface); border-radius: 16px; padding: 36px;
+    max-width: 520px; width: 100%; position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .about-popup-close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; font-size: 22px;
+    color: var(--text-dim); cursor: pointer; line-height: 1;
+  }
+  .about-popup-close:hover { color: var(--text-hero); }
+  .about-popup-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .about-popup-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: center top; }
+  .about-popup-name { font-weight: 700; font-size: 18px; font-family: 'Sora', sans-serif; color: var(--text-hero); }
+  .about-popup-loc { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+  .about-popup-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+  .about-popup-cta {
+    display: inline-block; margin-top: 8px; color: var(--bitcoin);
+    text-decoration: none; font-weight: 600; font-size: 14px; cursor: pointer;
+  }
+
+</style>
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a class="nav-logo" href="index.html">bitcoineducation<span class="dot-io">.io</span></a>
+    <div class="btc-ticker" id="btcPrice">BTC</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#journey">The Journey</a></li>
+    <li><a href="classroom.html"  style="color:var(--bitcoin);">Classroom</a></li>
+    <li><a href="buy.html">Buy, Store, HODL</a></li>
+    <li><a href="podcasts.html">Podcasts</a></li>
+    <li><a href="videos.html">Videos</a></li>
+    <li><a href="glossary.html">Glossary</a></li>
+  </ul>
+  <a class="nav-cta" onclick="openAboutPopup()">Book a Free Chat</a>
+  <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="toggleMobileNav()"></div>
+<div class="mobile-nav-panel" id="mobileNavPanel">
+  <div class="mobile-nav-header">
+    <a class="nav-logo" href="index.html">bitcoineducation<span class="dot-io">.io</span></a>
+    <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close">&times;</button>
+  </div>
+  <div class="mobile-nav-links">
+    <a href="index.html#journey">The Journey</a>
+    <a href="classroom.html">Classroom</a>
+    <a href="buy.html">Buy, Store, HODL</a>
+    <a href="podcasts.html">Podcasts</a>
+    <a href="videos.html">Videos</a>
+    <a href="glossary.html">Glossary</a>
+  </div>
+  <a class="mobile-nav-cta" onclick="openAboutPopup(); toggleMobileNav()">Book a Free Chat</a>
+</div>
+
+<!-- About Popup (global) -->
+<div class="about-popup-overlay" id="aboutPopupOverlay" onclick="if(event.target===this)closeAboutPopup()">
+  <div class="about-popup-card">
+    <button class="about-popup-close" onclick="closeAboutPopup()">&times;</button>
+    <div class="about-popup-header">
+      <img class="about-popup-photo" src="data:image/jpeg;base64,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" alt="Ben Griffiths">
+      <div>
+        <div class="about-popup-name">Ben Griffiths</div>
+        <div class="about-popup-loc">Brisbane, Australia</div>
+      </div>
+    </div>
+    <div class="about-popup-body">
+      <p>I built this site after years of sharing the same podcasts, videos, and books with anyone who asked me about Bitcoin. This is all of it, in one place.</p>
+      <p>If you would prefer one-on-one guidance, whether that is walking through your first purchase, setting up self-custody, or understanding how Bitcoin fits into your financial picture, I offer personal training sessions tailored to where you are in the journey.</p>
+      <a class="about-popup-cta" href="javascript:closeAboutPopup();openCalendly()">Book a free intro call to get started &rarr;</a>
+      <div style="margin-top:14px; font-size:13px;"><a href="https://www.linkedin.com/in/ben-griffiths-89b7263a/" target="_blank" style="color:var(--text-dim); text-decoration:none;"><svg style="width:14px; height:14px; vertical-align:-2px; margin-right:4px;" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>Connect on LinkedIn</a></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="step-page-hero">
+  <a class="step-page-back" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
+  <h1 class="step-page-title">The Classroom</h1>
+  <p class="step-page-intro">Extended presentations, courses, and deep-dive content from the best Bitcoin educators. This is where casual interest becomes real understanding.</p>
+</div>
+
+<div class="step-page-content">
+
+  <!-- Classroom Stats Banner -->
+  <div style="display:flex; gap:1px; border-radius:12px; overflow:hidden; border:1px solid var(--border); margin:0 0 36px;">
+    <div style="flex:1; padding:16px 12px; background:var(--bg-card); text-align:center;">
+      <div style="font-size:22px; font-weight:700; color:var(--text-hero); font-family:'Sora',sans-serif;">7</div>
+      <div style="font-size:11px; color:var(--text-secondary); margin-top:2px;">Educators</div>
+    </div>
+    <div style="flex:1; padding:16px 12px; background:var(--bg-card); text-align:center;">
+      <div style="font-size:22px; font-weight:700; color:var(--text-hero); font-family:'Sora',sans-serif;">16</div>
+      <div style="font-size:11px; color:var(--text-secondary); margin-top:2px;">Books</div>
+    </div>
+    <div style="flex:1; padding:16px 12px; background:var(--bg-card); text-align:center;">
+      <div style="font-size:22px; font-weight:700; color:var(--text-hero); font-family:'Sora',sans-serif;">8</div>
+      <div style="font-size:11px; color:var(--text-secondary); margin-top:2px;">Courses</div>
+    </div>
+    <div style="flex:1; padding:16px 12px; background:var(--bg-card); text-align:center;">
+      <div style="font-size:22px; font-weight:700; color:var(--text-hero); font-family:'Sora',sans-serif;">60+</div>
+      <div style="font-size:11px; color:var(--text-secondary); margin-top:2px;">Glossary terms</div>
+    </div>
+  </div>
+
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(232,134,15,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8860F" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>Masters Search Engine</h3></div>
+  <p>100+ Bitcoin terms from Mastering Bitcoin and beyond. Start typing to search.</p>
+
+  <!-- Mini Glossary Widget -->
+  <div style="border:1px solid var(--border); border-radius:12px; padding:20px; background:var(--bg-card); margin-bottom:20px;">
+    <div style="position:relative; margin-bottom:12px;">
+      <div style="position:absolute; left:14px; top:50%; transform:translateY(-50%); opacity:0.35;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <input type="text" id="miniGlossarySearch" placeholder='Try "halving", "HODL", or "seed phrase"...' autocomplete="off" style="width:100%; padding:12px 14px 12px 42px; font-size:14px; border:1.5px solid var(--border); border-radius:10px; background:var(--bg-surface); color:var(--text-hero); font-family:'Inter',sans-serif; box-sizing:border-box; outline:none;" onfocus="this.style.borderColor='var(--bitcoin)'" onblur="this.style.borderColor='var(--border)'">
+    </div>
+    <div id="miniGlossaryResults" style="font-size:13px; color:var(--text-dim); text-align:center;">Type a term to search 100+ definitions</div>
+  </div>
+  <div style="text-align:center;">
+    <a class="resource-card" href="glossary.html" style="cursor:pointer; display:inline-block; border-color:var(--bitcoin); padding:12px 24px;">
+      <div class="resource-card-title" style="color:var(--bitcoin); font-size:14px;">Open Full Glossary &rarr;</div>
+    </a>
+  </div>
+
+
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;"><div class="classroom-divider-icon" style="background:rgba(232,134,15,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8860F" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h3 style="margin:0;">Michael Saylor</h3></div>
+  <p>The CEO who bet his entire company on Bitcoin. Saylor's presentations are the most comprehensive, data-driven cases for Bitcoin as a treasury asset ever assembled.</p>
+
+  <div class="resource-grid">
+    <a href="https://www.michael.com/" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Website</div>
+      <div class="resource-card-title">michael.com</div>
+      <div class="resource-card-desc">Saylor's personal site with presentations, interviews, and his complete Bitcoin thesis. Start with "Bitcoin for Everybody."</div>
+    </a>
+  </div>
+
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(31,122,140,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F7A8C" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><h3>Anil's Bitcoin Course</h3></div>
+  <p>One of the most thorough, accessible Bitcoin courses available. Covers terminology, common fallacies, use cases, and includes summaries of the most important Bitcoin books.</p>
+
+  <div class="resource-grid">
+    <a href="https://anilsaidso.gumroad.com/l/bitcoincourse" class="resource-card featured-card" target="_blank">
+      <div class="featured-badge">Featured</div>
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Course</div>
+      <div class="resource-card-title">Anil's Bitcoin Course</div>
+      <div class="resource-card-desc">Comprehensive course covering Bitcoin terminology, fallacies, use cases, and book summaries. Our featured resource.</div>
+    </a>
+    <a href="https://x.com/anilpatel/status/1429845349720485896" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Thread</div>
+      <div class="resource-card-title">Anil's Bitcoin Summaries</div>
+      <div class="resource-card-desc">Thread covering key terminology, common fallacies, and use cases. A great quick reference.</div>
+    </a>
+  </div>
+
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(156,39,176,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3>Andreas Antonopoulos</h3></div>
+  <p>Author of Mastering Bitcoin and The Internet of Money series. His talks and slides have educated millions.</p>
+
+  <div class="resource-grid">
+    <a href="https://aantonop.com/" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Website</div>
+      <div class="resource-card-title">aantonop.com</div>
+      <div class="resource-card-desc">Talks, presentations, and educational materials from the author of Mastering Bitcoin.</div>
+    </a>
+  </div>
+
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(59,125,216,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7DD8" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg></div><h3>Courses &amp; Learning Platforms</h3></div>
+  <p>From structured Bitcoin diplomas to free university courses and community-built resources. Whether you have an afternoon or a semester, there's something here for every level.</p>
+
+  <div class="resource-grid">
+    <a href="https://planb.network/en/courses" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Course Platform</div>
+      <div class="resource-card-title">Plan B Academy</div>
+      <div class="resource-card-desc">Comprehensive platform dedicated to Bitcoin education. Wide variety of courses and open-source educational tools for all levels.</div>
+    </a>
+    <a href="https://learn.saylor.org/course/PRDV151" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Free Course</div>
+      <div class="resource-card-title">Saylor Academy</div>
+      <div class="resource-card-desc">Structured beginner course covering Bitcoin fundamentals, history, and economics. 12 hours with free certificate.</div>
+    </a>
+    <a href="https://myfirstbitcoin.io" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Open Source</div>
+      <div class="resource-card-title">My First Bitcoin</div>
+      <div class="resource-card-desc">Launched in El Salvador in 2021, offering an open-source Bitcoin Diploma. Education from the front lines of adoption.</div>
+    </a>
+    <a href="https://saifedean.com/eco21" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Paid Course</div>
+      <div class="resource-card-title">Saifedean Academy</div>
+      <div class="resource-card-desc">Dr. Ammous teaches The Bitcoin Standard material with Austrian economics background. 10-week online lecture series.</div>
+    </a>
+    <a href="https://www.bitcoinuniversity.com/" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Course</div>
+      <div class="resource-card-title">Bitcoin University</div>
+      <div class="resource-card-desc">Matthew Kratter. Former hedge fund manager turned Bitcoin educator. Insights on trading, investment strategies, and Bitcoin's significance.</div>
+    </a>
+    <a href="https://lookingglasseducation.com/courses/free-foundation-course/" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Free Course</div>
+      <div class="resource-card-title">Looking Glass Education</div>
+      <div class="resource-card-desc">Trusted educational hub for Bitcoin and finance. Free foundation course available for beginners.</div>
+    </a>
+    <a href="https://thebitcoinmanual.com/" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Resource Site</div>
+      <div class="resource-card-title">The Bitcoin Manual</div>
+      <div class="resource-card-desc">A passion project by Che &amp; Nicky. Comprehensive guides, reviews, and educational content from two Bitcoiners who fell down the rabbit hole in 2016-17.</div>
+    </a>
+    <a href="https://www.spiritofsatoshi.ai/" class="resource-card" target="_blank">
+      <div class="resource-card-type"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> AI Tool</div>
+      <div class="resource-card-title">Spirit of Satoshi</div>
+      <div class="resource-card-desc">The world's first Bitcoin-centric AI. Chat, code, produce content, and learn about Bitcoin from an AI trained on Bitcoin knowledge.</div>
+    </a>
+  </div>
+
+  <details class="info-expand">
+    <summary>University &amp; Academic Courses</summary>
+    <div class="info-body">
+      <p><strong><a href="https://www.coursera.org/learn/cryptocurrency" target="_blank" style="color:var(--bitcoin);">Princeton University</a></strong> &mdash; Bitcoin and Cryptocurrency Technologies. Free comprehensive course covering technical aspects of Bitcoin.</p>
+      <p><strong><a href="https://ocw.mit.edu/courses/media-arts-and-sciences/mas-s62-cryptocurrency-engineering-and-design-spring-2018/" target="_blank" style="color:var(--bitcoin);">MIT OpenCourseWare</a></strong> &mdash; Cryptocurrency Engineering and Design. Complete open-source course with lectures, slides and assignments.</p>
+      <p><strong><a href="https://www.edx.org/learn/bitcoin" target="_blank" style="color:var(--bitcoin);">Berkeley (edX)</a></strong> &mdash; Learn Bitcoin with online courses and programs at Berkeley.</p>
+    </div>
+  </details>
+
+  <details class="info-expand">
+    <summary>More Bitcoin-Only Resources</summary>
+    <div class="info-body">
+      <p><strong><a href="https://bitcoin-only.com/" target="_blank" style="color:var(--bitcoin);">Bitcoin-Only.com</a></strong> &mdash; A collection of the highest quality Bitcoin resources, curated and maintained by the community.</p>
+      <p><strong><a href="https://bitcoin.rocks/" target="_blank" style="color:var(--bitcoin);">Bitcoin Rocks</a></strong> &mdash; Explores Bitcoin's impact on money, freedom, human rights, equality, property rights, housing, business, energy, the environment, art, politics, and more.</p>
+      <p><strong><a href="https://www.freemarketkids.com/" target="_blank" style="color:var(--bitcoin);">Free Market Kids</a></strong> &mdash; Gives the next generation the knowledge and tools to maximise their chances for freedom, success, and happiness.</p>
+      <p><strong><a href="https://ministryofnodes.com.au" target="_blank" style="color:var(--bitcoin);">Ministry of Nodes</a></strong> &mdash; Free Bitcoin education focused on running nodes, privacy, and self-custody fundamentals. Australian-based.</p>
+    </div>
+  </details>
+
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(76,175,80,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><h3>Deep Dive Videos</h3></div>
+  <p>Extended talks and interviews that go beyond the basics.</p>
+
+  <div class="video-grid">
+    <div class="lite-yt" data-id="Lx9zgZCMqXE" onclick="playYT(this)">
+      <div class="lite-yt-thumb">
+      <img src="https://i.ytimg.com/vi/Lx9zgZCMqXE/hqdefault.jpg" alt="How Bitcoin Works Under the Hood" loading="lazy">
+      <div class="yt-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      </div>
+      <div class="yt-title">How Bitcoin Works Under the Hood</div>
+    </div>
+    <div class="lite-yt" data-id="nkNhSPxFsnY" onclick="playYT(this)">
+      <div class="lite-yt-thumb">
+      <img src="https://i.ytimg.com/vi/nkNhSPxFsnY/hqdefault.jpg" alt="Saifedean Ammous - The Bitcoin Standard" loading="lazy">
+      <div class="yt-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      </div>
+      <div class="yt-title">Saifedean Ammous — The Bitcoin Standard Lecture</div>
+    </div>
+  </div>
+
+  <div class="classroom-divider"><div class="classroom-divider-icon" style="background:rgba(212,168,67,0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A843" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h3>Essential Reading</h3></div>
+  <p>The books that shaped how the Bitcoin community thinks. Start with The Bitcoin Standard, then go wherever your curiosity takes you.</p>
+
+  <div class="book-grid">
+    <a href="https://www.amazon.com.au/Bitcoin-Standard-Decentralized-Alternative-Central/dp/1119473861/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="The Bitcoin Standard">
+      <div class="book-info">
+        <div class="book-title">The Bitcoin Standard</div>
+        <div class="book-author">Saifedean Ammous</div>
+        <div class="book-desc">A foundational book on Bitcoin, exploring the history of money, the flaws of fiat currency, and why Bitcoin is the best candidate for sound money in the digital age.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Fiat-Standard-Slavery-Alternative-Civilization/dp/1544526474/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABZADwDASIAAhEBAxEB/8QAGwAAAgMBAQEAAAAAAAAAAAAAAAUBAwQCBgf/xAAwEAACAQMDAgUDBAEFAAAAAAABAgMABBEFEiETMQYiQVFhFHGBFSMykaFCYrHw8f/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABkRAQEBAAMAAAAAAAAAAAAAAAABEQISIf/aAAwDAQACEQMRAD8A+zVkuI75pSYJ41TA8rJnnJzz8j/itdFAvMGp4OLxMkH/AEDg5GPT2B/ujpans2/WRBvN5un8gjj4AI/PemFFBhmj1Fn/AGbqJFyvBTJxzu/vj7YrgQaqA2b2InJ2/t9h6f8Af/KY0UFFulwrP15VcEjYAMbeOfvzV9FFAVHPtU0UEc0pf9WSV9js6i6RV3IoBi2gseOe+R+BU3RnfWOgjzbHgBISTbsJbG78CrIJmj1C/MkjskSxlVJ4GQScD5rHf1jt6r02TVWuIxfKwQ20ZPlUfuY8+cfOKa8+1K7J5riWW2upJUkjcSrjylkbOBx6A5H4Fd6MJJbKG5knldmUhgzZB83f/FJz0nLTHmpoorbYpbPrCxap+nJAzTlA6KzBN49Sue4Hrjke1MqzGxgNyLgxkyBtwO84DbduQOwO3jPtQK7fXLKT6G9mszA984ihkYqTgg4zg8DOF+7Cq5NZsepeq+nHrQ72mRtoLqgJVxz5lJUgH0IwcVv/AELTfpBafTfshFQL1G4CtuGDnI55zXcmj2EwPUtg52yLuZiWAk/mAc5APtUyJkL5Nf02FJ7u6tWilhSLeSFJ6cmcEHPYAMSP9p+M2R61a22oz6VBZsrQBmxHtxgIHzj0B3AZ9+K1jRNPCsPpgQ6FG3Ox3Lt24OTzxwPbJx3NcJ4f0xGVltSGXGG6r7hhNnfOcbQAffAz2pkMidL1mPUmEfRkhkNvHcKrkHMb52nI+VII+KZVkstOtbAYtodnkWPJYsdq8KuTzgZPHya11VFZprSN5HmJl3FCCqOQG4PpWmqL28t9Ps5bu6kEcMK7nY+goF3QEZfZZ3rApwTNz9hzwaDbb1Ym1vcjGMz4zx9/gf3WnSRevbyXF9IepO5dYMDFuuAAmR3PGT8k+lKNT8c6bpuqSWBR5Xgx1mUgBOM4Ge5xU1ZNbnjLYDWd5gDbgS8Y9+/eiO2ywU2l4Azckz5AHv3+aaQTR3MEc8LBo5FDow9QRkGqpbtVZ44tryqMkFsAe2TS2RHVvax227pl/NjO5y3b71fVVvOtxAsi8Z7j2PqKtqgpF4ptnu7O2SNTMI7lJZYEPmkQZzgepH8seuPfFPawXui6fqDM13b9XdjOWYD/AAe/zQINAkhn1W2XTLaS2jhic3rMhjWcnhcKcFjkE5xx29cUp8a+EdPuNesbuW7lto9QuRHPgDap2k5ye2SAPzXtYNNaC4ib6l3hhDCNGGWAPoWJyRx68/NXX2n2mp2jWt7As8L4yjfHapiyvM3PiR9NkltbBtLFrp+2EwzXRE74UcKuMewHvit3iUxRLHIN3WbHlTG4jI5we4Hc/atln4Y0LT5VltdJtIpF/i4iBYfOTzmtl3p9nfhRdW6S7Dldw7VLNiMPh5btrSS4uiB133IoUrlewYj0J7/1Teo7VNWTJgKKKKoKKKKAooooCoqa5Peg/9k=" alt="The Fiat Standard">
+      <div class="book-info">
+        <div class="book-title">The Fiat Standard</div>
+        <div class="book-author">Saifedean Ammous</div>
+        <div class="book-desc">A follow-up to The Bitcoin Standard, analysing the global fiat monetary system, its problems, and how Bitcoin offers a viable alternative.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Principles-Economics-Saifedean-Ammous/dp/B0BZQKFPLK/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABZADwDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAQIDBgf/xAAzEAABBAEDAgMHAgYDAAAAAAABAAIDEQQFEiExURNBYQYHIiMygcEVcRRCYnKRoZKx0f/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABoRAQEAAwEBAAAAAAAAAAAAAAABERIhMQL/2gAMAwEAAhEDEQA/APsyIuGTFPK1ogyPBIuztDr4I/11+yDuignEzSb/AI8g30EYro78kf8AH1WBi5waW/qJs/zeELHFf6PKCeihSY+Y8t2Z2wDbfyhzV3/m/tS1bh54B3aiXG+PlAcdkE9Fygjkja4SymUlxIJFUOy6oCIsIMosWO6WO6DKLFjuljugyiwsoCr9VhzpxjMwZnQEynxZAAdrdjqNHr8W3j8WrBavkZHW97W2aFmrQefgi18ZJExlMRyg5pD2cRbn2D53Wzp5AedrbHh11hibkvklibQe5j2iR42mr8gQ4gGuDQPcK8M8I3XKwbTR+IcFQdRxnZjh4WaIdrHsrd9LjRDxR+poHH7oIUePrj85m6eaKDxXuLnFjvhqPaKHenj0u+yxANbI0/xY8geFERk2+O5H/DXQ/wB32vjorHToWYUEgkyhK573ylxfwGlxr7AEBS/GiuvFZ12/UOvZBF0luczELc926UPNP83DjkizR68WfwJy1a5rxbXAgGuCtkBRsvDGUYXF5aYX720AeaI/KkokuEsyr26UxgjDZHfJJ8OwDVgjnv8AUev/ALen6HjhpaHSAGMRmiOQAAL7kbevqR0VmqTWNc/T8xkLHMFNtwd530Vv3Z3JpK7z6HDkNdvkeHOLySAOd1X9uBx3Frq3TGMndM2Rwc5zifhBFOIJHTuByuunZzNQxGzsFckEeoUpXa1NYj4eIzDhMbHOLS4uo+XoOwUhEWfWpMCIqj2j0fK1rBZj4uoPw3B9uLbIe3zBAIUvizGerAZuI6Z0DcmEytFmMPBcB+3VeP8AaHI3yvLJGuMhaaLvp+Kh5V0vqrTSfYnTNMik8TdlTSRmN0sgAO09QKVRqPuzg1HVpZzqU0OG8N+Qzk2OvJ9eViy/U63NZfXLF9rML2c0B0mRPF40sh8GJz63c24jrwLH+U0r3knPdI98WMWMAqNjyH2fUn8KZrvu20zU/ZuDScV5xn40vixTEbjZ+oHuCP8AoKFpHuj0vTniWXPy5H+YYQwflbnzz1i3r2+BnQajiMycd4c1w5/pPmD6qSo2BgY+m4wx8ZpawG+TZJUlVBERAREQEREBERB//9k=" alt="Principles of Economics">
+      <div class="book-info">
+        <div class="book-title">Principles of Economics</div>
+        <div class="book-author">Saifedean Ammous</div>
+        <div class="book-desc">A classic economics textbook foundational to Austrian economics, which underpins much of Bitcoin's economic philosophy.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Broken-Money-Financial-System-Failing/dp/B0CG8985FR/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="Broken Money">
+      <div class="book-info">
+        <div class="book-title">Broken Money</div>
+        <div class="book-author">Lyn Alden</div>
+        <div class="book-desc">Explores the history of money, the problems with current monetary systems, and how Bitcoin and other innovations could fix broken money.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Mastering-Bitcoin-Programming-Open-Blockchain/dp/1098150090/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="Mastering Bitcoin (3rd Ed)">
+      <div class="book-info">
+        <div class="book-title">Mastering Bitcoin (3rd Ed)</div>
+        <div class="book-author">Antonopoulos &amp; Harding</div>
+        <div class="book-desc">The technical bible. How Bitcoin works at every level. Open-source and essential for developers.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Mastering-Lightning-Network-Second-Layer/dp/1492054860/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="Mastering the Lightning Network">
+      <div class="book-info">
+        <div class="book-title">Mastering the Lightning Network</div>
+        <div class="book-author">Antonopoulos, Osuntokun &amp; Pickhardt</div>
+        <div class="book-desc">The definitive guide to Bitcoin's Layer 2. How instant, cheap Bitcoin payments work.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com/Internet-Money-Andreas-M-Antonopoulos-ebook/dp/B01L9WM0H8/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="The Internet of Money (Vol 1)">
+      <div class="book-info">
+        <div class="book-title">The Internet of Money (Vol 1)</div>
+        <div class="book-author">Andreas Antonopoulos</div>
+        <div class="book-desc">A collection of talks by one of Bitcoin's best educators, explaining why Bitcoin matters beyond price, and how it represents a new paradigm for money and society.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com/Internet-Money-Two-Andreas-Antonopoulos-ebook/dp/B075VB7LVG/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABbADwDASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAAECBAUDBv/EADUQAAIBAwIEAwUGBwEAAAAAAAECAwAEERIxBRMhUUFSkQYUIlNxJDJhkqGxFSMzNEJygfD/xAAbAQACAwEBAQAAAAAAAAAAAAABBQIDBAAGB//EAC8RAAEDAgIHBgcAAAAAAAAAAAEAAgMREgQxExQhQVFxoTNhkdHh8AUVUoGxwfH/2gAMAwEAAhEDEQA/ANrU3mPrRqbzH1ppG8hIRGYjwUZqXu0/yJPyGvnQvOVV7Q2DNQ1N5j60am8x9an7vP8AIk/IagysjaWUqexGK43jNcLTkjU3mPrRqbzH1pUULjxRtCepvMfWgM3mPrSpiiHHiutCucLjWWSVHBI0Z6HHjXaGJhFZtGSskjEsxyfA+FceHaFS6mdC/KiDBQ5XJ1Abj61ulOD89oBHeFw7R51vpLAZxnO/SnGEgviBqB/eXclmIltkIofYWT77daIzkKSmRlfvnOP/AGKq8T/vnz0OF/atqF+FGyhnmhukklUty0lc4A3O+1Ski9nyZHMVxKsaqzSAuwwQMdc/jVkmEdIyl43Znu5KuPENY+tp8PVeZor0vu/s+EP2W4EnMMfKJYPkDOxPaowWnB7u75MFpI0TQc1Zdbb9d/T1rL8rfle3r5LRr7KVtPv7rzlMVEdQPpUhSwZpgrnDMsbiIRcxZIwrDmaCBqB3we1akl2YCsklqq/aTOM3B6uRjH3dsVjWp6TDmLGWQYLNpz1GRn6VZTll0JnSNBNqCCcHQuO+e9NsNM5sQA/XFLZ42ukJPvYnLdwwabdraTVBlVbng4U/49V2/WptxmForiP3Jgs5QtifbTjGPh/CqN86PeysrqwJGCD02qvkdxWd+Mma4hp2chy/CubhYnNBI6nmtSfi1vPI8rWTCR5OZqEwODp0noVIxgeNTTjccU6TR2jqyRcrHP6MOu/w9d81kZHcetOo6/iAa16BS1OGlKdSkBgYqQpUxWMZrUrvDZHhhvpY20usA0tgHB1geNa38UuFu43nt9EUMUgljCj+Y6Lknbbasfht8lhJK0lstwkiaSjHA3z2PatZ/atJHV34YjMoIUmTJGd/CneDxETIgHSWnhQ8UpxMMjpCQyo5jgrQ4vIDymsrZpmaLTofK4fOMnHQjFRbjTgCMWMJnBk1gZK/AcdMDPXudqpR+0VrEumPg8KDWHwrAfENjtvRJ7Q2sq6ZODwuNRbBYHqdz92tmvRU7XofJZtUkr2fX1Wtb8S591Hbe5RpI7g6W3EZTVq+ueleOl/rSf7n962IvaER8Qe8NoXcoI0UyABF3wMLWMzanZsY1En9aXfEMSyZjQ11SCd25bcFA+JxLhTYEqYpUxSlqZJUUUVFciijB7HvtUkUNuxH0UmphjiolwCjRUxGvzD/AMQ0aE+YfyGjo3IXtUKYplVC515Ph8JpChaWnapBwOSVFFFRojVdRdXAGBM2MYoN3cMQTM2RsR0rlijFW6WT6j4qvRs4BdFuZkGFlYDsK6reS4+KeXJ36A1WxRii2aQb0DFGdysPcs6MpmlIIxggdfrXAUsUxQc9zztKLWNYNi//2Q==" alt="The Internet of Money (Vol 2)">
+      <div class="book-info">
+        <div class="book-title">The Internet of Money (Vol 2)</div>
+        <div class="book-author">Andreas Antonopoulos</div>
+        <div class="book-desc">Continues with more talks and essays, delving deeper into the philosophical, social, and economic implications of Bitcoin and open blockchain technology.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Check-Your-Financial-Privilege-Gladstein/dp/B09V2NM9VJ/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="Check Your Financial Privilege">
+      <div class="book-info">
+        <div class="book-title">Check Your Financial Privilege</div>
+        <div class="book-author">Alex Gladstein</div>
+        <div class="book-desc">Examines how Bitcoin is used as a tool for financial freedom in countries with unstable currencies or authoritarian regimes, highlighting stories from around the world.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Sovereign-Individual-Mastering-Transition-Inform/dp/0684832720/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="The Sovereign Individual">
+      <div class="book-info">
+        <div class="book-title">The Sovereign Individual</div>
+        <div class="book-author">Davidson &amp; Rees-Mogg</div>
+        <div class="book-desc">A prescient book from 1997 predicting the rise of digital money and the decline of nation-state power. Explores how technology will empower individuals and disrupt traditional institutions.</div>
+      </div>
+    </a>
+    <a href="https://academy.saifedean.com/product/gradually-then-suddenly-hardcover/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="Gradually, Then Suddenly">
+      <div class="book-info">
+        <div class="book-title">Gradually, Then Suddenly</div>
+        <div class="book-author">Parker A. Lewis</div>
+        <div class="book-desc">A collection of essays breaking down complex Bitcoin topics into easy-to-understand concepts, focusing on how Bitcoin adoption happens slowly at first, then all at once.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Little-Bitcoin-Book-Matters-Finances/dp/1641990503/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="The Little Bitcoin Book">
+      <div class="book-info">
+        <div class="book-title">The Little Bitcoin Book</div>
+        <div class="book-author">Bitcoin Collective</div>
+        <div class="book-desc">A concise, accessible introduction to Bitcoin by a group of international authors. Explains what Bitcoin is, why it matters, and how it can empower people globally.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Bitcoin-Venice-Essays-Future-Capitalism/dp/B09TTTGT11/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="Bitcoin is Venice">
+      <div class="book-info">
+        <div class="book-title">Bitcoin is Venice</div>
+        <div class="book-author">Allen Farrington &amp; Sacha Meyers</div>
+        <div class="book-desc">Essays on the past and future of capitalism through the lens of Bitcoin and sound money.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Resistance-Money-Philosophical-Case-Bitcoin/dp/103277780X/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,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" alt="Resistance Money">
+      <div class="book-info">
+        <div class="book-title">Resistance Money</div>
+        <div class="book-author">Bailey, Rettler &amp; Warmke</div>
+        <div class="book-desc">Explores how Bitcoin can be used as a tool for resistance against censorship, authoritarianism, and financial repression.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/Basics-Bitcoins-Blockchains-Introduction-Cryptocurrencies/dp/1633538001/" class="book-card" target="_blank">
+      <img class="book-cover" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAA8ADwDASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAgUDBAYBAP/EADIQAAICAQIEAwcDBAMAAAAAAAECAxEEACEFEjFBExRRFSMyYXGBkQYisUJiocGz4fH/xAAaAQACAwEBAAAAAAAAAAAAAAADBAECBQAG/8QAKBEAAQQABAUEAwAAAAAAAAAAAQACAxEEEiExEyJRcfAUQaHRI2Gx/9oADAMBAAIRAxEAPwAPK/raowcsfAA/LJELbud0074M/EMbDKcZyUbJLkqSy7rtXwgD17aabBepsb6U8WkxVycbxzKppiCi2K2Wzv6sNeA45xH4yxo7DVbwj4fNZPcpgMvG/cfMRbC/jG2hny2iFBWu9iQCD/nWcjGCBymXKpwEtoV6MoN9fRl/Om3t7CWN2PihY76p1Ci76+mofhcpGUFykSZtzSnbOmZL2Wu4FX6d9dTOmQlLDkeo/wC9eh4riz5ZxYxJzDmFstKa6j+Do/PQllWPkcMQFpwLPpoRaRoWLtDramxcxpTyMvM19VFAD57nVux6XpfHxOBiN0AuifEBr8fUatJKGQMrAqRYI76WkjIN1Su3uuV2rYaQfqS/NYpGw5DYPUjxI/8AdafCzZO17aUcZGOczDXIjmcna42CgDnQbg9dyvTTWDOWYHv/ABRMOQpRGY1MImVmSksKaJ9zD/utQ+H4sTx9edGX8oRq48mCyxBYckARpIPeL+48iAIdulBbPrehjlwIzyrBkvIaZVMigCyFAuugJq9bAcQNAb8/aTodVJwGaBs9JWUktE5Zj/S4619VI+6/PT7HOJOPEx1jcA1aqNjrO4+Tw7Gbx44ckBxyhC60C5QE/hx+NXcbimHw+OWKOCY8nM55mBJouP5j/wA6TxULnkuaD54EaJ4aKJTlYouc+7QEdwovRhDVLVDUOJkecx1l5DGSWDKTdFWIO/fcasAkCrP21luzA0d00Kqwvb9NqJ0i44D7RwjewqxXxe9i/wDdPNgvTt11BPhQZLxzTQGR4T+wBq7g7i6O4B39NEw8gjkDjsqSNzNoLJge7jHQ+Xj/AONNEro3EpHWMRo8cIRASQpE63udPRw3hqihjvXJ4Y9/dD5b9RsL132bwxkrwGBAAsTixVUbvr8/XWp6yPofj7SvDKy00gKh1XkjY2kSgnkpYz16noPxqy7RpkiSVC8bpMrKDRIuY9fzrQezeFEKPJ1ygge+HQqFP9XoBo/Z/D5FMflC1WOUSi9wwPf+5vzqzsdHlqj8fagRHqj4MSeFxBgoZWZH5R8RDEFvvV/fTWLDkZA3MFvsw31BiJicPMWMQwG7UTfIN2LOT87/ADpsjrIiujBlYWCDYI1iYhxzFwGhNq7pqAa32Snuflr3MVO1C9CpJv66KqUG76ahOKhn8S8hlQxtErpIPpvYA/nUONxlJ85McYoVmYKTY2Bv5fLV3JwsfKkWSaPmZBSmyK76GLh2LBKZo4qkBsNZ0010HDotOavPdCLX5tDoqD8f8Nwhww7cpbZgBt26fPTxhLDCswhUu3QsQFQd2Y6h4fwnCaYStDzNGLXmJI6+n2GnLossbRuoZWFEHuNWcIdC1qUlke0lizTQ+0siWpKwQR4kijeZqB29ep+g7dBpiLCqsRMUailRTsBoWVUqJFCRx/tRB0A1xemgzSl+2wR4IQwWd1//2Q==" alt="The Basics of Bitcoins and Blockchains">
+      <div class="book-info">
+        <div class="book-title">The Basics of Bitcoins and Blockchains</div>
+        <div class="book-author">Antony Lewis</div>
+        <div class="book-desc">A clear, jargon-free introduction to cryptocurrencies and the technology that powers them.</div>
+      </div>
+    </a>
+    <a href="https://www.amazon.com.au/21-Lessons-Learned-Falling-Bitcoin/dp/1697526349/" class="book-card" target="_blank">
+      <div style="width:52px; height:72px; border-radius:4px; background:var(--bg-surface); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-weight:800; color:var(--bitcoin); font-size:20px;">21</div>
+      <div class="book-info">
+        <div class="book-title">21 Lessons</div>
+        <div class="book-author">Gigi</div>
+        <div class="book-desc">What falling down the Bitcoin rabbit hole taught one person about philosophy, economics, and technology. Free to read online.</div>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+</div>
+
+<footer>
+  <div style="font-size:13px; color:var(--text-secondary); margin-bottom:10px;">Have questions? <a href="javascript:openCalendly()" style="color:var(--bitcoin); text-decoration:none;">Book a free 30-min chat</a></div>
+  <div style="font-size:12px; margin-bottom:16px;"><a href="https://www.linkedin.com/in/ben-griffiths-89b7263a/" target="_blank" style="color:var(--text-dim); text-decoration:none;"><svg style="width:13px; height:13px; vertical-align:-2px; margin-right:3px;" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a></div>
+  <div class="footer-logo">bitcoineducation<span class="dot-io">.io</span></div>
+  <div class="footer-text">Independent Bitcoin education. No shortcuts. No altcoins.</div>
+</footer>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script>
+</script><script>
+// === Step definitions for progress bar ===
+const STEPS = [
+  { id: 'step1', num: '1', label: 'Why Bitcoin?' },
+  { id: 'step2', num: '2', label: 'Basics' },
+  { id: 'step3', num: '3', label: 'Performance' },
+  { id: 'step4', num: '4', label: 'Institutional' },
+  { id: 'step45', num: '4.5', label: 'Break' },
+  { id: 'step5', num: '5', label: 'Adoption' },
+  { id: 'step6', num: '6', label: 'CBDCs' },
+  { id: 'step7', num: '7', label: 'Advanced' },
+  { id: 'step8', num: '8', label: 'Take Action' }
+];
+
+function buildProgressBar(currentStepId) {
+  const track = document.getElementById('progressTrack');
+  track.innerHTML = '';
+  const currentIdx = STEPS.findIndex(s => s.id === currentStepId);
+  STEPS.forEach((step, i) => {
+    if (i > 0) {
+      const line = document.createElement('div');
+      line.className = 'progress-line ' + (i <= currentIdx ? 'done' : 'pending');
+      track.appendChild(line);
+    }
+    const node = document.createElement('div');
+    node.className = 'progress-node';
+    if (i < currentIdx) node.classList.add('completed');
+    else if (i === currentIdx) node.classList.add('current');
+    else node.classList.add('upcoming');
+    const pageExists = document.getElementById('page-' + step.id);
+    if (pageExists) { node.onclick = () => showPage(step.id); }
+    else { node.style.cursor = 'default'; }
+    if (i < currentIdx) {
+      node.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
+    } else { node.textContent = step.num; }
+    const label = document.createElement('div');
+    label.className = 'progress-node-label';
+    label.textContent = step.label;
+    node.appendChild(label);
+    track.appendChild(node);
+  });
+}
+
+// === Page navigation ===
+function showPage(id) {
+  if (id === 'home') { window.location.href = 'index.html'; return; }
+  window.location.href = id + '.html';
+}
+
+// === Accordion toggle ===
+function toggleStep(header) {
+  const step = header.parentElement;
+  const wasActive = step.classList.contains('active');
+  document.querySelectorAll('.journey-step').forEach(s => s.classList.remove('active'));
+  if (!wasActive) step.classList.add('active');
+}
+
+// === Tooltip/Citation popup ===
+function openTooltip(data) {
+  document.getElementById('tooltipStat').textContent = data.stat;
+  document.getElementById('tooltipClaim').textContent = data.claim;
+  document.getElementById('tooltipCitation').innerHTML = data.citation;
+  const link = document.getElementById('tooltipLink');
+  if (data.link) { link.href = data.link; link.style.display = 'inline-flex'; }
+  else { link.style.display = 'none'; }
+  document.getElementById('tooltipOverlay').classList.add('active');
+}
+function closeTooltip() { document.getElementById('tooltipOverlay').classList.remove('active'); }
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTooltip(); });
+
+// === Scroll Reveal ===
+function initReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Animate currency bars
+        entry.target.querySelectorAll('.currency-bar-fill').forEach((bar, i) => {
+          setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200 + (i * 150));
+        });
+        // Animate counter numbers
+        entry.target.querySelectorAll('.impact-number').forEach(el => {
+          if (el.dataset.animated) return;
+          el.dataset.animated = 'true';
+          const text = el.textContent;
+          const match = text.match(/^([^\d]*?)(\d+)(.*)$/);
+          if (!match) return;
+          const prefix = match[1], target = parseInt(match[2]), suffix = match[3];
+          const duration = 1200, start = performance.now();
+          function tick(now) {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            const current = Math.round(target * eased);
+            el.textContent = prefix + current + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = text; // restore exact original
+          }
+          requestAnimationFrame(tick);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => { if (!el.classList.contains('visible')) observer.observe(el); });
+}
+
+// === Animated Hero Background ===
+function initHeroCanvas() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, dots = [];
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  // Create dots
+  for (let i = 0; i < 60; i++) {
+    dots.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.5 + 0.5
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    dots.forEach(d => {
+      d.x += d.vx; d.y += d.vy;
+      if (d.x < 0) d.x = w; if (d.x > w) d.x = 0;
+      if (d.y < 0) d.y = h; if (d.y > h) d.y = 0;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(232, 134, 15, 0.15)';
+      ctx.fill();
+    });
+    // Connect nearby dots
+    for (let i = 0; i < dots.length; i++) {
+      for (let j = i + 1; j < dots.length; j++) {
+        const dx = dots[i].x - dots[j].x;
+        const dy = dots[i].y - dots[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.strokeStyle = 'rgba(247, 147, 26, ' + (0.04 * (1 - dist / 150)) + ')';
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// === Lite YouTube Embed ===
+function playYT(el) {
+  const id = el.dataset.id;
+  const thumb = el.querySelector('.lite-yt-thumb');
+  if (thumb) {
+    thumb.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+  } else {
+    el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+  }
+}
+
+// === Masters Search Engine (Glossary) ===
+const glossaryData = [
+["address","A Bitcoin address looks like 1DSrfJdB2AnWaFNgSbv3MZC2m74996JafV. It consists of a string of letters and numbers. It's an encoded base58check version of a public key 160-bit hash. Just as you ask others to send an email to your email address, you would ask others to send you bitcoin to one of your Bitcoin addresses."],
+["bip","Bitcoin Improvement Proposals. A set of proposals that members of the bitcoin community have submitted to improve bitcoin. For example, BIP21 is a proposal to improve the bitcoin uniform resource identifier (URI) scheme."],
+["bitcoin","The name of the currency unit (the coin), the network, and the software."],
+["block","A grouping of transactions, marked with a timestamp, and a commitment to the previous block. The block header is hashed to produce a proof of work, thereby validating the transactions. Valid blocks are added to the main blockchain by network consensus."],
+["blockchain","A list of validated blocks, each linking to its predecessor all the way to the genesis block."],
+["Byzantine Generals Problem","A reliable computer system must be able to cope with the failure of one or more of its components. A failed component may exhibit a type of behavior that is often overlooked: sending conflicting information to different parts of the system."],
+["coinbase","A special field used as the sole input for coinbase transactions. The coinbase allows claiming the block reward and provides up to 100 bytes for arbitrary data. Not to be confused with Coinbase transaction."],
+["coinbase transaction","The first transaction in a block. Always created by a miner, it includes a single coinbase. Not to be confused with Coinbase."],
+["cold storage","Refers to keeping a reserve of bitcoin offline. Cold storage is achieved when Bitcoin private keys are created and stored in a secure offline environment. Cold storage is important for anyone with bitcoin holdings."],
+["confirmations","Once a transaction is included in a block, it has one confirmation. As soon as another block is mined on the same blockchain, the transaction has two confirmations, and so on. Six or more confirmations is considered sufficient proof that a transaction cannot be reversed."],
+["consensus","When several nodes, usually most nodes on the network, all have the same blocks in their locally-validated best blockchain. Not to be confused with consensus rules."],
+["consensus rules","The block validation rules that full nodes follow to stay in consensus with other nodes. Not to be confused with consensus."],
+["difficulty","A network-wide setting that controls how much computation is required to produce a proof of work."],
+["difficulty retargeting","A network-wide recalculation of the difficulty that occurs once every 2,016 blocks and considers the hashing power of the previous 2,016 blocks."],
+["difficulty target","A difficulty at which all the computation in the network will find blocks approximately every 10 minutes."],
+["double-spending","Double spending is the result of successfully spending some money more than once. Bitcoin protects against double-spending by verifying each transaction added to the blockchain to ensure that the inputs for the transaction had not previously already been spent."],
+["ECDSA","Elliptic Curve Digital Signature Algorithm or ECDSA is a cryptographic algorithm used by Bitcoin to ensure that funds can only be spent by their rightful owners."],
+["fees","The sender of a transaction often includes a fee to the network for processing the requested transaction."],
+["fork","Fork, also known as accidental fork, occurs when two or more blocks have the same block height, forking the blockchain. Typically occurs when two or more miners find blocks at nearly the same time."],
+["genesis block","The first block in the blockchain, used to initialize the cryptocurrency."],
+["hard fork","A permanent divergence in the blockchain, commonly occurs when non-upgraded nodes can't validate blocks created by upgraded nodes that follow newer consensus rules."],
+["hardware wallet","A special type of bitcoin wallet which stores the user's private keys in a secure hardware device."],
+["hash","A digital commitment to some binary input."],
+["hashlocks","A type of encumbrance that restricts the spending of an output until a specified piece of data is publicly revealed. Hashlocks have the useful property that once any hashlock is opened publicly, any other hashlock secured using the same key can also be opened."],
+["HD protocol","The Hierarchical Deterministic (HD) key creation and transfer protocol (BIP32), which allows creating child keys from parent keys in a hierarchy."],
+["HD wallet","Wallets using the Hierarchical Deterministic (HD Protocol) key creation and transfer protocol (BIP32)."],
+["HD wallet seed","A potentially-short value used as a seed to generate the master private key and master chain code for an HD wallet. Also known as a seed phrase, recovery phrase, or mnemonic. Typically 12 or 24 words that back up your entire wallet. Write it down, store it offline, and never share it with anyone."],
+["HTLC","A Hashed TimeLock Contract or HTLC is a class of payments that use hashlocks and timelocks to require that the receiver of a payment either acknowledge receiving the payment prior to a deadline by generating cryptographic proof of payment or forfeit the ability to claim the payment."],
+["KYC","Know your customer (KYC) is the process of a business identifying and verifying the identity of its clients. The term is also used to refer to the bank regulation which governs these activities."],
+["Lightning Network","A proposed implementation of Hashed Timelock Contracts (HTLCs) with bi-directional payment channels which allows payments to be securely routed across multiple peer-to-peer payment channels."],
+["Lock time","The part of a transaction which indicates the earliest time or earliest block when that transaction may be added to the blockchain."],
+["mempool","The bitcoin Mempool (memory pool) is a collection of all transaction data in a block that have been verified by Bitcoin nodes, but are not yet confirmed."],
+["merkle root","The root node of a merkle tree, a descendant of all the hashed pairs in the tree. Block headers must include a valid merkle root descended from all transactions in that block."],
+["merkle tree","A tree constructed by hashing paired data (the leaves), then pairing and hashing the results until a single hash remains, the merkle root."],
+["miner","A network node that finds valid proof of work for new blocks, by repeated hashing."],
+["multisignature","Multisignature (multisig) refers to requiring more than one key to authorize a bitcoin transaction."],
+["network","A peer-to-peer network that propagates transactions and blocks to every Bitcoin node on the network."],
+["nonce","The nonce in a bitcoin block is a 32-bit (4-byte) field whose value is set so that the hash of the block will contain a run of leading zeros."],
+["offchain transactions","An offchain transaction is the movement of value outside of the blockchain. While an onchain transaction modifies the blockchain, an offchain transaction relies on other methods to record and validate the transaction."],
+["opcode","Operation codes from the Bitcoin Script language which push data or perform functions within a pubkey script or signature script."],
+["orphan block","Blocks whose parent block has not been processed by the local node, so they can't be fully validated yet."],
+["output","An output in a transaction which contains a value field for transferring zero or more satoshis and a pubkey script for indicating what conditions must be fulfilled for those satoshis to be further spent."],
+["P2PKH","Pay To PubKey Hash. An output locked by a P2PKH script can be unlocked (spent) by presenting a public key and a digital signature created by the corresponding private key."],
+["P2SH","Pay-to-Script-Hash is a powerful type of transaction that greatly simplifies the use of complex transaction scripts. With P2SH the complex script is not presented in the locking script."],
+["paper wallet","A document containing all of the data necessary to generate any number of Bitcoin private keys, forming a wallet of keys."],
+["payment channels","A class of techniques designed to allow users to make multiple Bitcoin transactions without committing all of the transactions to the bitcoin blockchain."],
+["pooled mining","A mining approach where multiple generating clients contribute to the generation of a block, and then split the block reward according to contributed processing power."],
+["Proof-of-Stake","A method by which a cryptocurrency blockchain network aims to achieve distributed consensus by asking users to prove ownership of a certain amount of currency."],
+["Proof-of-Work","A piece of data that requires significant computation to find. In bitcoin, miners must find a numeric solution to the SHA256 algorithm that meets a network-wide target, the difficulty target."],
+["reward","An amount included in each new block as a reward by the network to the miner who found the Proof-of-Work solution."],
+["satoshi","The smallest denomination of bitcoin that can be recorded on the blockchain. It is the equivalent of 0.00000001 bitcoin and is named after the creator of Bitcoin, Satoshi Nakamoto."],
+["Satoshi Nakamoto","The name used by the person or people who designed Bitcoin and created its original reference implementation, Bitcoin Core. Their real identity remains unknown."],
+["Script","Bitcoin uses a scripting system for transactions. Forth-like, Script is simple, stack-based, and processed from left to right. It is purposefully not Turing-complete, with no loops."],
+["secret key (private key)","The secret number that unlocks bitcoin sent to the corresponding address."],
+["Segregated Witness","A proposed upgrade to the Bitcoin protocol which separates signature data from bitcoin transactions."],
+["SHA","The Secure Hash Algorithm or SHA is a family of cryptographic hash functions published by the National Institute of Standards and Technology (NIST)."],
+["Simplified Payment Verification (SPV)","A method for verifying particular transactions were included in a block without downloading the entire block. The method is used by some lightweight Bitcoin clients."],
+["soft fork","A temporary fork in the blockchain which commonly occurs when miners using non-upgraded nodes don't follow a new consensus rule their nodes don't know about."],
+["timelocks","A type of encumbrance that restricts the spending of some bitcoin until a specified future time or block height. Timelocks feature prominently in many Bitcoin contracts, including payment channels and hashed timelock contracts."],
+["transaction","A transfer of bitcoin from one address to another. More precisely, a signed data structure expressing a transfer of value. Transactions are transmitted over the Bitcoin network, collected by miners, and included into blocks."],
+["UTXO","An unspent transaction output that can be spent as an input in a new transaction."],
+["wallet","Software that holds all your Bitcoin addresses and secret keys. Use it to send, receive, and store your bitcoin."],
+["Wallet Import Format (WIF)","A data interchange format designed to allow exporting and importing a single private key with a flag indicating whether or not it uses a compressed public key."],
+["HODL","Hold On for Dear Life. A Bitcoin community term meaning to hold rather than sell during price drops. Originated from a famous 2013 Bitcointalk forum post with a typo. HODLers believe in Bitcoin's long-term value regardless of short-term volatility."],
+["halving","The event approximately every four years (every 210,000 blocks) where the Bitcoin block reward is cut in half. This reduces the rate of new Bitcoin entering circulation, reinforcing scarcity. Past halvings occurred in 2012 (50 to 25 BTC), 2016 (25 to 12.5), 2020 (12.5 to 6.25), and 2024 (6.25 to 3.125). Historically, halvings have preceded major price increases."],
+["stacking sats","The practice of regularly accumulating small amounts of Bitcoin (satoshis). Often combined with dollar-cost averaging. 1 BTC = 100,000,000 satoshis."],
+["fiat","Government-issued currency that is not backed by a physical commodity like gold. Examples include AUD, USD, EUR, and GBP. Fiat currencies can be printed in unlimited quantities, which tends to erode purchasing power over time."],
+["whitepaper","Satoshi Nakamoto's original 2008 paper titled 'Bitcoin: A Peer-to-Peer Electronic Cash System.' The 9-page document describes the design and purpose of Bitcoin. Available at bitcoin.org/bitcoin.pdf."],
+["self-custody","The practice of holding your own Bitcoin private keys rather than trusting a third party like an exchange or custodian. Self-custody gives you full control over your Bitcoin, but also full responsibility for securing it."],
+["not your keys, not your coins","A foundational Bitcoin principle meaning that if you don't control the private keys to your Bitcoin, you don't truly own it. Exchanges can be hacked, freeze accounts, or go bankrupt. Self-custody eliminates counterparty risk."],
+["DCA (Dollar-Cost Averaging)","An investment strategy where you buy a fixed amount of Bitcoin on a regular schedule (e.g. $50 every week) regardless of price. DCA removes the stress of trying to time the market and smooths out volatility over time."],
+["store of value","An asset that maintains or increases its purchasing power over time. Bitcoin is increasingly viewed as a digital store of value due to its fixed supply of 21 million, portability, and resistance to censorship or confiscation."],
+["sound money","Money with a supply that cannot be arbitrarily expanded. Historically gold served this role. Bitcoin takes it further with a mathematically enforced supply cap of 21 million coins, making it the hardest money ever created."],
+["inflation","The loss of purchasing power that occurs when the money supply increases faster than the economy grows. Central banks print fiat currency, diluting the value of existing money. Bitcoin's fixed supply is designed to be the opposite of inflation."],
+["scarcity","The property of having a limited and predictable supply. Bitcoin's supply is capped at 21 million coins, enforced by code and consensus. Over 19.5 million have already been mined, with the final Bitcoin expected around 2140."],
+["market cap","The total market value of all Bitcoin in circulation. Calculated by multiplying the current price per Bitcoin by the total number of coins in circulation. As of 2025, Bitcoin's market cap has exceeded $2 trillion."],
+["node","A computer running Bitcoin software that independently validates every transaction and block against the consensus rules. Nodes are the backbone of Bitcoin's decentralisation. Anyone can run a node, and doing so strengthens the network."],
+["hash rate","The total combined computational power being used to mine and process Bitcoin transactions, measured in hashes per second. A higher hash rate means greater network security, as it becomes exponentially more expensive to attack."],
+["block reward","The amount of new Bitcoin paid to the miner who successfully adds a new block to the blockchain. The reward started at 50 BTC in 2009 and halves approximately every four years. As of 2024, the block reward is 3.125 BTC."],
+["Taproot","A major Bitcoin upgrade activated in November 2021 that improves privacy, efficiency, and smart contract capability. Taproot makes complex transactions (like multisig or Lightning channel closures) look identical to simple transactions on the blockchain."],
+["QR code","A two-dimensional barcode that can encode a Bitcoin address or payment request. Scanning a QR code with a wallet app makes sending Bitcoin quick and error-free, avoiding the need to type long addresses manually."],
+["maximalist","A person who believes Bitcoin is the only cryptocurrency that matters and that all other cryptocurrencies (altcoins) are unnecessary, inferior, or outright scams. Often abbreviated as 'maxi.'"],
+["shitcoin","A colloquial and dismissive term used by the Bitcoin community to describe any cryptocurrency other than Bitcoin. The term implies that these coins lack the fundamental properties that make Bitcoin valuable: decentralisation, security, and fixed supply."],
+["FUD","Fear, Uncertainty, and Doubt. A term for negative or misleading information spread about Bitcoin, whether intentionally or through ignorance. Common FUD topics include energy consumption, government bans, and quantum computing threats."],
+["DYOR","Do Your Own Research. A reminder within the Bitcoin community that individuals should verify claims independently rather than relying on influencers, media, or social media hype. Critical thinking is essential in a space full of misinformation."],
+["whale","An entity (individual, company, or fund) that holds a very large amount of Bitcoin. Whale transactions can sometimes move markets due to their size. Early adopters, exchanges, and companies like Strategy (formerly MicroStrategy) are well-known whales."],
+["colored coins","An open source Bitcoin 2.0 protocol that enables developers to create digital assets on top of the Bitcoin blockchain utilising its functionalities beyond currency."],
+["extra nonce","As difficulty increased, miners often cycled through all 4 billion values of the nonce without finding a block. Because the coinbase script can store between 2 and 100 bytes of data, miners started using that space as extra nonce space, allowing them to explore a much larger range of block header values to find valid blocks."],
+["LevelDB","LevelDB is an open source on-disk key-value store. LevelDB is a light-weight, single-purpose library for persistence with bindings to many platforms."],
+["OP_RETURN","An opcode used in one of the outputs in an OP_RETURN transaction. Not to be confused with OP_RETURN transaction."],
+["OP_RETURN transaction","A transaction type that adds arbitrary data to a provably unspendable pubkey script that full nodes don't have to store in their UTXO database. Not to be confused with OP_RETURN opcode."],
+["orphan transactions","Transactions that can't go into the pool due to one or more missing input transactions."],
+["P2SH address","P2SH addresses are Base58Check encodings of the 20-byte hash of a script. P2SH addresses use the version prefix '5', which results in Base58Check-encoded addresses that start with a '3'. P2SH addresses hide all of the complexity, so that the person making a payment does not see the script."],
+["P2WPKH","Pay-to-Witness-Public-Key-Hash. The signature of a P2WPKH contains the same information as a P2PKH spending, but is located in the witness structure instead of the input script. The output script is also modified."],
+["P2WSH","Pay-to-Witness-Script-Hash. The difference between P2SH and P2WSH is about the cryptographic proof location change from the input script to the witness structure and the output script that is also modified."],
+["RIPEMD-160","RIPEMD-160 is a 160-bit cryptographic hash function. RIPEMD-160 is a strengthened version of RIPEMD with a 160-bit hash result, and is expected to be secure for the next ten years or more."],
+["output script","A script included in outputs which sets the conditions that must be fulfilled for those satoshis to be spent. Data for fulfilling the conditions can be provided in a signature script."],
+["input script","The data generated by a spender which is almost always used as variables to satisfy an output script."],
+["stale block","A block that was successfully mined but that is not included on the current best blockchain, likely because some other block at the same height had its chain extended first. Not to be confused with orphan block."],
+["transaction pool","An unordered collection of transactions that are not in blocks in the main chain, but for which we have input transactions."],
+["Turing completeness","A program language is called Turing complete if it can run any program that a Turing machine can run, given enough time and memory."]
+];
+
+function initGlossary() {
+  const container = document.getElementById('glossaryContainer');
+  if (!container) return;
+  glossaryData.forEach(function(item) {
+    var div = document.createElement('div');
+    div.className = 'glossary-term';
+    div.dataset.term = item[0].toLowerCase();
+    div.innerHTML = '<div class="glossary-term-name">' + item[0] + '</div><div class="glossary-term-def">' + item[1] + '</div>';
+    container.appendChild(div);
+  });
+  var searchEl = document.getElementById('glossarySearch');
+  if (searchEl) { searchEl.addEventListener('input', searchGlossary); }
+  searchGlossary();
+}
+
+function searchGlossary() {
+  var input = document.getElementById('glossarySearch');
+  var term = input ? input.value.toLowerCase().trim() : '';
+  var terms = document.getElementsByClassName('glossary-term');
+  var stats = document.getElementById('glossaryStats');
+  var count = 0;
+  Array.from(terms).forEach(function(el) {
+    el.classList.remove('visible','title-match');
+    el.style.order = 0;
+    var idx = glossaryData.findIndex(function(g) { return g[0].toLowerCase() === el.dataset.term; });
+    var name = el.dataset.term;
+    var def = glossaryData[idx][1].toLowerCase();
+    el.querySelector('.glossary-term-name').innerHTML = glossaryData[idx][0];
+    el.querySelector('.glossary-term-def').innerHTML = glossaryData[idx][1];
+    if (term === '') { el.classList.add('visible'); count++; }
+    else if (name.includes(term)) {
+      el.classList.add('visible','title-match');
+      el.style.order = -1;
+      el.querySelector('.glossary-term-name').innerHTML = highlightGlossary(glossaryData[idx][0], term);
+      el.querySelector('.glossary-term-def').innerHTML = highlightGlossary(glossaryData[idx][1], term);
+      count++;
+    } else if (def.includes(term)) {
+      el.classList.add('visible');
+      el.querySelector('.glossary-term-def').innerHTML = highlightGlossary(glossaryData[idx][1], term);
+      count++;
+    }
+  });
+  if (stats) stats.textContent = term ? 'Found ' + count + ' matching terms' : 'Showing all ' + terms.length + ' terms';
+}
+
+function highlightGlossary(text, term) {
+  if (!term) return text;
+  var regex = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  return text.replace(regex, '<span class="glossary-highlight">$1</span>');
+}
+
+// === BTC Price Ticker ===
+
+// Glossary category mapping for filter pills
+var glossaryCats = {
+  basics: ['address','bitcoin','blockchain','block','wallet','transaction','confirmations','fees','genesis block','satoshi','Satoshi Nakamoto','HODL','halving','stacking sats','fiat','whitepaper','self-custody','not your keys, not your coins','QR code','DCA (Dollar-Cost Averaging)','KYC'],
+  technical: ['bip','coinbase','coinbase transaction','consensus','consensus rules','ECDSA','fork','hard fork','soft fork','hash','HD protocol','HD wallet','HD wallet seed','HTLC','merkle root','merkle tree','multisignature','nonce','opcode','orphan block','output','P2PKH','P2SH','P2SH address','P2WPKH','P2WSH','Script','Segregated Witness','SHA','Simplified Payment Verification (SPV)','UTXO','Wallet Import Format (WIF)','Taproot','node','colored coins','extra nonce','LevelDB','OP_RETURN','OP_RETURN transaction','orphan transactions','output script','input script','RIPEMD-160','stale block','transaction pool','Turing completeness'],
+  economics: ['store of value','sound money','inflation','scarcity','market cap','fiat','DCA (Dollar-Cost Averaging)','reward','block reward','halving','double-spending'],
+  security: ['cold storage','hardware wallet','paper wallet','secret key (private key)','HD wallet seed','self-custody','not your keys, not your coins','ECDSA','multisignature','Byzantine Generals Problem'],
+  lightning: ['Lightning Network','HTLC','payment channels','hashlocks','timelocks','offchain transactions'],
+  mining: ['miner','Proof-of-Work','Proof-of-Stake','difficulty','difficulty retargeting','difficulty target','pooled mining','reward','block reward','hash rate','nonce'],
+  culture: ['HODL','maximalist','shitcoin','FUD','DYOR','whale','stacking sats','Satoshi Nakamoto']
+};
+var activeGlossaryCat = '';
+function filterGlossaryCat(cat) {
+  activeGlossaryCat = cat;
+  document.querySelectorAll('.glossary-pill').forEach(function(btn) { btn.classList.remove('active'); });
+  event.target.classList.add('active');
+  var searchEl = document.getElementById('glossarySearch');
+  if (searchEl) searchEl.value = '';
+  var terms = document.getElementsByClassName('glossary-term');
+  var catTerms = cat ? (glossaryCats[cat] || []).map(function(t) { return t.toLowerCase(); }) : [];
+  var count = 0;
+  Array.from(terms).forEach(function(el) {
+    el.classList.remove('visible','title-match');
+    el.style.order = 0;
+    if (!cat || catTerms.indexOf(el.dataset.term) !== -1) {
+      el.classList.add('visible');
+      count++;
+    }
+  });
+  var stats = document.getElementById('glossaryStats');
+  if (stats) stats.textContent = cat ? 'Showing ' + count + ' ' + cat + ' terms' : 'Showing all ' + terms.length + ' terms';
+}
+
+// === MINI GLOSSARY (Classroom widget) ===
+function initMiniGlossary() {
+  var input = document.getElementById('miniGlossarySearch');
+  if (!input) return;
+  input.addEventListener('input', function() {
+    var term = this.value.toLowerCase().trim();
+    var results = document.getElementById('miniGlossaryResults');
+    if (!term) {
+      results.innerHTML = '<div style="color:var(--text-dim); text-align:center;">Type a term to search 100+ definitions</div>';
+      return;
+    }
+    var matches = [];
+    glossaryData.forEach(function(item) {
+      var name = item[0].toLowerCase();
+      var def = item[1].toLowerCase();
+      if (name.includes(term)) { matches.unshift(item); }
+      else if (def.includes(term)) { matches.push(item); }
+    });
+    if (matches.length === 0) {
+      results.innerHTML = '<div style="color:var(--text-dim); text-align:center;">No matches found. <a onclick="showPage(\'glossary\')" style="color:var(--bitcoin); cursor:pointer; text-decoration:underline;">Try the full glossary</a></div>';
+      return;
+    }
+    var html = '';
+    var show = Math.min(matches.length, 5);
+    for (var i = 0; i < show; i++) {
+      var highlighted = matches[i][1].replace(new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), '<span class="glossary-highlight">$1</span>');
+      html += '<div style="padding:10px 0; border-bottom:1px solid var(--border);">';
+      html += '<div style="font-weight:600; color:var(--text-hero); font-size:14px; margin-bottom:3px;">' + matches[i][0] + '</div>';
+      html += '<div style="color:var(--text-secondary); line-height:1.5;">' + highlighted + '</div>';
+      html += '</div>';
+    }
+    if (matches.length > 5) {
+      html += '<div style="text-align:center; padding:10px 0; color:var(--text-dim); font-size:12px;">+' + (matches.length - 5) + ' more results. <a onclick="showPage(\'glossary\')" style="color:var(--bitcoin); cursor:pointer; text-decoration:underline;">Open full glossary</a></div>';
+    }
+    results.innerHTML = html;
+  });
+}
+
+// === BTC Price Ticker (original) ===
+async function fetchBTCPrice() {
+
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
+    const data = await res.json();
+    const price = data.bitcoin.usd.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    const change = data.bitcoin.usd_24h_change;
+    const el = document.getElementById('btcPrice');
+    const arrow = change >= 0 ? '▲' : '▼';
+    const color = change >= 0 ? '#16a34a' : '#dc2626';
+    el.innerHTML = '$' + price + ' <span style="color:' + color + '">' + arrow + ' ' + Math.abs(change).toFixed(1) + '%</span>';
+  } catch(e) {
+    document.getElementById('btcPrice').textContent = 'BTC';
+  }
+}
+
+// === CALENDLY POPUP ===
+
+function openAboutPopup() {
+  document.getElementById('aboutPopupOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeAboutPopup() {
+  document.getElementById('aboutPopupOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function openCalendly() {
+  if (typeof Calendly !== 'undefined') {
+    Calendly.initPopupWidget({url: 'https://calendly.com/griffithsben-pm/30min'});
+  } else {
+    window.open('https://calendly.com/griffithsben-pm/30min', '_blank');
+  }
+}
+function closeCalendly() { /* handled natively by Calendly widget */ }
+
+
+
+// === MOBILE NAV ===
+function toggleMobileNav() {
+  var panel = document.getElementById('mobileNavPanel');
+  var overlay = document.getElementById('mobileNavOverlay');
+  var hamburger = document.querySelector('.hamburger');
+  if (panel && overlay) {
+    panel.classList.toggle('active');
+    overlay.classList.toggle('active');
+    if (hamburger) hamburger.classList.toggle('active');
+    document.body.style.overflow = panel.classList.contains('active') ? 'hidden' : '';
+  }
+}
+
+// === INIT ===
+document.addEventListener('DOMContentLoaded', () => {
+  initHeroCanvas();
+  initReveal();
+  initGlossary();
+  initMiniGlossary();
+  fetchBTCPrice();
+  setInterval(fetchBTCPrice, 60000);
+  // ATH vs live price (Step 3)
+  if (document.getElementById('athLivePrice')) {
+    (async function() {
+      try {
+        var res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        var data = await res.json();
+        var price = Math.round(data.bitcoin.usd);
+        var ath = 126210;
+        var diff = ((price - ath) / ath * 100).toFixed(1);
+        document.getElementById('athLivePrice').textContent = '$' + price.toLocaleString();
+        var color = diff >= 0 ? '#16a34a' : '#dc2626';
+        document.getElementById('athVsLabel').innerHTML = '<span style="color:' + color + '">' + diff + '% from ATH</span>';
+      } catch(e) { document.getElementById('athLivePrice').textContent = '—'; }
+    })();
+  }
+  // Twitter embeds
+  if (typeof twttr !== 'undefined' && twttr.widgets) { twttr.widgets.load(); }
+});
+
+</script>
+
+</body>
+</html>
